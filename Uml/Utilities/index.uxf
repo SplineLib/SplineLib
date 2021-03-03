@@ -1,0 +1,7 @@
+<diagram program="umletino" version="14.3.0"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>540</x><y>100</y><w>200</w><h>90</h></coordinates><panel_attributes>template=int : size
+Index
+--
+bool : invalid_
+array&lt;Length, size&gt; : length_
+array&lt;Index, size&gt; : value_
+</panel_attributes><additional_attributes></additional_attributes></element></diagram>

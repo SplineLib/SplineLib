@@ -1,0 +1,8 @@
+input:
+# Replace by path to input file!
+
+output:
+# Replace by path to output file!
+
+splines:
+# Replace by list (separated by spaces) of splines' positions or "all" for all splines in the input file!
