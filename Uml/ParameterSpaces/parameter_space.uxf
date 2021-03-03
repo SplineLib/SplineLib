@@ -1,0 +1,6 @@
+<diagram program="umletino" version="14.3.0"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>360</x><y>100</y><w>620</w><h>90</h></coordinates><panel_attributes>template= int : parametric_dimensionality
+ParameterSpace
+--
+array&lt;shared_ptr&lt;KnotVector&gt;, parametric_dimensionality&gt; : knot_vectors_
+array&lt;Degree, parametric_dimensionality&gt; : degrees_
+array&lt;vector&lt;shared_ptr&lt;BSplineBasisFunction&gt; &gt;, parametric_dimensionality&gt; : basis_functions_</panel_attributes><additional_attributes></additional_attributes></element></diagram>

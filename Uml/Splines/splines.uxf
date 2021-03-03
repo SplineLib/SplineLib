@@ -1,0 +1,28 @@
+<diagram program="umletino" version="14.3.0"><zoom_level>10</zoom_level><element><id>UMLPackage</id><coordinates><x>50</x><y>40</y><w>1290</w><h>350</h></coordinates><panel_attributes>Splines
+--
+bg=orange
+
+group=1</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>440</x><y>90</y><w>180</w><h>70</h></coordinates><panel_attributes>SplineItem
+--
+int : dimensionality_
+int : parametric_dimensionality_
+bool : is_rational_
+group=1</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>300</x><y>200</y><w>600</w><h>60</h></coordinates><panel_attributes>template=int : parametric_dimensionality, int : dimensionality
+Spline
+--
+shared_pointer&lt; ParameterSpace&lt;parametric_dimensionality&gt; &gt; parameter_space_
+group=1</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>520</x><y>150</y><w>30</w><h>80</h></coordinates><panel_attributes>lt=&lt;&lt;-
+group=1</panel_attributes><additional_attributes>10;10;10;60</additional_attributes></element><element><id>UMLClass</id><coordinates><x>80</x><y>280</y><w>490</w><h>60</h></coordinates><panel_attributes>template=int : parametric_dimensionality, int : dimensionality
+BSpline
+--
+shared_pointer&lt;VectorSpace&lt;dimensionality&gt; &gt; : vector_space_
+
+group=1</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>380</x><y>250</y><w>30</w><h>50</h></coordinates><panel_attributes>lt=&lt;&lt;-
+group=1</panel_attributes><additional_attributes>10;10;10;30</additional_attributes></element><element><id>Relation</id><coordinates><x>650</x><y>250</y><w>30</w><h>60</h></coordinates><panel_attributes>lt=&lt;&lt;-
+group=1</panel_attributes><additional_attributes>10;10;10;40</additional_attributes></element><element><id>Relation</id><coordinates><x>420</x><y>300</y><w>220</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+group=1</panel_attributes><additional_attributes>200;10;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>620</x><y>280</y><w>690</w><h>80</h></coordinates><panel_attributes>template=int : parametric_dimensionality, int : dimensionality
+NURBS
+--
+shared_pointer&lt;BSpline&lt;parametric_dimensionality, dimensionality + 1&gt; &gt; : homogeneous_b_spline_
+shared_pointer&lt;WeightedVectorSpace&lt;dimensionality&gt; &gt; : weighted_vector_space_
+group=1</panel_attributes><additional_attributes></additional_attributes></element></diagram>
