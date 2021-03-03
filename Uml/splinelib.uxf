@@ -1,0 +1,49 @@
+<diagram program="umletino" version="14.3.0"><zoom_level>10</zoom_level><element><id>UMLPackage</id><coordinates><x>20</x><y>50</y><w>220</w><h>190</h></coordinates><panel_attributes>Utilities
+--
+bg=orange
+group=2</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>30</x><y>80</y><w>80</w><h>70</h></coordinates><panel_attributes>template=int : size
+Index
+
+group=2</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>30</x><y>160</y><w>200</w><h>70</h></coordinates><panel_attributes>template=type : Name, type : Type
+NamedType
+
+group=2</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLPackage</id><coordinates><x>270</x><y>430</y><w>570</w><h>340</h></coordinates><panel_attributes>ParameterSpaces
+--
+bg=orange
+group=1</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>490</x><y>590</y><w>220</w><h>70</h></coordinates><panel_attributes>BSplineBasisFunction
+
+group=1</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>370</x><y>690</y><w>220</w><h>70</h></coordinates><panel_attributes>ZeroDegreeBSplineBasisFunction
+
+group=1</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>610</x><y>690</y><w>220</w><h>70</h></coordinates><panel_attributes>NonZeroDegreeBSplineBasisFunction
+
+group=1</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>530</x><y>650</y><w>30</w><h>60</h></coordinates><panel_attributes>lt=&lt;&lt;-
+group=1</panel_attributes><additional_attributes>10;10;10;40</additional_attributes></element><element><id>Relation</id><coordinates><x>650</x><y>650</y><w>30</w><h>60</h></coordinates><panel_attributes>lt=&lt;&lt;-
+group=1</panel_attributes><additional_attributes>10;10;10;40</additional_attributes></element><element><id>UMLClass</id><coordinates><x>400</x><y>460</y><w>260</w><h>80</h></coordinates><panel_attributes>template= int : parametric_dimensionality
+ParameterSpace
+group=1</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>280</x><y>590</y><w>200</w><h>70</h></coordinates><panel_attributes>KnotVector
+
+group=1</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>430</x><y>530</y><w>30</w><h>80</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+group=1</panel_attributes><additional_attributes>10;10;10;60</additional_attributes></element><element><id>Relation</id><coordinates><x>520</x><y>530</y><w>30</w><h>80</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+group=1</panel_attributes><additional_attributes>10;10;10;60</additional_attributes></element><element><id>UMLPackage</id><coordinates><x>270</x><y>10</y><w>560</w><h>110</h></coordinates><panel_attributes>VectorSpaces
+--
+bg=orange</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>280</x><y>40</y><w>160</w><h>70</h></coordinates><panel_attributes>template=int : dimensionality
+VectorSpace
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>630</x><y>40</y><w>190</w><h>70</h></coordinates><panel_attributes>template=int : dimensionality - 1
+WeightedVectorSpace
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>370</x><y>70</y><w>280</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;260;10</additional_attributes></element><element><id>UMLPackage</id><coordinates><x>270</x><y>150</y><w>660</w><h>250</h></coordinates><panel_attributes>Splines
+--
+bg=orange</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>280</x><y>190</y><w>160</w><h>50</h></coordinates><panel_attributes>SplineItem
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>280</x><y>260</y><w>310</w><h>60</h></coordinates><panel_attributes>template=int : parametric_dimensionality, int : dimensionality
+Spline
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>500</x><y>180</y><w>420</w><h>70</h></coordinates><panel_attributes>template=int : parametric_dimensionality, int : dimensionality
+BSpline
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>500</x><y>320</y><w>420</w><h>70</h></coordinates><panel_attributes>template=int : parametric_dimensionality, int : dimensionality
+NURBS
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>440</x><y>240</y><w>190</w><h>80</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;60;170;60;170;10</additional_attributes></element><element><id>Relation</id><coordinates><x>420</x><y>310</y><w>100</w><h>70</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;50;80;50</additional_attributes></element><element><id>Relation</id><coordinates><x>630</x><y>240</y><w>30</w><h>110</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;90</additional_attributes></element><element><id>Relation</id><coordinates><x>350</x><y>230</y><w>30</w><h>50</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;30</additional_attributes></element><element><id>Relation</id><coordinates><x>320</x><y>100</y><w>250</w><h>110</h></coordinates><panel_attributes>lt=-&gt;&gt;&gt;&gt;</panel_attributes><additional_attributes>10;10;10;40;230;40;230;90</additional_attributes></element><element><id>Relation</id><coordinates><x>370</x><y>310</y><w>50</w><h>220</h></coordinates><panel_attributes>lt=-&gt;&gt;&gt;&gt;</panel_attributes><additional_attributes>30;200;10;200;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>740</x><y>70</y><w>240</w><h>320</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>40;300;220;300;220;10;10;10</additional_attributes></element><element><id>UMLPackage</id><coordinates><x>20</x><y>370</y><w>220</w><h>70</h></coordinates><panel_attributes>InputOutput
+--
+bg=orange</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>120</x><y>230</y><w>30</w><h>180</h></coordinates><panel_attributes>lt=-
+</panel_attributes><additional_attributes>10;10;10;160</additional_attributes></element><element><id>Relation</id><coordinates><x>230</x><y>210</y><w>60</w><h>300</h></coordinates><panel_attributes>lt=-
+</panel_attributes><additional_attributes>10;10;20;10;20;280;40;280</additional_attributes></element><element><id>Relation</id><coordinates><x>230</x><y>180</y><w>60</w><h>40</h></coordinates><panel_attributes>lt=-
+</panel_attributes><additional_attributes>10;20;40;20</additional_attributes></element><element><id>Relation</id><coordinates><x>230</x><y>80</y><w>60</w><h>40</h></coordinates><panel_attributes>lt=-
+</panel_attributes><additional_attributes>10;20;40;20</additional_attributes></element><element><id>Relation</id><coordinates><x>210</x><y>330</y><w>80</w><h>80</h></coordinates><panel_attributes>lt=-
+</panel_attributes><additional_attributes>60;20;10;20;10;60</additional_attributes></element></diagram>

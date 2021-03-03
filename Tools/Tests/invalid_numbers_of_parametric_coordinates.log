@@ -1,0 +1,11 @@
+input:
+# Replace by path to input file!
+
+output:
+# Replace by path to output file!
+
+splines:
+all
+
+numbers of parametric coordinates for splines:
+# Replace by list (separated by line breaks) of numbers of parametric coordinates (separated by spaces) for splines!
