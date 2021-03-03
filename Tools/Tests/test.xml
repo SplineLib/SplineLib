@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SplineList SplineType="1" NumberOfSplines="1">
+    <SplineEntry splDim="2" spaceDim="3" numOfCntrlPntVars="3" numCntrlPnts="6">
+        <cntrlPntVarNames>
+            x y z
+        </cntrlPntVarNames>
+        <cntrlPntVars>
+            0.0 0.0 0.0
+            0.5 0.0 0.75
+            1.0 0.0 1.0
+            0.0 1.0 0.0
+            0.5 1.0 0.75
+            1.0 1.0 1.0
+        </cntrlPntVars>
+        <deg>
+            2
+            1
+        </deg>
+        <kntVecs>
+            <kntVec>
+                0.000000
+                0.000000
+                0.000000
+                1.000000
+                1.000000
+                1.000000
+            </kntVec>
+            <kntVec>
+                0.000000
+                0.000000
+                1.000000
+                1.000000
+            </kntVec>
+        </kntVecs>
+    </SplineEntry>
+</SplineList>
