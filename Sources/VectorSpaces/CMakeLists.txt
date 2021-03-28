@@ -28,7 +28,7 @@ set(
 )
 set_source_files_properties(${HEADERS} PROPERTIES LANGUAGE CXX HEADER_FILE_ONLY TRUE)
 
-add_library(vector_spaces INTERFACE ${SOURCES})
+add_library(vector_spaces INTERFACE)
 target_include_directories(vector_spaces INTERFACE ${INCLUDE_DIRECTORIES})
 target_link_libraries(vector_spaces INTERFACE utilities)
 target_compile_definitions(vector_spaces INTERFACE ${COMPILE_DEFINITIONS})
