@@ -25,25 +25,25 @@ constexpr int GetPrecision() {
 
 template<typename Type>
 constexpr bool IsEqual(Type const &lhs, Type const &rhs, Type const &tolerance) {
-#ifndef NDEBUG
-  try {
-    ThrowIfToleranceIsNegative(tolerance);
-  } catch (InvalidArgument const &exception) {
-    Throw(exception, "splinelib::sources::utilities::numeric_operations::IsEqual");
-  }
-#endif
+//#ifndef NDEBUG
+//  try {
+//    ThrowIfToleranceIsNegative(tolerance);
+//  } catch (InvalidArgument const &exception) {
+//    Throw(exception, "splinelib::sources::utilities::numeric_operations::IsEqual");
+//  }
+//#endif
   return std::abs(lhs - rhs) <= tolerance;
 }
 
 template<typename Type>
 constexpr bool IsLess(Type const &lhs, Type const &rhs, Type const &tolerance) {
-#ifndef NDEBUG
-  try {
-    ThrowIfToleranceIsNegative(tolerance);
-  } catch (InvalidArgument const &exception) {
-    Throw(exception, "splinelib::sources::utilities::numeric_operations::IsLess");
-  }
-#endif
+//#ifndef NDEBUG
+//  try {
+//    ThrowIfToleranceIsNegative(tolerance);
+//  } catch (InvalidArgument const &exception) {
+//    Throw(exception, "splinelib::sources::utilities::numeric_operations::IsLess");
+//  }
+//#endif
   return IsEqual(lhs, rhs, tolerance) ? false : (lhs < rhs);
 }
 
