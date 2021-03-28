@@ -100,65 +100,65 @@ constexpr NamedType<Name, Type> operator/(NamedType<Name, Type> const &dividend,
 
 template<typename Name, typename Type>
 constexpr bool IsEqual(NamedType<Name, Type> const &lhs, NamedType<Name, Type> const &rhs, Type const &tolerance) {
-#ifndef NDEBUG
-  try {
-    numeric_operations::ThrowIfToleranceIsNegative(tolerance);
-  } catch (InvalidArgument const &exception) {
-    Throw(exception, "splinelib::sources::utilities::IsEqual::NamedType");
-  }
-#endif
+//#ifndef NDEBUG
+//  try {
+//    numeric_operations::ThrowIfToleranceIsNegative(tolerance);
+//  } catch (InvalidArgument const &exception) {
+//    Throw(exception, "splinelib::sources::utilities::IsEqual::NamedType");
+//  }
+//#endif
   return numeric_operations::IsEqual(lhs.value_, rhs.value_, tolerance);
 }
 
 template<typename Name, typename Type>
 constexpr bool IsLessOrEqual(NamedType<Name, Type> const &lhs, NamedType<Name, Type> const &rhs, Type const &tolerance)
 {
-#ifndef NDEBUG
-  try {
-    numeric_operations::ThrowIfToleranceIsNegative(tolerance);
-  } catch (InvalidArgument const &exception) {
-    Throw(exception, "splinelib::sources::utilities::IsLessOrEqual::NamedType");
-  }
-#endif
+//#ifndef NDEBUG
+//  try {
+//    numeric_operations::ThrowIfToleranceIsNegative(tolerance);
+//  } catch (InvalidArgument const &exception) {
+//    Throw(exception, "splinelib::sources::utilities::IsLessOrEqual::NamedType");
+//  }
+//#endif
   return numeric_operations::IsLessOrEqual(lhs.value_, rhs.value_, tolerance);
 }
 
 template<typename Name, typename Type>
 constexpr bool IsGreaterOrEqual(NamedType<Name, Type> const &lhs, NamedType<Name, Type> const &rhs,
                                 Type const &tolerance) {
-#ifndef NDEBUG
-  try {
-    numeric_operations::ThrowIfToleranceIsNegative(tolerance);
-  } catch (InvalidArgument const &exception) {
-    Throw(exception, "splinelib::sources::utilities::IsGreaterOrEqual::NamedType");
-  }
-#endif
+//#ifndef NDEBUG
+//  try {
+//    numeric_operations::ThrowIfToleranceIsNegative(tolerance);
+//  } catch (InvalidArgument const &exception) {
+//    Throw(exception, "splinelib::sources::utilities::IsGreaterOrEqual::NamedType");
+//  }
+//#endif
   return numeric_operations::IsGreaterOrEqual(lhs.value_, rhs.value_, tolerance);
 }
 
 template<typename Name, typename Type>
 constexpr bool IsLess(NamedType<Name, Type> const &lhs, NamedType<Name, Type> const &rhs,
                                 Type const &tolerance) {
-#ifndef NDEBUG
-  try {
-    numeric_operations::ThrowIfToleranceIsNegative(tolerance);
-  } catch (InvalidArgument const &exception) {
-    Throw(exception, "splinelib::sources::utilities::IsLess::NamedType");
-  }
-#endif
+//#ifndef NDEBUG
+//  try {
+//    numeric_operations::ThrowIfToleranceIsNegative(tolerance);
+//  } catch (InvalidArgument const &exception) {
+//    Throw(exception, "splinelib::sources::utilities::IsLess::NamedType");
+//  }
+//#endif
   return !numeric_operations::IsGreaterOrEqual(lhs.value_, rhs.value_, tolerance);
 }
 
 template<typename Name, typename Type>
 constexpr bool IsGreater(NamedType<Name, Type> const &lhs, NamedType<Name, Type> const &rhs,
                                 Type const &tolerance) {
-#ifndef NDEBUG
-  try {
-    numeric_operations::ThrowIfToleranceIsNegative(tolerance);
-  } catch (InvalidArgument const &exception) {
-    Throw(exception, "splinelib::sources::utilities::IsGreater::NamedType");
-  }
-#endif
+//#ifndef NDEBUG
+//  try {
+//    numeric_operations::ThrowIfToleranceIsNegative(tolerance);
+//  } catch (InvalidArgument const &exception) {
+//    Throw(exception, "splinelib::sources::utilities::IsGreater::NamedType");
+//  }
+//#endif
   return !numeric_operations::IsLessOrEqual(lhs.value_, rhs.value_, tolerance);
 }
 

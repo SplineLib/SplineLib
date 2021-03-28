@@ -25,61 +25,61 @@ constexpr int GetPrecision() {
 
 template<typename Type>
 constexpr bool IsEqual(Type const &lhs, Type const &rhs, Type const &tolerance) {
-#ifndef NDEBUG
-  try {
-    ThrowIfToleranceIsNegative(tolerance);
-  } catch (InvalidArgument const &exception) {
-    Throw(exception, "splinelib::sources::utilities::numeric_operations::IsEqual");
-  }
-#endif
+//#ifndef NDEBUG
+//  try {
+//    ThrowIfToleranceIsNegative(tolerance);
+//  } catch (InvalidArgument const &exception) {
+//    Throw(exception, "splinelib::sources::utilities::numeric_operations::IsEqual");
+//  }
+//#endif
   return (std::abs(lhs - rhs) <= tolerance);
 }
 
 template<typename Type>
 constexpr bool IsLessOrEqual(Type const &lhs, Type const &rhs, Type const &tolerance) {
-#ifndef NDEBUG
-  try {
-    ThrowIfToleranceIsNegative(tolerance);
-  } catch (InvalidArgument const &exception) {
-    Throw(exception, "splinelib::sources::utilities::numeric_operations::IsLessOrEqual");
-  }
-#endif
+//#ifndef NDEBUG
+//  try {
+//    ThrowIfToleranceIsNegative(tolerance);
+//  } catch (InvalidArgument const &exception) {
+//    Throw(exception, "splinelib::sources::utilities::numeric_operations::IsLessOrEqual");
+//  }
+//#endif
   return (IsEqual(lhs, rhs, tolerance) ? true : lhs < rhs);
 }
 
 template<typename Type>
 constexpr bool IsGreaterOrEqual(Type const &lhs, Type const &rhs, Type const &tolerance) {
-#ifndef NDEBUG
-  try {
-    ThrowIfToleranceIsNegative(tolerance);
-  } catch (InvalidArgument const &exception) {
-    Throw(exception, "splinelib::sources::utilities::numeric_operations::IsGreaterOrEqual");
-  }
-#endif
+//#ifndef NDEBUG
+//  try {
+//    ThrowIfToleranceIsNegative(tolerance);
+//  } catch (InvalidArgument const &exception) {
+//    Throw(exception, "splinelib::sources::utilities::numeric_operations::IsGreaterOrEqual");
+//  }
+//#endif
   return (IsEqual(lhs, rhs, tolerance) ? true : lhs > rhs);
 }
 
 template<typename Type>
 constexpr bool IsLess(Type const &lhs, Type const &rhs, Type const &tolerance) {
-#ifndef NDEBUG
-  try {
-    ThrowIfToleranceIsNegative(tolerance);
-  } catch (InvalidArgument const &exception) {
-    Throw(exception, "splinelib::sources::utilities::numeric_operations::IsLess");
-  }
-#endif
+//#ifndef NDEBUG
+//  try {
+//    ThrowIfToleranceIsNegative(tolerance);
+//  } catch (InvalidArgument const &exception) {
+//    Throw(exception, "splinelib::sources::utilities::numeric_operations::IsLess");
+//  }
+//#endif
   return !IsGreaterOrEqual(lhs, rhs, tolerance);
 }
 
 template<typename Type>
 constexpr bool IsGreater(Type const &lhs, Type const &rhs, Type const &tolerance) {
-#ifndef NDEBUG
-  try {
-    ThrowIfToleranceIsNegative(tolerance);
-  } catch (InvalidArgument const &exception) {
-    Throw(exception, "splinelib::sources::utilities::numeric_operations::IsGreater");
-  }
-#endif
+//#ifndef NDEBUG
+//  try {
+//    ThrowIfToleranceIsNegative(tolerance);
+//  } catch (InvalidArgument const &exception) {
+//    Throw(exception, "splinelib::sources::utilities::numeric_operations::IsGreater");
+//  }
+//#endif
   return !IsLessOrEqual(lhs, rhs, tolerance);
 }
 

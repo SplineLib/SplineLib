@@ -61,14 +61,14 @@ TEST(NumericOperationsSuite, IsEqualIsLessOrEqualIsGreaterOrEqualIsLessAndIsGrea
   EXPECT_FALSE(IsGreater(0.0, 3e-14));
 }
 
-#ifndef NDEBUG
-TEST(NumericOperationsSuite, ThrowsIfToleranceHasNegativeSign) {
-  EXPECT_THROW(IsEqual(0.0, 0.0, -3e-14), InvalidArgument);
-  EXPECT_THROW(IsLessOrEqual(0.0, 0.0, -3e-14), InvalidArgument);
-  EXPECT_THROW(IsGreaterOrEqual(0.0, 0.0, -3e-14), InvalidArgument);
-  EXPECT_THROW(IsLess(0.0, 0.0, -3e-14), InvalidArgument);
-  EXPECT_THROW(IsGreater(0.0, 0.0, -3e-14), InvalidArgument);
-}
-#endif
+//#ifndef NDEBUG
+//TEST(NumericOperationsSuite, ThrowsIfToleranceHasNegativeSign) {
+//  EXPECT_THROW(IsEqual(0.0, 0.0, -3e-14), InvalidArgument);
+//  EXPECT_THROW(IsLessOrEqual(0.0, 0.0, -3e-14), InvalidArgument);
+//  EXPECT_THROW(IsGreaterOrEqual(0.0, 0.0, -3e-14), InvalidArgument);
+//  EXPECT_THROW(IsLess(0.0, 0.0, -3e-14), InvalidArgument);
+//  EXPECT_THROW(IsGreater(0.0, 0.0, -3e-14), InvalidArgument);
+//}
+//#endif
 
 }  // namespace splinelib::tests::utilities::numeric_operations
