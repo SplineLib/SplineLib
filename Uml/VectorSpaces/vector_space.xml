@@ -1,0 +1,41 @@
+<diagram program="umletino" version="14.3.0"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>180</x><y>0</y><w>550</w><h>280</h></coordinates><panel_attributes>template=dimensionality : int
+VectorSpace
+--
+coordinates_ : Coordinates_
+--
+VectorSpace(Coordinates_)
+operator[](Index const &amp;) const : Coordinate_ const &amp;
+GetNumberOfCoordinates() const : int
+Replace(Index const &amp;, Coordinate_) : void
+Insert(Index const &amp;, Coordinate_) : void
+Erase(Index const &amp;) : void
+DetermineMaximumDistanceFromOrigin(Tolerance const &amp; = kEpsilon) const : Coordinate
+Write(Precision const &amp; = kPrecision) const : OutputInformation_
+--
+IsEqual(VectorSpace const &amp;, VectorSpace const &amp;, Tolerance const &amp;) : bool
+operator==(VectorSpace const &amp;, VectorSpace const &amp;) : bool
+--
+Coordinate_ = array&lt;Coordinate, dimensionality&gt;
+Coordinates_ : vector&lt;Coordinate_&gt;
+OutputInformation_ = tuple&lt;vector&lt;StringArray&lt;dimensionality&gt; &gt; &gt;
+--</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>10</x><y>300</y><w>870</w><h>260</h></coordinates><panel_attributes>template=dimensionality : int
+WeightedVectorSpace
+--
+--
+WeightedVectorSpace(Coordinates_ const &amp;, Weights_ const &amp;)
+__Project(HomogeneousCoordinate_ const &amp;) : Coordinate___
+DetermineMaximumDistanceFromOriginAndMinimumWeight(Tolerance const &amp; = kEpsilon) const : MaximumDistanceFromOriginAndMinimumWeight_
+WriteProjected(Precision const &amp; = kPrecision) const : OutputInformation_
+--
+IsEqual(WeightedVectorSpace const &amp;, WeightedVectorSpace const &amp;, Tolerance const &amp;) : bool
+operator==(WeightedVectorSpace const &amp;, WeightedVectorSpace const &amp;) : bool
+--
+Base_ : VectorSpace&lt;dimensionality + 1&gt;
+Coordinate_ : VectorSpace&lt;dimensionality&gt;::Coordinate_
+Coordinates_ : VectorSpace&lt;dimensionality&gt;::Coordinates_
+HomogeneousCoordinate_ : Base_::Coordinate_
+MaximumDistanceFromOriginAndMinimumWeight_ : tuple&lt;Coordinate, Weight&gt;
+OutputInformation_  : tuple&lt;vector&lt;StringArray&lt;dimensionality&gt; &gt;, StringVector&gt;
+Weights_ : vector&lt;Weight&gt;
+--</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>410</x><y>270</y><w>210</w><h>60</h></coordinates><panel_attributes>lt=&lt;&lt;-
+dimensionality = dimensionality + 1</panel_attributes><additional_attributes>10;10;10;40</additional_attributes></element></diagram>

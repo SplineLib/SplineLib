@@ -1,0 +1,48 @@
+<diagram program="umletino" version="14.3.0"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>22</x><y>0</y><w>560</w><h>680</h></coordinates><panel_attributes>template=Name : type, Type : type
+NamedType
+--
+value_ : Type_
+--
+NamedType(Type_)
+operator+=(NamedType const &amp;) : NamedType &amp;
+operator-=(NamedType const &amp;) : NamedType &amp;
+operator++() : NamedType &amp;
+operator--() : NamedType &amp;
+Get() const : Type const &amp;
+Get() : Type &amp;
+__ThrowIfNamedIntegerIsOutOfBounds(NamedType&lt;Name, int&gt; const &amp;, int const &amp;) : void__
+--
+operator+(NamedType const &amp;, NamedType const &amp;) : NamedType
+operator-(NamedType const &amp;, NamedType const &amp;) : NamedType
+operator*(NamedType const &amp;, NamedType const &amp;) : NamedType
+operator*(Type const &amp;, NamedType const &amp;) : NamedType
+operator*(NamedType const &amp;, Type const &amp;) : NamedType
+operator/(NamedType const &amp;, NamedType const &amp;) : NamedType
+operator/(Type const &amp;, NamedType const &amp;) : NamedType
+operator/(NamedType const &amp;, Type const &amp;) : NamedType
+IsEqual(NamedType const &amp;, NamedType const &amp;, Type const &amp;) : bool
+IsLessOrEqual(NamedType const &amp;, NamedType const &amp;, Type const &amp;) : bool
+IsGreaterOrEqual(NamedType const &amp;, NamedType const &amp;, Type const &amp;) : bool
+IsLess(NamedType const &amp;, NamedType const &amp;, Type const &amp;) : bool
+IsGreater(NamedType const &amp;, NamedType const &amp;, Type const &amp;) : bool
+operator==(NamedType const &amp;, NamedType const &amp;) : bool
+operator!=(NamedType const &amp;, NamedType const &amp;) : bool
+operator&lt;=(NamedType const &amp;, NamedType const &amp;) : bool
+operator&gt;=(NamedType const &amp;, NamedType const &amp;) : bool
+operator&lt;(NamedType const &amp;, NamedType const &amp;) : bool
+operator&gt;(NamedType const &amp;, NamedType const &amp;) : bool
+--
+Name_ : Name
+Type_ : Type
+--
+Dimension : NamedType&lt;struct DimensionName, int&gt;
+Index : NamedType&lt;struct IndexName, int&gt;
+Length : NamedType&lt;struct LengthName, int&gt;
+Precision : NamedType&lt;struct PrecisionName, int&gt;
+Degree : NamedType&lt;struct DegreeName, int&gt;
+Derivative : NamedType&lt;struct DerivativeName, int&gt;
+KnotSpan : NamedType&lt;struct KnotSpanName, int&gt;
+Multiplicity : NamedType&lt;struct MultiplicityName, int&gt;
+ParametricCoordinate : NamedType&lt;struct ParametricCoordinateName, double&gt;
+Coordinate : NamedType&lt;struct CoordinateName, double&gt;
+Weight : NamedType&lt;struct WeightName, double&gt;</panel_attributes><additional_attributes></additional_attributes></element></diagram>
