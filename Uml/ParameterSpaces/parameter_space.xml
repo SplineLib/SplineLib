@@ -1,0 +1,49 @@
+<diagram program="umletino" version="14.3.0"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>0</x><y>18</y><w>1010</w><h>700</h></coordinates><panel_attributes>template=parametric_dimensionality : int
+ParameterSpace
+--
+knot_vectors_ : KnotVectors_
+degrees_ : Degrees_
+basis_functions_ : BSplineBasisFunctions_
+--
+ParameterSpace(KnotVectors_, Degrees_, Tolerance const &amp; = kEpsilon)
+First() const : Index_
+Behind() const : Index_
+GetNumberOfBasisFunctions() const : NumberOfBasisFunctions_
+GetTotalNumberOfBasisFunctions() const : int
+FindFirstNonZeroBasisFunction(ParametricCoordinate_ const &amp;, Tolerance const &amp; = kEpsilon) const : Index_
+DetermineBezierExtractionKnots(Dimension const &amp;, Tolerance const &amp; = kEpsilon) const : BezierInformation_
+EvaluateBasisFunction(Index const &amp;, ParametricCoordinate_ const &amp;, Tolerance const &amp; = kEpsilon) const : Type_
+EvaluateBasisFunctionDerivative(Index const &amp;, ParametricCoordinate_ const &amp;, Derivative_ const &amp;, Tolerance const &amp; = kEpsilon) const : Type_
+InsertKnot(Dimension const &amp;, Knot_, Multiplicity const &amp; = kMultiplicity, Tolerance const &amp; = kEpsilon) : InsertionInformation_
+RemoveKnot(Dimension const &amp;, Knot_ const &amp;, Multiplicity const &amp; = kMultiplicity, Tolerance const &amp; = kEpsilon) : InsertionInformation_
+ElevateDegree(Dimension const &amp;, Multiplicity const &amp; = kMultiplicity, Tolerance const &amp; = kEpsilon) : ElevationInformation_
+ReduceDegree(Dimension const &amp;, Multiplicity const &amp; = kMultiplicity, Tolerance const &amp; = kEpsilon) : ElevationInformation_
+Sample(NumberOfParametricCoordinates_ const &amp;) const : ParametricCoordinates_
+Write(Precision const &amp; = kPrecision) const : OutputInformation_
+ThrowIfParametricCoordinateIsOutsideScope(Dimension const &amp;, ParametricCoordinate const &amp;, Tolerance const &amp; = kEpsilon) const : void
+--
+IsEqual(ParameterSpace const &amp;, ParameterSpace const &amp;, Tolerance const &amp;) : bool
+operator==(ParameterSpace const &amp;, ParameterSpace const &amp;) : bool
+--
+BinomialRatios_ = vector&lt;BinomialRatio&gt;
+Degrees_ : array&lt;Degree, parametric_dimensionality&gt;
+Derivative_ : array&lt;Derivative, parametric_dimensionality&gt;
+ElevationCoefficients_ : vector&lt;BinomialRatios_&gt;
+ElevationInformation_ : tuple&lt;Index, ElevationCoefficients_&gt;
+Index_ : Index&lt;parametric_dimensionality&gt;
+IndexLength_ : Index_::Length_
+IndexValue_ : Index_::Value_
+KnotRatios_ : vector&lt;KnotRatio&gt;
+KnotVectors_ : KnotVectors&lt;parametric_dimensionality&gt;
+NumberOfBasisFunctions_ : IndexLength_
+NumberOfParametricCoordinates_ : IndexLength_
+OutputInformation_ : tuple&lt;KnotVectorsOutputInformation&lt;parametric_dimensionality&gt;, StringArray&lt;parametric_dimensionality&gt;, StringArray&lt;parametric_dimensionality&gt; &gt;
+ParametricCoordinate_ : array&lt;ParametricCoordinate, parametric_dimensionality&gt;
+ParametricCoordinates_ : vector&lt;ParametricCoordinate_&gt;
+Type_ : BSplineBasisFunctions&lt;parametric_dimensionality&gt;::value_type::value_type::element_type::Type_
+InsertionCoefficients_ : vector&lt;KnotRatios_&gt;
+InsertionInformation_ : tuple&lt;Index, InsertionCoefficients_&gt;
+Knots_ : KnotVectors_::value_type::element_type::Knots_
+BezierInformation_ : tuple&lt;int, Knots_&gt;
+Knot_ : Knots_::value_type
+--</panel_attributes><additional_attributes></additional_attributes></element></diagram>

@@ -1,0 +1,32 @@
+<diagram program="umletino" version="14.3.0"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>191</x><y>110</y><w>320</w><h>440</h></coordinates><panel_attributes>template=size : int
+Index
+--
+invalid_ : bool
+length_ : Length_
+value_ : Value_
+--
+Index(Length_, Value_ = {}, bool = false)
+operator+=(Value_ const &amp;) : Index &amp;
+operator-=(Value_ const &amp;) : Index &amp;
+operator++() : Index &amp;
+Increment(Dimension const &amp;) : Index &amp;
+operator--() : Index &amp;
+Decrement(Dimension const &amp;) : Index &amp;
+operator[](Dimension const &amp;) const : Index_ const &amp;
+__First(Length_) : Index__
+__Behind(Length_) : Index__
+__Last(Length_) : Index__
+__Before(Length_) : Index__
+GetTotalNumberOfIndices() const : int
+GetIndex() const : Value_
+GetIndex1d() const : Index_
+--
+operator+(Index const &amp;, Value_ const &amp;) : Index
+operator-(Index const &amp;, Value_ const &amp;) : Index
+operator==(Index const &amp;, Index const &amp;)  : bool
+operator!=(Index const &amp;, Index const &amp;) : bool
+--
+Index_ : splinelib::Index
+Length_ : array&lt;Length, size&gt;
+Value_ : array&lt;Index_, size&gt;
+--</panel_attributes><additional_attributes></additional_attributes></element></diagram>
