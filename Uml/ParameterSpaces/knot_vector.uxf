@@ -1,4 +1,0 @@
-<diagram program="umletino" version="14.3.0"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>420</x><y>100</y><w>220</w><h>40</h></coordinates><panel_attributes>KnotVector
---
-vector&lt;ParametricCoordinate&gt; : knots_
-</panel_attributes><additional_attributes></additional_attributes></element></diagram>

@@ -1,0 +1,100 @@
+<diagram program="umletino" version="14.3.0"><zoom_level>10</zoom_level><element><id>Relation</id><coordinates><x>1160</x><y>492</y><w>90</w><h>80</h></coordinates><panel_attributes>lt=-&gt;&gt;
+degree_ = 0
+group=1</panel_attributes><additional_attributes>10;10;10;60</additional_attributes></element><element><id>Relation</id><coordinates><x>650</x><y>652</y><w>210</w><h>40</h></coordinates><panel_attributes>lt=&lt;&lt;-
+degree_ ≠ 0
+group=1</panel_attributes><additional_attributes>190;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>800</x><y>552</y><w>60</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+group=1</panel_attributes><additional_attributes>10;10;40;10</additional_attributes></element><element><id>Relation</id><coordinates><x>800</x><y>222</y><w>60</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+group=1</panel_attributes><additional_attributes>10;10;40;10</additional_attributes></element><element><id>UMLPackage</id><coordinates><x>0</x><y>52</y><w>1520</w><h>750</h></coordinates><panel_attributes>ParameterSpaces
+--
+bg=orange
+group=1</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>30</x><y>102</y><w>870</w><h>490</h></coordinates><panel_attributes>template=parametric_dimensionality : int
+ParameterSpace
+--
+knot_vectors_ : KnotVectors_
+degrees_ : Degrees_
+basis_functions_ : BSplineBasisFunctions_
+--
+ParameterSpace(KnotVectors_, Degrees_, Tolerance const &amp; = kEpsilon)
+First() const : Index_
+Behind() const : Index_
+FindFirstNonZeroBasisFunction(ParametricCoordinate_ const &amp;, Tolerance const &amp; = kEpsilon) const : Index_
+DetermineBezierExtractionKnots(Dimension const &amp;, Tolerance const &amp; = kEpsilon) const : BezierInformation_
+EvaluateBasisFunction(Index const &amp;, ParametricCoordinate_ const &amp;, Tolerance const &amp; = kEpsilon) const : Type_
+EvaluateBasisFunctionDerivative(Index const &amp;, ParametricCoordinate_ const &amp;, Derivative_ const &amp;, Tolerance const &amp; = kEpsilon) const : Type_
+InsertKnot(Dimension const &amp;, Knot_, Multiplicity const &amp; = kMultiplicity, Tolerance const &amp; = kEpsilon) : InsertionInformation_
+RemoveKnot(Dimension const &amp;, Knot_ const &amp;, Multiplicity const &amp; = kMultiplicity, Tolerance const &amp; = kEpsilon) : InsertionInformation_
+ElevateDegree(Dimension const &amp;, Multiplicity const &amp; = kMultiplicity, Tolerance const &amp; = kEpsilon) : ElevationInformation_
+ReduceDegree(Dimension const &amp;, Multiplicity const &amp; = kMultiplicity, Tolerance const &amp; = kEpsilon) : ElevationInformation_
+--
+--
+BinomialRatios_ = vector&lt;BinomialRatio&gt;
+Degrees_ : array&lt;Degree, parametric_dimensionality&gt;
+Derivative_ : array&lt;Derivative, parametric_dimensionality&gt;
+ElevationCoefficients_ : vector&lt;BinomialRatios_&gt;
+ElevationInformation_ : tuple&lt;Index, ElevationCoefficients_&gt;
+Index_ : Index&lt;parametric_dimensionality&gt;
+KnotRatios_ : vector&lt;KnotRatio&gt;
+KnotVectors_ : KnotVectors&lt;parametric_dimensionality&gt;
+ParametricCoordinate_ : array&lt;ParametricCoordinate, parametric_dimensionality&gt;
+Type_ : BSplineBasisFunctions&lt;parametric_dimensionality&gt;::value_type::value_type::element_type::Type_
+InsertionCoefficients_ : vector&lt;KnotRatios_&gt;
+InsertionInformation_ : tuple&lt;Index, InsertionCoefficients_&gt;
+Knots_ : KnotVectors_::value_type::element_type::Knots_
+BezierInformation_ : tuple&lt;int, Knots_&gt;
+--
+group=1</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>840</x><y>552</y><w>650</w><h>180</h></coordinates><panel_attributes>BSplineBasisFunction
+--
+degree_ : Degree
+start_knot_ : ParametricCoordinate
+end_knot_ : ParametricCoordinate
+end_knot_equals_last_knot_ : bool
+--
+_CreateDynamic(KnotVector const &amp;, KnotSpan const &amp;, Degree, Tolerance const &amp; = kEpsilon) : BSplineBasisFunction * _
+/operator()(ParametricCoordinate const &amp;, Tolerance const &amp; = kEpsilon) const : Type_/
+/operator()(ParametricCoordinate const &amp;, Derivative const &amp;, Tolerance const &amp; = kEpsilon) const : Type_/
+--
+--
+Type_ : ParametricCoordinate::Type_
+--
+BSplineBasisFunctions : array&lt;vector&lt;shared_ptr&lt;BSplineBasisFunction&gt; &gt;, parametric_dimensionality&gt;
+group=1</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>880</x><y>442</y><w>560</w><h>60</h></coordinates><panel_attributes>ZeroDegreeBSplineBasisFunction
+--
+--
+ZeroDegreeBSplineBasisFunction(KnotVector const &amp;, KnotSpan const &amp;, Tolerance const &amp; = kEpsilon)
+--
+--
+--
+group=1</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>30</x><y>622</y><w>630</w><h>150</h></coordinates><panel_attributes>NonZeroDegreeBSplineBasisFunction
+--
+left_denominator_inverse_ : Type_
+right_denominator_inverse_ : Type_
+left_quotient_derivative_ : Type_
+right_quotient_derivative_ : Type_
+left_lower_degree_basis_function_ : shared_pointer&lt;Base_&gt;
+right_lower_degree_basis_function_ : shared_pointer&lt;Base_&gt;
+--
+NonZeroDegreeBSplineBasisFunction(KnotVector const &amp;, KnotSpan const &amp;, Degree, Tolerance const &amp; = kEpsilon)
+--
+--
+--
+group=1</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>840</x><y>152</y><w>600</w><h>260</h></coordinates><panel_attributes>KnotVector
+--
+knots_ : Knots_
+--
+KnotVector(Knots_, Tolerance const &amp; = kEpsilon)
+operator[](Index const &amp;) const : Knot_ const &amp;
+GetSize() const : int
+FindSpan(ParametricCoordinate const &amp;, Tolerance const &amp; = kEpsilon) const : KnotSpan
+DetermineMultiplicity(Knot_ const &amp;, Tolerance const &amp; = kEpsilon) const : Multiplicity
+GetUniqueKnots(Tolerance const &amp; = kEpsilon) const : Knots_
+Insert(Knot_, Multiplicity const &amp; = kMultiplicity, Tolerance const &amp; = kEpsilon) : void
+Remove(Knot_ const &amp;, Multiplicity const &amp; = kMultiplicity, Tolerance const &amp; = kEpsilon) : void
+IncreaseMultiplicities(Multiplicity const &amp; = kMultiplicity, Tolerance const &amp; = kEpsilon) : void
+DecreaseMultiplicities(Multiplicity const &amp; = kMultiplicity, Tolerance const &amp; = kEpsilon) : void
+--
+--
+Knot_ : ParametricCoordinate
+Knots_ : vector&lt;Knot_&gt;
+--
+KnotVectors : array&lt;shared_ptr&lt;KnotVector&gt;, parametric_dimensionality&gt;
+group=1</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>650</x><y>690</y><w>210</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;190;10</additional_attributes></element></diagram>

@@ -1,0 +1,31 @@
+<diagram program="umletino" version="14.3.0"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>0</x><y>150</y><w>650</w><h>420</h></coordinates><panel_attributes>KnotVector
+--
+knots_ : Knots_
+--
+KnotVector(Knots_, Tolerance const &amp; = kEpsilon)
+operator[](Index const &amp;) const : Knot_ const &amp;
+GetSize() const : int
+GetFront() const : Knot_ const &amp;
+GetBack() const : Knot_ const &amp;
+DoesParametricCoordinateEqualBack(ParametricCoordinate const &amp;, Tolerance const &amp; = kEpsilon) const : bool
+DoesParametricCoordinateEqualFrontOrBack(ParametricCoordinate const &amp;, Tolerance const &amp; = kEpsilon) const : bool
+FindSpan(ParametricCoordinate const &amp;, Tolerance const &amp; = kEpsilon) const : KnotSpan
+DetermineMultiplicity(Knot_ const &amp;, Tolerance const &amp; = kEpsilon) const : Multiplicity
+GetUniqueKnots(Tolerance const &amp; = kEpsilon) const : Knots_
+Insert(Knot_, Multiplicity const &amp; = kMultiplicity, Tolerance const &amp; = kEpsilon) : void
+Remove(Knot_ const &amp;, Multiplicity const &amp; = kMultiplicity, Tolerance const &amp; = kEpsilon) : void
+IncreaseMultiplicities(Multiplicity const &amp; = kMultiplicity, Tolerance const &amp; = kEpsilon) : void
+DecreaseMultiplicities(Multiplicity const &amp; = kMultiplicity, Tolerance const &amp; = kEpsilon) : void
+Write(Precision const &amp; = kPrecision) const : OutputInformation_
+ThrowIfParametricCoordinateIsOutsideScope(ParametricCoordinate const &amp;, Tolerance const &amp; = kEpsilon) const : void
+--
+IsEqual(KnotVector const &amp;, KnotVector const &amp;, Tolerance const &amp;) : bool
+operator==(KnotVector const &amp;, KnotVector const &amp;) : bool
+--
+Knot_ : ParametricCoordinate
+OutputInformation_ : StringVector
+Knots_ : vector&lt;Knot_&gt;
+Type_ : Knot_::Type_
+--
+KnotVectors : array&lt;shared_ptr&lt;KnotVector&gt;, parametric_dimensionality&gt;
+KnotVectorsOutputInformation : array&lt;StringVector, parametric_dimensionality&gt;</panel_attributes><additional_attributes></additional_attributes></element></diagram>

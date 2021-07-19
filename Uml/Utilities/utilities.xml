@@ -1,0 +1,60 @@
+<diagram program="umletino" version="14.3.0"><zoom_level>10</zoom_level><element><id>UMLPackage</id><coordinates><x>0</x><y>109</y><w>1020</w><h>520</h></coordinates><panel_attributes>Utilities
+--
+bg=orange
+group=1</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>470</x><y>159</y><w>520</w><h>320</h></coordinates><panel_attributes>template=Name : type, Type : type
+NamedType
+--
+value_ : Type_
+--
+NamedType(Type_)
+Get() const : Type const &amp;
+Get() : Type &amp;
+--
+--
+Name_ : Name
+Type_ : Type
+--
+Dimension : NamedType&lt;struct DimensionName, int&gt;
+Index : NamedType&lt;struct IndexName, int&gt;
+Length : NamedType&lt;struct LengthName, int&gt;
+Precision : NamedType&lt;struct PrecisionName, int&gt;
+Degree : NamedType&lt;struct DegreeName, int&gt;
+Derivative : NamedType&lt;struct DerivativeName, int&gt;
+KnotSpan : NamedType&lt;struct KnotSpanName, int&gt;
+Multiplicity : NamedType&lt;struct MultiplicityName, int&gt;
+ParametricCoordinate : NamedType&lt;struct ParametricCoordinateName, double&gt;
+Coordinate : NamedType&lt;struct CoordinateName, double&gt;
+Weight : NamedType&lt;struct WeightName, double&gt;
+group=1</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>30</x><y>159</y><w>410</w><h>440</h></coordinates><panel_attributes>template=size : int
+Index
+--
+invalid_ : bool
+length_ : Length_
+value_ : Value_
+--
+Index(Length_, Value_ = {}, bool = false)
+operator+=(Value_ const &amp;) : Index &amp;
+operator-=(Value_ const &amp;) : Index &amp;
+operator++() : Index &amp;
+Increment(Dimension const &amp;) : Index &amp;
+operator--() : Index &amp;
+Decrement(Dimension const &amp;) : Index &amp;
+operator[](Dimension const &amp;) const : Index_ const &amp;
+__First(Length_) : Index__
+__Behind(Length_) : Index__
+__Last(Length_) : Index__
+__Before(Length_) : Index__
+GetTotalNumberOfIndices() const : int
+GetIndex() const : Value_
+GetIndex1d() const : Index_
+--
+operator+(Index const &amp;, Value_ const &amp;) : Index
+operator-(Index const &amp;, Value_ const &amp;) : Index
+operator==(Index const &amp;, Index const &amp;)  : bool
+operator!=(Index const &amp;, Index const &amp;) : bool
+--
+Index_ : splinelib::Index
+Length_ : array&lt;Length, size&gt;
+Value_ : array&lt;Index_, size&gt;
+--
+group=1</panel_attributes><additional_attributes></additional_attributes></element></diagram>
