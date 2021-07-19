@@ -1,0 +1,36 @@
+<diagram program="umletino" version="14.3.0"><zoom_level>10</zoom_level><element><id>UMLPackage</id><coordinates><x>277</x><y>188</y><w>470</w><h>480</h></coordinates><panel_attributes>VectorSpaces
+--
+bg=orange
+
+group=1</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>307</x><y>468</y><w>410</w><h>170</h></coordinates><panel_attributes>template=dimensionality : int
+WeightedVectorSpace
+--
+--
+WeightedVectorSpace(Coordinates_ const &amp;, Weights_ const &amp;)
+__Project(HomogeneousCoordinate_ const &amp;) : Coordinate___
+--
+--
+Base_ : VectorSpace&lt;dimensionality + 1&gt;
+Coordinate_ : VectorSpace&lt;dimensionality&gt;::Coordinate_
+Coordinates_ : VectorSpace&lt;dimensionality&gt;::Coordinates_
+HomogeneousCoordinate_ : Base_::Coordinate_
+Weights_ : vector&lt;Weight&gt;
+--
+group=1</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>477</x><y>418</y><w>210</w><h>80</h></coordinates><panel_attributes>lt=&lt;&lt;-
+dimensionality = dimensionality + 1
+group=1</panel_attributes><additional_attributes>10;10;10;60</additional_attributes></element><element><id>UMLClass</id><coordinates><x>347</x><y>238</y><w>350</w><h>190</h></coordinates><panel_attributes>template=dimensionality : int
+VectorSpace
+--
+coordinates_ : Coordinates_
+--
+VectorSpace(Coordinates_)
+operator[](Index const &amp;) const : Coordinate_ const &amp;
+Replace(Index const &amp;, Coordinate_) : void
+Insert(Index const &amp;, Coordinate_) : void
+Erase(Index const &amp;) : void
+--
+--
+Coordinate_ = array&lt;Coordinate, dimensionality&gt;
+Coordinates_ : vector&lt;Coordinate_&gt;
+--
+group=1</panel_attributes><additional_attributes></additional_attributes></element></diagram>
