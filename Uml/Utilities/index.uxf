@@ -1,7 +1,28 @@
-<diagram program="umletino" version="14.3.0"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>540</x><y>100</y><w>200</w><h>90</h></coordinates><panel_attributes>template=int : size
+<diagram program="umletino" version="14.3.0"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>31</x><y>0</y><w>390</w><h>390</h></coordinates><panel_attributes>template=int : size
 Index
 --
 bool : invalid_
 array&lt;Length, size&gt; : length_
-array&lt;Index, size&gt; : value_
+array&lt;Index_, size&gt; : value_
+--
+Index(array&lt;Length, size&gt;, array&lt;Index_, size&gt; = {}, bool = false)
+operator+=(array&lt;Index_, size&gt; const &amp;) : Index &amp;
+operator-=(array&lt;Index_, size&gt; const &amp;) : Index &amp;
+operator++() : Index &amp;
+Increment(Dimension const &amp;) : Index &amp;
+operator--() : Index &amp;
+Decrement(Dimension const &amp;) : Index &amp;
+operator[](Dimension const &amp;) const : splinelib::Index const &amp;
+__First(array&lt;Length, size&gt;) : Index__
+__Behind(array&lt;Length, size&gt;) : Index__
+__Last(array&lt;Length, size&gt;) : Index__
+__Before(array&lt;Length, size&gt;) : Index__
+GetTotalNumberOfIndices() const : int
+GetIndex() const : array&lt;Index_, size&gt;
+GetIndex1d() const : Index_
+--
+operator+(Index const &amp;, array&lt;Index_, size&gt; const &amp;) : Index
+operator-(Index const &amp;, array&lt;Index_, size&gt; const &amp;) : Index
+operator==(Index const &amp;, Index const &amp;)  : bool
+operator!=(Index const &amp;, Index const &amp;) : bool
 </panel_attributes><additional_attributes></additional_attributes></element></diagram>

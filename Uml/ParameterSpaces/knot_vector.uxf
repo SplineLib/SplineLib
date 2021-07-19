@@ -1,4 +1,24 @@
-<diagram program="umletino" version="14.3.0"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>420</x><y>100</y><w>220</w><h>40</h></coordinates><panel_attributes>KnotVector
+<diagram program="umletino" version="14.3.0"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>0</x><y>150</y><w>650</w><h>330</h></coordinates><panel_attributes>KnotVector
 --
 vector&lt;ParametricCoordinate&gt; : knots_
-</panel_attributes><additional_attributes></additional_attributes></element></diagram>
+--
+KnotVector(vector&lt;ParametricCoordinate&gt;, Tolerance const &amp; = kEpsilon)
+operator[](Index const &amp;) const : ParametricCoordinate const &amp;
+GetSize() const : int
+GetFront() const : ParametricCoordinate
+GetBack() const : ParametricCoordinate
+DoesParametricCoordinateEqualBack(ParametricCoordinate const &amp;, Tolerance const &amp; = kEpsilon) const : bool
+DoesParametricCoordinateEqualFrontOrBack(ParametricCoordinate const &amp;, Tolerance const &amp; = kEpsilon) const : bool
+FindSpan(ParametricCoordinate const &amp;, Tolerance const &amp; = kEpsilon) const : KnotSpan
+DetermineMultiplicity(ParametricCoordinate const &amp;, Tolerance const &amp; = kEpsilon) const : Multiplicity
+GetUniqueKnots(Tolerance const &amp; = kEpsilon) const : vector&lt;ParametricCoordinate&gt;
+Insert(ParametricCoordinate, Multiplicity const &amp; = kMultiplicity, Tolerance const &amp; = kEpsilon) : void
+Remove(ParametricCoordinate const &amp;, Multiplicity const &amp; = kMultiplicity, Tolerance const &amp; = kEpsilon) : void
+IncreaseMultiplicities(Multiplicity const &amp; = kMultiplicity, Tolerance const &amp; = kEpsilon) : void
+DecreaseMultiplicities(Multiplicity const &amp; = kMultiplicity, Tolerance const &amp; = kEpsilon) : void
+--
+IsEqual(KnotVector const &amp;, KnotVector const &amp;, Tolerance &amp;) : bool
+operator==(KnotVector const &amp;, KnotVector const &amp;) : bool
+--
+KnotVectors : array&lt;shared_ptr&lt;KnotVector&gt;, parametric_dimensionality&gt;
+KnotVectorsOutputInformation : array&lt;StringVector, parametric_dimensionality&gt;</panel_attributes><additional_attributes></additional_attributes></element></diagram>

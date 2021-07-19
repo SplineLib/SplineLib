@@ -1,49 +1,128 @@
-<diagram program="umletino" version="14.3.0"><zoom_level>10</zoom_level><element><id>UMLPackage</id><coordinates><x>20</x><y>50</y><w>220</w><h>190</h></coordinates><panel_attributes>Utilities
+<diagram program="umletino" version="14.3.0"><zoom_level>10</zoom_level><element><id>UMLPackage</id><coordinates><x>204</x><y>0</y><w>580</w><h>380</h></coordinates><panel_attributes>Utilities
 --
 bg=orange
-group=2</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>30</x><y>80</y><w>80</w><h>70</h></coordinates><panel_attributes>template=int : size
+group=4</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>214</x><y>30</y><w>220</w><h>90</h></coordinates><panel_attributes>template=int : size
 Index
-
-group=2</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>30</x><y>160</y><w>200</w><h>70</h></coordinates><panel_attributes>template=type : Name, type : Type
+--
+bool : invalid_
+array&lt;Length, size&gt; : length_
+array&lt;Index_, size&gt; : value_
+group=4</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>214</x><y>120</y><w>560</w><h>240</h></coordinates><panel_attributes>template=type : Name, type : Type
 NamedType
+--
+Type : value_
+--
+Dimension : NamedType&lt;struct DimensionName, int&gt;
+Index : NamedType&lt;struct IndexName, int&gt;
+Length : NamedType&lt;struct LengthName, int&gt;
+Precision : NamedType&lt;struct PrecisionName, int&gt;
+Degree : NamedType&lt;struct DegreeName, int&gt;
+Derivative : NamedType&lt;struct DerivativeName, int&gt;
+KnotSpan : NamedType&lt;struct KnotSpanName, int&gt;
+Multiplicity : NamedType&lt;struct MultiplicityName, int&gt;
+ParametricCoordinate : NamedType&lt;struct ParametricCoordinateName, double&gt;
+Coordinate : NamedType&lt;struct CoordinateName, sources::parameter_spaces::Type&gt;
+Weight : NamedType&lt;struct WeightName, Coordinate::Type_&gt;
 
-group=2</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLPackage</id><coordinates><x>270</x><y>430</y><w>570</w><h>340</h></coordinates><panel_attributes>ParameterSpaces
+group=4</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLPackage</id><coordinates><x>854</x><y>690</y><w>1030</w><h>530</h></coordinates><panel_attributes>ParameterSpaces
 --
 bg=orange
-group=1</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>490</x><y>590</y><w>220</w><h>70</h></coordinates><panel_attributes>BSplineBasisFunction
+group=5</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1304</x><y>880</y><w>570</w><h>110</h></coordinates><panel_attributes>BSplineBasisFunction
+--
+Degree : degree_
+ParametricCoordinate : start_knot_
+ParametricCoordinate : end_knot_
+bool : end_knot_equals_last_knot_
+--
+BSplineBasisFunctions : array&lt;vector&lt;shared_ptr&lt;BSplineBasisFunction&gt; &gt;, parametric_dimensionality&gt;
 
-group=1</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>370</x><y>690</y><w>220</w><h>70</h></coordinates><panel_attributes>ZeroDegreeBSplineBasisFunction
+group=5</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1184</x><y>1070</y><w>220</w><h>70</h></coordinates><panel_attributes>ZeroDegreeBSplineBasisFunction
 
-group=1</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>610</x><y>690</y><w>220</w><h>70</h></coordinates><panel_attributes>NonZeroDegreeBSplineBasisFunction
+group=5</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1424</x><y>1070</y><w>450</w><h>130</h></coordinates><panel_attributes>NonZeroDegreeBSplineBasisFunction
+--
+ParametricCoordinate::Type_ : left_denominator_inverse_
+ParametricCoordinate::Type_ : right_denominator_inverse_
+ParametricCoordinate::Type_ : left_quotient_derivative_
+ParametricCoordinate::Type_ : right_quotient_derivative_
+shared_pointer&lt;BSplineBasisFunction&gt; : left_lower_degree_basis_function_
+shared_pointer&lt;BSplineBasisFunction&gt; : right_lower_degree_basis_function_
 
-group=1</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>530</x><y>650</y><w>30</w><h>60</h></coordinates><panel_attributes>lt=&lt;&lt;-
-group=1</panel_attributes><additional_attributes>10;10;10;40</additional_attributes></element><element><id>Relation</id><coordinates><x>650</x><y>650</y><w>30</w><h>60</h></coordinates><panel_attributes>lt=&lt;&lt;-
-group=1</panel_attributes><additional_attributes>10;10;10;40</additional_attributes></element><element><id>UMLClass</id><coordinates><x>400</x><y>460</y><w>260</w><h>80</h></coordinates><panel_attributes>template= int : parametric_dimensionality
+group=5</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1344</x><y>980</y><w>30</w><h>110</h></coordinates><panel_attributes>lt=&lt;&lt;-
+group=5</panel_attributes><additional_attributes>10;10;10;90</additional_attributes></element><element><id>Relation</id><coordinates><x>1474</x><y>980</y><w>30</w><h>110</h></coordinates><panel_attributes>lt=&lt;&lt;-
+group=5</panel_attributes><additional_attributes>10;10;10;90</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1114</x><y>720</y><w>570</w><h>100</h></coordinates><panel_attributes>template= int : parametric_dimensionality
 ParameterSpace
-group=1</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>280</x><y>590</y><w>200</w><h>70</h></coordinates><panel_attributes>KnotVector
-
-group=1</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>430</x><y>530</y><w>30</w><h>80</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
-group=1</panel_attributes><additional_attributes>10;10;10;60</additional_attributes></element><element><id>Relation</id><coordinates><x>520</x><y>530</y><w>30</w><h>80</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
-group=1</panel_attributes><additional_attributes>10;10;10;60</additional_attributes></element><element><id>UMLPackage</id><coordinates><x>270</x><y>10</y><w>560</w><h>110</h></coordinates><panel_attributes>VectorSpaces
 --
-bg=orange</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>280</x><y>40</y><w>160</w><h>70</h></coordinates><panel_attributes>template=int : dimensionality
+KnotVectors&lt;parametric_dimensionality&gt; : knot_vectors_
+array&lt;Degree, parametric_dimensionality&gt; : degrees_
+BSplineBasisFunctions&lt;parametric_dimensionality&gt; : basis_functions_
+group=5</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>864</x><y>880</y><w>430</w><h>80</h></coordinates><panel_attributes>KnotVector
+--
+vector&lt;ParametricCoordinate&gt; : knots_
+--
+KnotVectors : array&lt;shared_ptr&lt;KnotVector&gt;, parametric_dimensionality&gt;
+KnotVectorsOutputInformation : array&lt;StringVector, parametric_dimensionality&gt;
+group=5</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1144</x><y>810</y><w>30</w><h>90</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+group=5</panel_attributes><additional_attributes>10;10;10;70</additional_attributes></element><element><id>Relation</id><coordinates><x>1414</x><y>810</y><w>30</w><h>90</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+group=5</panel_attributes><additional_attributes>10;10;10;70</additional_attributes></element><element><id>UMLPackage</id><coordinates><x>854</x><y>10</y><w>1140</w><h>110</h></coordinates><panel_attributes>VectorSpaces
+--
+bg=orange
+group=7</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>864</x><y>40</y><w>390</w><h>70</h></coordinates><panel_attributes>template=int : dimensionality
 VectorSpace
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>630</x><y>40</y><w>190</w><h>70</h></coordinates><panel_attributes>template=int : dimensionality - 1
+--
+vector&lt;array&lt;Coordinate, dimensionality&gt; &gt; : coordinates_
+group=7</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1484</x><y>40</y><w>320</w><h>70</h></coordinates><panel_attributes>template=int : dimensionality
 WeightedVectorSpace
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>370</x><y>70</y><w>280</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;260;10</additional_attributes></element><element><id>UMLPackage</id><coordinates><x>270</x><y>150</y><w>660</w><h>250</h></coordinates><panel_attributes>Splines
 --
-bg=orange</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>280</x><y>190</y><w>160</w><h>50</h></coordinates><panel_attributes>SplineItem
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>280</x><y>260</y><w>310</w><h>60</h></coordinates><panel_attributes>template=int : parametric_dimensionality, int : dimensionality
-Spline
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>500</x><y>180</y><w>420</w><h>70</h></coordinates><panel_attributes>template=int : parametric_dimensionality, int : dimensionality
+
+group=7</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1184</x><y>60</y><w>320</w><h>40</h></coordinates><panel_attributes>lt=&lt;&lt;-
+dimensionality = dimensionality + 1
+group=7</panel_attributes><additional_attributes>10;20;300;20</additional_attributes></element><element><id>Relation</id><coordinates><x>1584</x><y>280</y><w>30</w><h>60</h></coordinates><panel_attributes>lt=&lt;&lt;-
+group=6</panel_attributes><additional_attributes>10;40;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1014</x><y>490</y><w>400</w><h>100</h></coordinates><panel_attributes>lt=&lt;&lt;-
+group=6</panel_attributes><additional_attributes>10;10;10;80;380;80</additional_attributes></element><element><id>Relation</id><coordinates><x>2084</x><y>220</y><w>570</w><h>370</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+dimensionality = dimensionality + 1
+group=6</panel_attributes><additional_attributes>10;350;370;350;370;10;140;10</additional_attributes></element><element><id>Relation</id><coordinates><x>934</x><y>260</y><w>30</w><h>80</h></coordinates><panel_attributes>lt=&lt;&lt;-
+group=6</panel_attributes><additional_attributes>10;10;10;60</additional_attributes></element><element><id>Relation</id><coordinates><x>1014</x><y>100</y><w>610</w><h>120</h></coordinates><panel_attributes>lt=-&gt;&gt;&gt;&gt;</panel_attributes><additional_attributes>10;10;10;40;590;40;590;100</additional_attributes></element><element><id>Relation</id><coordinates><x>914</x><y>490</y><w>260</w><h>260</h></coordinates><panel_attributes>lt=-&gt;&gt;&gt;&gt;
+group=6</panel_attributes><additional_attributes>240;240;240;150;10;150;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1734</x><y>70</y><w>970</w><h>560</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+group=6</panel_attributes><additional_attributes>360;540;950;540;950;10;10;10</additional_attributes></element><element><id>UMLPackage</id><coordinates><x>374</x><y>580</y><w>220</w><h>70</h></coordinates><panel_attributes>InputOutput
+--
+bg=orange</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>474</x><y>370</y><w>30</w><h>250</h></coordinates><panel_attributes>lt=-
+</panel_attributes><additional_attributes>10;10;10;230</additional_attributes></element><element><id>Relation</id><coordinates><x>604</x><y>370</y><w>270</w><h>400</h></coordinates><panel_attributes>lt=-
+</panel_attributes><additional_attributes>10;10;10;380;250;380</additional_attributes></element><element><id>Relation</id><coordinates><x>774</x><y>170</y><w>100</w><h>40</h></coordinates><panel_attributes>lt=-
+</panel_attributes><additional_attributes>10;20;80;20</additional_attributes></element><element><id>Relation</id><coordinates><x>774</x><y>30</y><w>100</w><h>40</h></coordinates><panel_attributes>lt=-
+</panel_attributes><additional_attributes>10;20;80;20</additional_attributes></element><element><id>Relation</id><coordinates><x>514</x><y>480</y><w>360</w><h>140</h></coordinates><panel_attributes>lt=-
+</panel_attributes><additional_attributes>340;20;10;20;10;120</additional_attributes></element><element><id>UMLPackage</id><coordinates><x>854</x><y>150</y><w>1800</w><h>520</h></coordinates><panel_attributes>Splines
+--
+bg=orange
+group=6</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>884</x><y>200</y><w>220</w><h>70</h></coordinates><panel_attributes>SplineItem
+--
+int : parametric_dimensionality_
+int : dimensionality_
+bool : is_rational_
+group=6</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1124</x><y>190</y><w>1250</w><h>100</h></coordinates><panel_attributes>template=int : parametric_dimensionality, int : dimensionality
 BSpline
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>500</x><y>320</y><w>420</w><h>70</h></coordinates><panel_attributes>template=int : parametric_dimensionality, int : dimensionality
-NURBS
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>440</x><y>240</y><w>190</w><h>80</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;60;170;60;170;10</additional_attributes></element><element><id>Relation</id><coordinates><x>420</x><y>310</y><w>100</w><h>70</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;50;80;50</additional_attributes></element><element><id>Relation</id><coordinates><x>630</x><y>240</y><w>30</w><h>110</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;90</additional_attributes></element><element><id>Relation</id><coordinates><x>350</x><y>230</y><w>30</w><h>50</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;30</additional_attributes></element><element><id>Relation</id><coordinates><x>320</x><y>100</y><w>250</w><h>110</h></coordinates><panel_attributes>lt=-&gt;&gt;&gt;&gt;</panel_attributes><additional_attributes>10;10;10;40;230;40;230;90</additional_attributes></element><element><id>Relation</id><coordinates><x>370</x><y>310</y><w>50</w><h>220</h></coordinates><panel_attributes>lt=-&gt;&gt;&gt;&gt;</panel_attributes><additional_attributes>30;200;10;200;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>740</x><y>70</y><w>240</w><h>320</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>40;300;220;300;220;10;10;10</additional_attributes></element><element><id>UMLPackage</id><coordinates><x>20</x><y>370</y><w>220</w><h>70</h></coordinates><panel_attributes>InputOutput
 --
-bg=orange</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>120</x><y>230</y><w>30</w><h>180</h></coordinates><panel_attributes>lt=-
-</panel_attributes><additional_attributes>10;10;10;160</additional_attributes></element><element><id>Relation</id><coordinates><x>230</x><y>210</y><w>60</w><h>300</h></coordinates><panel_attributes>lt=-
-</panel_attributes><additional_attributes>10;10;20;10;20;280;40;280</additional_attributes></element><element><id>Relation</id><coordinates><x>230</x><y>180</y><w>60</w><h>40</h></coordinates><panel_attributes>lt=-
-</panel_attributes><additional_attributes>10;20;40;20</additional_attributes></element><element><id>Relation</id><coordinates><x>230</x><y>80</y><w>60</w><h>40</h></coordinates><panel_attributes>lt=-
-</panel_attributes><additional_attributes>10;20;40;20</additional_attributes></element><element><id>Relation</id><coordinates><x>210</x><y>330</y><w>80</w><h>80</h></coordinates><panel_attributes>lt=-
-</panel_attributes><additional_attributes>60;20;10;20;10;60</additional_attributes></element></diagram>
+shared_pointer&lt;Spline&lt;parametric_dimensionality, dimensionality&gt;::VectorSpace_&gt; : vector_space_
+--
+BSpline(shared_ptr&lt;Spline&lt;parametric_dimensionality, dimensionality&gt;::Spline&lt;parametric_dimensionality, dimensionality&gt;&gt;, shared_ptr&lt;Spline&lt;parametric_dimensionality, dimensionality&gt;::VectorSpace_&gt;)
+group=6</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>884</x><y>310</y><w>1560</w><h>190</h></coordinates><panel_attributes>template=int : parametric_dimensionality, int : dimensionality
+Spline
+--
+shared_pointer&lt;ParameterSpace&lt;parametric_dimensionality&gt; &gt; parameter_space_
+--
+/operator()(parameter_spaces::ParameterSpace&lt;parametric_dimensionality&gt;::ParametricCoordinate_ const &amp;, Tolerance const &amp; = kEpsilon) const : vector_spaces::VectorSpace&lt;dimensionality&gt;::Coordinate_ /
+/operator()(parameter_spaces::ParameterSpace&lt;parametric_dimensionality&gt;::ParametricCoordinate_ const &amp;, parameter_spaces::ParameterSpace&lt;parametric_dimensionality&gt;::Derivative_ const &amp; , Tolerance const &amp; = kEpsilon) const : VectorSpace_::Coordinate_/
+/InsertKnot(Dimension const &amp;, parameter_spaces::ParameterSpace&lt;parametric_dimensionality&gt;::Knot_, Multiplicity const &amp; = kMultiplicity, Tolerance const &amp; = kEpsilon) const : void/
+RefineKnots(Dimension const &amp;, parameter_spaces::ParameterSpace&lt;parametric_dimensionality&gt;::Knots_, Multiplicity const &amp; = kMultiplicity, Tolerance const &amp; = kEpsilon) const : void
+/RemoveKnot(Dimension const &amp;, parameter_spaces::ParameterSpace&lt;parametric_dimensionality&gt;::Knot_ const &amp;, Tolerance const &amp;, Multiplicity const &amp; = kMultiplicity, Tolerance const &amp; = kEpsilon) const : Multiplicity/
+CoarsenKnots(Dimension const &amp;, parameter_spaces::ParameterSpace&lt;parametric_dimensionality&gt;::Knots_ const &amp;, Tolerance const &amp;, Multiplicity const &amp; = kMultiplicity, Tolerance const &amp; = kEpsilon) const : Multiplicity
+/ElevateDegree(Dimension const &amp;, Multiplicity const &amp; = kMultiplicity, Tolerance const &amp; = kEpsilon) const : void/
+/ReduceDegree(Dimension const &amp;, Tolerance const &amp;, Multiplicity const &amp; = kMultiplicity, Tolerance const &amp; = kEpsilon) const : bool/
+
+group=6</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1394</x><y>530</y><w>840</w><h>110</h></coordinates><panel_attributes>template=int : parametric_dimensionality, int : dimensionality
+NURBS
+--
+shared_pointer&lt;BSpline&lt;parametric_dimensionality, dimensionality + 1&gt; &gt; : homogeneous_b_spline_
+shared_pointer&lt;WeightedVectorSpace&lt;dimensionality&gt; &gt; : weighted_vector_space_
+--
+Nurbs(shared_ptr&lt;Spline&lt;parametric_dimensionality, dimensionality&gt;::ParameterSpace_&gt; , shared_ptr&lt;WeightedVectorSpace&gt; )
+group=6</panel_attributes><additional_attributes></additional_attributes></element></diagram>

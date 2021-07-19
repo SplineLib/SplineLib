@@ -1,6 +1,26 @@
-<diagram program="umletino" version="14.3.0"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>360</x><y>100</y><w>620</w><h>90</h></coordinates><panel_attributes>template= int : parametric_dimensionality
+<diagram program="umletino" version="14.3.0"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>0</x><y>0</y><w>1600</w><h>390</h></coordinates><panel_attributes>template= int : parametric_dimensionality
 ParameterSpace
 --
-array&lt;shared_ptr&lt;KnotVector&gt;, parametric_dimensionality&gt; : knot_vectors_
+KnotVectors&lt;parametric_dimensionality&gt; : knot_vectors_
 array&lt;Degree, parametric_dimensionality&gt; : degrees_
-array&lt;vector&lt;shared_ptr&lt;BSplineBasisFunction&gt; &gt;, parametric_dimensionality&gt; : basis_functions_</panel_attributes><additional_attributes></additional_attributes></element></diagram>
+BSplineBasisFunctions&lt;parametric_dimensionality&gt; : basis_functions_
+--
+ParameterSpace(KnotVectors, array&lt;Degree, parametric_dimensionality&gt;, Tolerance const &amp; = kEpsilon)
+First() const : Index&lt;parametric_dimensionality&gt;
+Behind() const : Index&lt;parametric_dimensionality&gt;
+GetNumberOfBasisFunctions() const : array&lt;Length, parametric_dimensionality&gt;
+GetTotalNumberOfBasisFunctions() const : int
+FindFirstNonZeroBasisFunction(array&lt;ParametricCoordinate, parametric_dimensionality&gt; const, Tolerance const &amp; = kEpsilon) const : Index&lt;parametric_dimensionality&gt;
+DetermineBezierExtractionKnots(Dimension const &amp;, Tolerance const &amp; = kEpsilon) const : tuple&lt;int, KnotVectors&lt;parametric_dimensionality&gt;::value_type::element_type::Knots_&gt;
+EvaluateBasisFunction(Index &amp; const, array&lt;ParametricCoordinate, parametric_dimensionality&gt; const &amp;, Tolerance const &amp; = kEpsilon) const : BSplineBasisFunctions&lt;parametric_dimensionality&gt;::value_type::value_type::element_type::Type_
+EvaluateBasisFunctionDerivative(Index const &amp;, array&lt;ParametricCoordinate, parametric_dimensionality&gt; const &amp;, array&lt;Derivative, parametric_dimensionality&gt; const &amp;, Tolerance const &amp; = kEpsilon) const : BSplineBasisFunctions&lt;parametric_dimensionality&gt;::value_type::value_type::element_type::Type_
+InsertKnot(Dimension const &amp;, KnotVectors&lt;parametric_dimensionality&gt;::value_type const &amp;, Multiplicity const &amp; = kMultiplicity, Tolerance const &amp; = kEpsilon): tuple&lt;Index, vector&lt;vector&lt;KnotRatio&gt; &gt; &gt;
+RemoveKnot(Dimension const &amp;, KnotVectors&lt;parametric_dimensionality&gt;::value_type const &amp;, Multiplicity const &amp; = kMultiplicity, Tolerance const &amp; = kEpsilon): tuple&lt;Index, vector&lt;vector&lt;KnotRatio&gt; &gt; &gt;
+ElevateDegree(Dimension const &amp;, Multiplicity const &amp; = kMultiplicity, Tolerance const &amp; = kEpsilon) : tuple&lt;Index, vector&lt;vector&lt;BinomialRatio&gt; &gt; &gt;
+ReduceDegree(Dimension const &amp;, Multiplicity const &amp; = kMultiplicity, Tolerance const &amp; = kEpsilon) : tuple&lt;Index, vector&lt;vector&lt;BinomialRatio&gt; &gt; &gt;
+Sample(Index&lt;parametric_dimensionality&gt;::Length_ const &amp;) const : vector&lt;array&lt;ParametricCoordinate, parametric_dimensionality&gt; &gt;
+Write(Precision const &amp; = kPrecision) const : tuple&lt;KnotVectorsOutputInformation&lt;parametric_dimensionality&gt;, StringArray&lt;parametric_dimensionality&gt;, StringArray&lt;parametric_dimensionality&gt;&gt;
+ThrowIfParametricCoordinateIsOutsideScope(Dimension const &amp;, ParametricCoordinate const &amp;, Tolerance const &amp; = kEpsilon) const : void
+--
+IsEqual(ParameterSpace const &amp;, ParameterSpace const &amp;, Tolerance const &amp;) : bool
+operator==(ParameterSpace const &amp;, ParameterSpace const &amp;) : bool</panel_attributes><additional_attributes></additional_attributes></element></diagram>

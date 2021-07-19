@@ -1,16 +1,48 @@
-<diagram program="umletino" version="14.3.0"><zoom_level>10</zoom_level><element><id>UMLPackage</id><coordinates><x>550</x><y>60</y><w>490</w><h>170</h></coordinates><panel_attributes>Utilities
+<diagram program="umletino" version="14.3.0"><zoom_level>10</zoom_level><element><id>UMLPackage</id><coordinates><x>10</x><y>100</y><w>1040</w><h>370</h></coordinates><panel_attributes>Utilities
 --
 bg=orange
-group=1</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>810</x><y>140</y><w>200</w><h>60</h></coordinates><panel_attributes>template=type : Name, type : Type
+group=1</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>480</x><y>150</y><w>560</w><h>300</h></coordinates><panel_attributes>template=type : Name, type : Type
 NamedType
 --
 Type : value_
+--
+NamedType(Type)
+Get() const : Type const &amp;
+Get() : Type &amp;
+--
 
-group=1</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>580</x><y>110</y><w>200</w><h>90</h></coordinates><panel_attributes>template=int : size
+--
+Dimension : NamedType&lt;struct DimensionName, int&gt;
+Index : NamedType&lt;struct IndexName, int&gt;
+Length : NamedType&lt;struct LengthName, int&gt;
+Precision : NamedType&lt;struct PrecisionName, int&gt;
+Degree : NamedType&lt;struct DegreeName, int&gt;
+Derivative : NamedType&lt;struct DerivativeName, int&gt;
+KnotSpan : NamedType&lt;struct KnotSpanName, int&gt;
+Multiplicity : NamedType&lt;struct MultiplicityName, int&gt;
+ParametricCoordinate : NamedType&lt;struct ParametricCoordinateName, double&gt;
+Coordinate : NamedType&lt;struct CoordinateName, sources::parameter_spaces::Type&gt;
+Weight : NamedType&lt;struct WeightName, Coordinate::Type_&gt;
+
+group=1</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>30</x><y>140</y><w>410</w><h>300</h></coordinates><panel_attributes>template=int : size
 Index
 --
 bool : invalid_
 array&lt;Length, size&gt; : length_
-array&lt;Index, size&gt; : value_
-
+array&lt;Index_, size&gt; : value_
+--
+Index(array&lt;Length, size&gt;, array&lt;Index_, size&gt; = {}, bool = false)
+operator++() : Index &amp;
+Increment(Dimension const &amp;) : Index &amp;
+operator--() : Index &amp;
+Decrement(Dimension const &amp;) : Index &amp;
+__First(array&lt;Length, size&gt;) : Index__
+__Behind(array&lt;Length, size&gt;) : Index__
+__Last(array&lt;Length, size&gt;) : Index__
+__Before(array&lt;Length, size&gt;) : Index__
+GetTotalNumberOfIndices() const : int
+GetIndex1d() const : Index_
+--
+operator==(Index const &amp;, Index const &amp;)  : bool
+operator!=(Index const &amp;, Index const &amp;) : bool
 group=1</panel_attributes><additional_attributes></additional_attributes></element></diagram>

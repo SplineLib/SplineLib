@@ -1,9 +1,33 @@
-<diagram program="umletino" version="14.3.0"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>400</x><y>90</y><w>370</w><h>60</h></coordinates><panel_attributes>template=int : dimensionality
+<diagram program="umletino" version="14.3.0"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>0</x><y>0</y><w>750</w><h>230</h></coordinates><panel_attributes>template=int : dimensionality
 VectorSpace
 --
-vector&lt;array&lt;Coordinate, dimensionality&gt;&gt; : coordinates_
-group=1</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>490</x><y>180</y><w>190</w><h>40</h></coordinates><panel_attributes>template=int : dimensionality - 1
-WeightedVectorSpace
+vector&lt;array&lt;Coordinate, dimensionality&gt; &gt; : coordinates_
+--
+VectorSpace(array&lt;Coordinate, dimensionality&gt;)
+operator[](Index const &amp;) const : array&lt;Coordinate, dimensionality&gt; const &amp;
+GetNumberOfCoordinates() const : int
+Replace(Index const &amp;, array&lt;Coordinate, dimensionality&gt;) : void
+Insert(Index const &amp;, array&lt;Coordinate, dimensionality&gt;) : void
+Erase(Index const &amp;) : void
+DetermineMaximumDistanceFromOrigin(Tolerance const &amp; = kEpsilon) const : Coordinate
+Write(Precision const &amp; = kPrecision) const : tuple&lt;vector&lt;StringArray&lt;dimensionality&gt; &gt; &gt;
+--
+IsEqual(VectorSpace const &amp;, VectorSpace const &amp;, Tolerance const &amp;) : bool
+operator==(VectorSpace const &amp;, VectorSpace const &amp;) : bool
 
-group=1</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>540</x><y>140</y><w>30</w><h>70</h></coordinates><panel_attributes>lt=&lt;&lt;-
-group=1</panel_attributes><additional_attributes>10;10;10;50</additional_attributes></element></diagram>
+group=1</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>290</y><w>760</w><h>170</h></coordinates><panel_attributes>template=int : dimensionality
+WeightedVectorSpace
+--
+
+--
+WeightedVectorSpace(VectorSpace&lt;dimensionality&gt;::Coordinates_ const &amp;, vector&lt;Weight&gt; const &amp;)
+__Project(VectorSpace&lt;dimensionality + 1&gt;::Coordinate_ const &amp;) : VectorSpace&lt;dimensionality&gt;::Coordinate___
+DetermineMaximumDistanceFromOriginAndMinimumWeight(Tolerance const &amp; = kEpsilon) const : tuple&lt;Coordinate, Weight&gt;
+WriteProjected(Precision const &amp; = kPrecision) const : tuple&lt;vector&lt;StringArray&lt;dimensionality&gt; &gt; &gt;, StringVector&gt;
+--
+IsEqual(WeightedVectorSpace const &amp;, WeightedVectorSpace const &amp;, Tolerance const &amp;) : bool
+operator==(WeightedVectorSpace const &amp;, WeightedVectorSpace const &amp;) : bool
+
+group=1</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>250</x><y>220</y><w>210</w><h>100</h></coordinates><panel_attributes>lt=&lt;&lt;-
+dimensionality = dimensionality + 1
+group=1</panel_attributes><additional_attributes>10;10;10;80</additional_attributes></element></diagram>

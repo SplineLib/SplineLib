@@ -1,12 +1,21 @@
-<diagram program="umletino" version="14.3.0"><zoom_level>10</zoom_level><element><id>UMLPackage</id><coordinates><x>280</x><y>40</y><w>440</w><h>210</h></coordinates><panel_attributes>VectorSpaces
+<diagram program="umletino" version="14.3.0"><zoom_level>10</zoom_level><element><id>UMLPackage</id><coordinates><x>202</x><y>50</y><w>740</w><h>440</h></coordinates><panel_attributes>VectorSpaces
 --
 bg=orange
 
-group=1</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>400</x><y>180</y><w>190</w><h>40</h></coordinates><panel_attributes>template=int : dimensionality - 1
+group=1</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>232</x><y>330</y><w>670</w><h>130</h></coordinates><panel_attributes>template=int : dimensionality - 1
 WeightedVectorSpace
-
-group=1</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>450</x><y>140</y><w>30</w><h>70</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;50</additional_attributes></element><element><id>UMLClass</id><coordinates><x>310</x><y>90</y><w>380</w><h>60</h></coordinates><panel_attributes>template=int : dimensionality
+--
+WeightedVectorSpace(VectorSpace&lt;dimensionality&gt;::Coordinates_ const &amp;, vector&lt;Weight&gt; const &amp;)
+__Project(VectorSpace&lt;dimensionality + 1&gt;::Coordinate_ const &amp;) : VectorSpace&lt;dimensionality&gt;::Coordinate___
+group=1</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>532</x><y>240</y><w>30</w><h>120</h></coordinates><panel_attributes>lt=&lt;&lt;-
+group=1</panel_attributes><additional_attributes>10;10;10;100</additional_attributes></element><element><id>UMLClass</id><coordinates><x>322</x><y>100</y><w>490</w><h>150</h></coordinates><panel_attributes>template=int : dimensionality
 VectorSpace
 --
 vector&lt;array&lt;Coordinate, dimensionality&gt; &gt; : coordinates_
+--
+VectorSpace(array&lt;Coordinate, dimensionality&gt;)
+operator[](Index const &amp;) const : array&lt;Coordinate, dimensionality&gt; const &amp;
+Replace(Index const &amp;, array&lt;Coordinate, dimensionality&gt;) : void
+Insert(Index const &amp;, array&lt;Coordinate, dimensionality&gt;) : void
+Erase(Index const &amp;) : void
 group=1</panel_attributes><additional_attributes></additional_attributes></element></diagram>

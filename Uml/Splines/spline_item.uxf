@@ -1,24 +1,48 @@
-<diagram program="umletino" version="14.3.0"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>460</x><y>30</y><w>180</w><h>70</h></coordinates><panel_attributes>SplineItem
+<diagram program="umletino" version="14.3.0"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>1250</x><y>0</y><w>410</w><h>110</h></coordinates><panel_attributes>SplineItem
 --
-int : dimensionality_
 int : parametric_dimensionality_
+int : dimensionality_
 bool : is_rational_
-group=1</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>320</x><y>140</y><w>600</w><h>60</h></coordinates><panel_attributes>template=int : parametric_dimensionality, int : dimensionality
+--
+IsEqual(SplineItem const &amp;, SplineItem const &amp;, Tolerance const &amp;) : bool
+operator==(SplineItem const &amp;, SplineItem const &amp;) : bool</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>980</x><y>150</y><w>1080</w><h>260</h></coordinates><panel_attributes>template=int : parametric_dimensionality, int : dimensionality
 Spline
 --
-shared_pointer&lt; ParameterSpace&lt;parametric_dimensionality&gt; &gt; parameter_space_
-group=1</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>540</x><y>90</y><w>30</w><h>80</h></coordinates><panel_attributes>lt=&lt;&lt;-
-group=1</panel_attributes><additional_attributes>10;10;10;60</additional_attributes></element><element><id>UMLClass</id><coordinates><x>100</x><y>220</y><w>490</w><h>60</h></coordinates><panel_attributes>template=int : parametric_dimensionality, int : dimensionality
+shared_pointer&lt;ParameterSpace&lt;parametric_dimensionality&gt; &gt; parameter_space_
+--
+/operator()(parameter_spaces::ParameterSpace&lt;parametric_dimensionality&gt;::ParametricCoordinate_ const &amp;, Tolerance const &amp; = kEpsilon) const : vector_spaces::VectorSpace&lt;dimensionality&gt;::Coordinate_ /
+/operator()(parameter_spaces::ParameterSpace&lt;parametric_dimensionality&gt;::ParametricCoordinate_ const &amp;, parameter_spaces::ParameterSpace&lt;parametric_dimensionality&gt;::Derivative_ const &amp; , Tolerance const &amp; = kEpsilon) const : VectorSpace_::Coordinate_/
+/InsertKnot(Dimension const &amp;, parameter_spaces::ParameterSpace&lt;parametric_dimensionality&gt;::Knot_, Multiplicity const &amp; = kMultiplicity, Tolerance const &amp; = kEpsilon) const : void/
+RefineKnots(Dimension const &amp;, parameter_spaces::ParameterSpace&lt;parametric_dimensionality&gt;::Knots_, Multiplicity const &amp; = kMultiplicity, Tolerance const &amp; = kEpsilon) const : void
+/RemoveKnot(Dimension const &amp;, parameter_spaces::ParameterSpace&lt;parametric_dimensionality&gt;::Knot_ const &amp;, Tolerance const &amp;, Multiplicity const &amp; = kMultiplicity, Tolerance const &amp; = kEpsilon) const : Multiplicity/
+CoarsenKnots(Dimension const &amp;, parameter_spaces::ParameterSpace&lt;parametric_dimensionality&gt;::Knots_ const &amp;, Tolerance const &amp;, Multiplicity const &amp; = kMultiplicity, Tolerance const &amp; = kEpsilon) const : Multiplicity
+/ElevateDegree(Dimension const &amp;, Multiplicity const &amp; = kMultiplicity, Tolerance const &amp; = kEpsilon) const : void/
+/ReduceDegree(Dimension const &amp;, Tolerance const &amp;, Multiplicity const &amp; = kMultiplicity, Tolerance const &amp; = kEpsilon) const : bool/
+/ComputeUpperBoundForMaximumDistanceFromOrigin(Tolerance const &amp; = kEpsilon) const : Coordinate/
+Sample(parameter_spaces::ParameterSpace&lt;parametric_dimensionality&gt;::NumberOfParametricCoordinates_ const &amp;, Tolerance const &amp; = kEpsilon) const : vector_spaces::VectorSpace&lt;dimensionality&gt;::Coordinates_
+--
+IsEqual(Spline const &amp;, Spline const &amp;, Tolerance const &amp;) : bool
+operator==(Spline const &amp;, Spline const &amp;) : bool</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1450</x><y>100</y><w>30</w><h>80</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;60</additional_attributes></element><element><id>UMLClass</id><coordinates><x>20</x><y>460</y><w>1450</w><h>140</h></coordinates><panel_attributes>template=int : parametric_dimensionality, int : dimensionality
 BSpline
 --
-shared_pointer&lt;VectorSpace&lt;dimensionality&gt; &gt; : vector_space_
-
-group=1</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>640</x><y>220</y><w>690</w><h>80</h></coordinates><panel_attributes>template=int : parametric_dimensionality, int : dimensionality
-NURBS
+shared_pointer&lt;Spline&lt;parametric_dimensionality, dimensionality&gt;::VectorSpace_&gt; : vector_space_
+--
+BSpline(shared_ptr&lt;Spline&lt;parametric_dimensionality, dimensionality&gt;::Spline&lt;parametric_dimensionality, dimensionality&gt;&gt;, shared_ptr&lt;Spline&lt;parametric_dimensionality, dimensionality&gt;::VectorSpace_&gt;)
+Write(Precision const &amp; = kPrecision) const : tuple&lt;Spline&lt;parametric_dimensionality, dimensionality&gt;::OutputInformation_, Spline&lt;parametric_dimensionality, dimensionality&gt;::vector_spaces::VectorSpace&lt;dimensionality&gt;::OutputInformation_&gt;
+--
+IsEqual(BSpline const &amp;, BSpline const &amp;, Tolerance const &amp;) : bool
+operator==(BSpline const &amp;, BSpline const &amp;) : bool
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1480</x><y>460</y><w>1240</w><h>150</h></coordinates><panel_attributes>template=int : parametric_dimensionality, int : dimensionality
+Nurbs
 --
 shared_pointer&lt;BSpline&lt;parametric_dimensionality, dimensionality + 1&gt; &gt; : homogeneous_b_spline_
 shared_pointer&lt;WeightedVectorSpace&lt;dimensionality&gt; &gt; : weighted_vector_space_
-group=1</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>400</x><y>190</y><w>30</w><h>50</h></coordinates><panel_attributes>lt=&lt;&lt;-
-group=1</panel_attributes><additional_attributes>10;10;10;30</additional_attributes></element><element><id>Relation</id><coordinates><x>670</x><y>190</y><w>30</w><h>60</h></coordinates><panel_attributes>lt=&lt;&lt;-
-group=1</panel_attributes><additional_attributes>10;10;10;40</additional_attributes></element><element><id>Relation</id><coordinates><x>440</x><y>240</y><w>220</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
-group=1</panel_attributes><additional_attributes>200;10;10;10</additional_attributes></element></diagram>
+--
+Nurbs(shared_ptr&lt;Spline&lt;parametric_dimensionality, dimensionality&gt;::ParameterSpace_&gt; , shared_ptr&lt;WeightedVectorSpace&gt; )
+Write(Precision const &amp; = kPrecision) const : tuple&lt;Spline&lt;parametric_dimensionality, dimensionality&gt;::OutputInformation_, vector_spaces::WeightedVectorSpace&lt;dimensionality&gt;::OutputInformation_&gt;
+--
+IsEqual(Nurbs const &amp;, Nurbs const &amp;, Tolerance const &amp;) : bool
+operator==(Nurbs const &amp;, Nurbs const &amp;) : bool
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1260</x><y>400</y><w>30</w><h>80</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;60</additional_attributes></element><element><id>Relation</id><coordinates><x>1600</x><y>400</y><w>30</w><h>90</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;70</additional_attributes></element><element><id>Relation</id><coordinates><x>1320</x><y>530</y><w>180</w><h>50</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+dimensionality = 
+dimensionality+1</panel_attributes><additional_attributes>160;20;10;20</additional_attributes></element></diagram>
