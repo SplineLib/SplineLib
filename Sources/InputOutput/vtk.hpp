@@ -16,10 +16,9 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 #ifndef SOURCES_INPUTOUTPUT_VTK_HPP_
 #define SOURCES_INPUTOUTPUT_VTK_HPP_
 
-#include <vector>
-
 #include "Sources/InputOutput/operations.hpp"
 #include "Sources/Utilities/named_type.hpp"
+#include "Sources/Utilities/std_container_operations.hpp"
 #include "Sources/Utilities/string_operations.hpp"
 
 // Output for VTK (cf. legacy format at <https://www.kitware.com/products/books/VTKUsersGuide.pdf>).
@@ -28,7 +27,7 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 //   Write({curve}, "out.vtk", {{NumbersOfParametricCoordinates::value_type::value_type{10}}});  // 9 elements.
 namespace splinelib::sources::input_output::vtk {
 
-using NumbersOfParametricCoordinates = std::vector<std::vector<Length>>;
+using NumbersOfParametricCoordinates = Vector<Vector<Length>>;
 
 void Sample(Splines const &splines, String const &file_name,
             NumbersOfParametricCoordinates const &numbers_of_parametric_coordinates,

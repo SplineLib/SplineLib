@@ -16,11 +16,11 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 #include "Tests/Splines/b_spline_mock.hpp"
 
 #include <cmath>
-#include <memory>
 #include <utility>
 
 #include "Sources/Utilities/std_container_operations.hpp"
 #include "Tests/ParameterSpaces/parameter_space_mock.hpp"
+#include "Tests/VectorSpaces/vector_space_mock.hpp"
 
 namespace splinelib::tests::splines {
 
@@ -31,8 +31,7 @@ using Coordinate3d = A2d3dBSplineMock::Coordinate_;
 using Derivative = A2d3dBSplineMock::Derivative_;
 using ParameterSpace = StrictMock<parameter_spaces::A2dParameterSpaceMock>;
 using ScalarDerivative = Derivative::value_type;
-using VecorSpace3d = StrictMock<vector_spaces::A3dVectorSpaceMock>;
-using std::shared_ptr;
+using VectorSpace3d = StrictMock<vector_spaces::A3dVectorSpaceMock>;
 using sources::utilities::std_container_operations::Add, sources::utilities::std_container_operations::Multiply,
       sources::utilities::std_container_operations::Subtract, std::make_shared, std::move, testing::Ge, testing::Return;
 
@@ -64,9 +63,9 @@ A2d3dBSplineMock::Sample(NumberOfParametricCoordinates_ const &number_of_paramet
 void A2d3dBSplineMock::NurbsBookExe4_4() {
   constexpr NumberOfParametricCoordinates_::value_type const kLength3{3};
 
-  shared_ptr parameter_space{make_shared<ParameterSpace>()};
+  SharedPointer<ParameterSpace> parameter_space{make_shared<ParameterSpace>()};
   parameter_space->NurbsBookExe4_4(); parameter_space_ = parameter_space;
-  shared_ptr vector_space_pointer{make_shared<VecorSpace3d>()};
+  SharedPointer<VectorSpace3d> vector_space_pointer{make_shared<VectorSpace3d>()};
   vector_space_pointer->NurbsBookExe4_4();
   VectorSpace_ const &vector_space = *vector_space_pointer;
   vector_space_ = move(vector_space_pointer);
@@ -88,9 +87,9 @@ void A2d3dBSplineMock::NurbsBookExe4_4() {
 }
 
 void A2d3dBSplineMock::SquareUnitSecondOrderMaximallySmooth() {
-  shared_ptr parameter_space{make_shared<ParameterSpace>()};
+  SharedPointer<ParameterSpace> parameter_space{make_shared<ParameterSpace>()};
   parameter_space->SquareUnitSecondOrderMaximallySmooth(); parameter_space_ = parameter_space;
-  shared_ptr vector_space{make_shared<VecorSpace3d>()};
+  SharedPointer<VectorSpace3d> vector_space{make_shared<VectorSpace3d>()};
   vector_space->SquareUnit12(); vector_space_ = vector_space;
 }
 
@@ -145,9 +144,9 @@ void A2d4dBSplineMock::NurbsBookExe4_4() {
   constexpr ParametricCoordinate const kParametricCoordinate0_0{}, kParametricCoordinate1_0{1.0};
   constexpr ParametricCoordinate_ const kParametricCoordinate0{kParametricCoordinate0_0, kParametricCoordinate0_0};
 
-  shared_ptr parameter_space{make_shared<ParameterSpace>()};
+  SharedPointer<ParameterSpace> parameter_space{make_shared<ParameterSpace>()};
   parameter_space->NurbsBookExe4_4(); parameter_space_ = parameter_space;
-  shared_ptr vector_space_pointer{make_shared<VectorSpace4d>()};
+  SharedPointer<VectorSpace4d> vector_space_pointer{make_shared<VectorSpace4d>()};
   vector_space_pointer->NurbsBookExe4_4();
   VectorSpace_ const &vector_space = *vector_space_pointer;
   vector_space_ = move(vector_space_pointer);
@@ -201,16 +200,16 @@ void A2d4dBSplineMock::NurbsBookExe4_4() {
 }
 
 void A2d4dBSplineMock::NurbsBookExe4_4KnotVector() {
-  shared_ptr parameter_space{make_shared<ParameterSpace>()};
+  SharedPointer<ParameterSpace> parameter_space{make_shared<ParameterSpace>()};
   parameter_space->NurbsBookExe4_4KnotVector(); parameter_space_ = move(parameter_space);
-  shared_ptr vector_space{make_shared<VectorSpace4d>()};
+  SharedPointer<VectorSpace4d> vector_space{make_shared<VectorSpace4d>()};
   vector_space->NurbsBookExe4_4(); vector_space_ = move(vector_space);
 }
 
 void A2d4dBSplineMock::NurbsBookExe4_4BSpline() {
-  shared_ptr parameter_space{make_shared<ParameterSpace>()};
+  SharedPointer<ParameterSpace> parameter_space{make_shared<ParameterSpace>()};
   parameter_space->NurbsBookExe4_4(); parameter_space_ = parameter_space;
-  shared_ptr vector_space_pointer{make_shared<VectorSpace4d>()};
+  SharedPointer<VectorSpace4d> vector_space_pointer{make_shared<VectorSpace4d>()};
   vector_space_pointer->NurbsBookExe4_4NonRational();
   VectorSpace_ const &vector_space = *vector_space_pointer;
   vector_space_ = move(vector_space_pointer);
@@ -243,9 +242,9 @@ void A2d4dBSplineMock::NurbsBookExe4_4BSpline() {
 }
 
 void A2d4dBSplineMock::SquareUnitFirstOrderBezier() {
-  shared_ptr parameter_space{make_shared<ParameterSpace>()};
+  SharedPointer<ParameterSpace> parameter_space{make_shared<ParameterSpace>()};
   parameter_space->SquareUnitFirstOrderBezier(); parameter_space_ = parameter_space;
-  shared_ptr vector_space{make_shared<VectorSpace4d>()};
+  SharedPointer<VectorSpace4d> vector_space{make_shared<VectorSpace4d>()};
   vector_space->SquareUnit04(); vector_space_ = vector_space;
 }
 

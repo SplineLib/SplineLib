@@ -46,7 +46,7 @@ auto Generate(NumbersOfNonZeroKnotSpans<parametric_dimensionality> const &number
         knots.emplace_back(1.0);
     knot_vectors[dimension] = make_shared<KnotVector>(knots);
   }
-  std::shared_ptr parameter_space = make_shared<ParameterSpace>(knot_vectors, degrees);
+  SharedPointer<ParameterSpace> parameter_space = make_shared<ParameterSpace>(knot_vectors, degrees);
   typename ParameterSpace::NumberOfBasisFunctions_ const &number_of_basis_functions =
                                                              parameter_space->GetNumberOfBasisFunctions();
   int const &total_number_of_basis_functions = parameter_space->GetTotalNumberOfBasisFunctions();

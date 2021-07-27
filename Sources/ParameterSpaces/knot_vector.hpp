@@ -16,11 +16,8 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 #ifndef SOURCES_PARAMETERSPACES_KNOT_VECTOR_HPP_
 #define SOURCES_PARAMETERSPACES_KNOT_VECTOR_HPP_
 
-#include <array>
-#include <memory>
-#include <vector>
-
 #include "Sources/Utilities/named_type.hpp"
+#include "Sources/Utilities/std_container_operations.hpp"
 #include "Sources/Utilities/string_operations.hpp"
 
 namespace splinelib::sources::parameter_spaces {
@@ -42,7 +39,7 @@ class KnotVector {
  public:
   using Knot_ = ParametricCoordinate;
   using OutputInformation_ = StringVector;
-  using Knots_ = std::vector<Knot_>;
+  using Knots_ = Vector<Knot_>;
   using Type_ = Knot_::Type_;
 
   KnotVector() = default;
@@ -105,10 +102,9 @@ bool IsEqual(KnotVector const &lhs, KnotVector const &rhs, Tolerance const &tole
 bool operator==(KnotVector const &lhs, KnotVector const &rhs);
 
 template<int parametric_dimensionality>
-using KnotVectors = std::array<std::shared_ptr<KnotVector>, parametric_dimensionality>;
+using KnotVectors = Array<SharedPointer<KnotVector>, parametric_dimensionality>;
 template<int parametric_dimensionality>
-using KnotVectorsOutputInformation = std::array<KnotVector::OutputInformation_, parametric_dimensionality>;
-
+using KnotVectorsOutputInformation = Array<KnotVector::OutputInformation_, parametric_dimensionality>;
 }  // namespace splinelib::sources::parameter_spaces
 
 #endif  // SOURCES_PARAMETERSPACES_KNOT_VECTOR_HPP_

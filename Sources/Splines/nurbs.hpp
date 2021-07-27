@@ -19,10 +19,7 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 #include <algorithm>
 #include <deque>
 #include <iterator>
-#include <memory>
-#include <tuple>
 #include <utility>
-#include <vector>
 
 #include "Sources/ParameterSpaces/parameter_space.hpp"
 #include "Sources/Splines/b_spline.hpp"
@@ -54,10 +51,6 @@ bool operator==(Nurbs<parametric_dimensionality, dimensionality> const &lhs,
 //   curve.ElevateDegree(Dimension{});  // Raise the spline's degree p_0 by one.
 template<int parametric_dimensionality, int dimensionality>
 class Nurbs : public Spline<parametric_dimensionality, dimensionality> {
- private:
-  template<typename Type>
-  using SharedPointer_ = std::shared_ptr<Type>;
-
  public:
   using Base_ = Spline<parametric_dimensionality, dimensionality>;
   using Coordinate_ = typename Base_::Coordinate_;
@@ -66,11 +59,11 @@ class Nurbs : public Spline<parametric_dimensionality, dimensionality> {
   using ParameterSpace_ = typename Base_::ParameterSpace_;
   using ParametricCoordinate_ = typename Base_::ParametricCoordinate_;
   using WeightedVectorSpace_ = vector_spaces::WeightedVectorSpace<dimensionality>;
-  using OutputInformation_ = std::tuple<typename ParameterSpace_::OutputInformation_,
-                                        typename WeightedVectorSpace_::OutputInformation_>;
+  using OutputInformation_ = Tuple<typename ParameterSpace_::OutputInformation_,
+                                   typename WeightedVectorSpace_::OutputInformation_>;
 
   Nurbs();
-  Nurbs(SharedPointer_<ParameterSpace_> parameter_space, SharedPointer_<WeightedVectorSpace_> weighted_vector_space);
+  Nurbs(SharedPointer<ParameterSpace_> parameter_space, SharedPointer<WeightedVectorSpace_> weighted_vector_space);
   Nurbs(Nurbs const &other);
   Nurbs(Nurbs &&other) noexcept = default;
   Nurbs & operator=(Nurbs const &rhs);
@@ -102,8 +95,8 @@ class Nurbs : public Spline<parametric_dimensionality, dimensionality> {
  protected:
   using HomogeneousBSpline_ = BSpline<parametric_dimensionality, dimensionality + 1>;
 
-  SharedPointer_<HomogeneousBSpline_> homogeneous_b_spline_;
-  SharedPointer_<WeightedVectorSpace_> weighted_vector_space_;
+  SharedPointer<HomogeneousBSpline_> homogeneous_b_spline_;
+  SharedPointer<WeightedVectorSpace_> weighted_vector_space_;
 };
 
 #include "Sources/Splines/nurbs.inc"

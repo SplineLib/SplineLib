@@ -21,10 +21,10 @@ namespace splinelib::tests::splines {
 
 using std::move;
 
-Nurbs2dTo3d::Nurbs2dTo3d(SharedPointer_<ParameterSpace_> parameter_space,
-    SharedPointer_<WeightedVectorSpace_> weighted_vector_space,
-    SharedPointer_<HomogeneousBSpline_> homogeneous_b_spline) : Nurbs{move(parameter_space),
-                                                                      move(weighted_vector_space)} {
+Nurbs2dTo3d::Nurbs2dTo3d(SharedPointer<ParameterSpace_> parameter_space,
+    SharedPointer<WeightedVectorSpace_> weighted_vector_space,
+    SharedPointer<HomogeneousBSpline_> homogeneous_b_spline) : Nurbs{move(parameter_space), move(weighted_vector_space)}
+{
   homogeneous_b_spline_ = move(homogeneous_b_spline);
 }
 

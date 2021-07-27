@@ -16,10 +16,8 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 #include "Sources/InputOutput/iges.hpp"
 
 #include <algorithm>
-#include <memory>
 #include <limits>
 #include <utility>
-#include <vector>
 
 #include "Sources/Utilities/error_handling.hpp"
 #include "Sources/Utilities/std_container_operations.hpp"
@@ -37,7 +35,7 @@ template<int parametric_dimensionality, int dimensionality>
 using Nurbs = Nurbs<parametric_dimensionality, dimensionality>;
 using SplineDataDouble = Numbers<double>;
 using SplineDataInt = Numbers<int>;
-using std::for_each, std::shared_ptr, std::to_string, utilities::string_operations::Append,
+using std::for_each, std::to_string, utilities::string_operations::Append,
       utilities::string_operations::ConvertToNumber, utilities::system_operations::InputStream,
       utilities::system_operations::Open, utilities::system_operations::OutputStream;
 
@@ -77,7 +75,7 @@ Splines Read(String const &file_name) {
   }
 #endif
   String line;
-  std::vector<SplineSection> splines_read;
+  Vector<SplineSection> splines_read;
   // TODO(all): use all information from global section (e.g., delimiters, representatitivity, scaling & units)?
   do {} while (getline(file, line) && (GetValue(line, Index{72}) != 'D'));
   do {
@@ -220,7 +218,7 @@ SplineEntry CreateSpline(SplineDataInt const &spline_data_int, SplineDataDouble 
       Index::ForEach(0, number_of_coordinates[current_dimension].Get() + degrees[current_dimension].Get() + 1,
                      [&] (Index const &) { knots.emplace_back(*(spline_datum_double++)); });
       knot_vectors[current_dimension] = make_shared<KnotVector>(knots); });
-  shared_ptr parameter_space{make_shared<ParameterSpace>(move(knot_vectors), move(degrees))};
+  SharedPointer<ParameterSpace> parameter_space{make_shared<ParameterSpace>(move(knot_vectors), move(degrees))};
   int const &total_number_of_coordinates = parameter_space->GetTotalNumberOfBasisFunctions();
   typename WeightedVectorSpace::Weights_ weights{};
   weights.reserve(total_number_of_coordinates);
@@ -285,14 +283,14 @@ Coordinate WriteSpline(SplineEntry const &spline, String const &delimiter, Strin
   if (spline->is_rational_) {
     using Nurbs = Nurbs<parametric_dimensionality, dimensionality>;
 
-    shared_ptr<Nurbs> const &nurbs = static_pointer_cast<Nurbs>(spline);
+    SharedPointer<Nurbs> const &nurbs = static_pointer_cast<Nurbs>(spline);
     WriteSpline<parametric_dimensionality, dimensionality, true>(*nurbs, delimiter, parameter_data_section_contribution,
                                                                  precision);
     return nurbs->ComputeUpperBoundForMaximumDistanceFromOrigin(tolerance);
   } else {
     using BSpline = BSpline<parametric_dimensionality, dimensionality>;
 
-    shared_ptr<BSpline> const &b_spline = static_pointer_cast<BSpline>(spline);
+    SharedPointer<BSpline> const &b_spline = static_pointer_cast<BSpline>(spline);
     WriteSpline<parametric_dimensionality, dimensionality, false>(*b_spline, delimiter,
                                                                   parameter_data_section_contribution, precision);
     return b_spline->ComputeUpperBoundForMaximumDistanceFromOrigin(tolerance);

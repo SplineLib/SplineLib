@@ -20,8 +20,6 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 #include <functional>
 #include <iterator>
 #include <limits>
-#include <tuple>
-#include <vector>
 
 #include "Sources/Utilities/error_handling.hpp"
 #include "Sources/Utilities/named_type.hpp"
@@ -53,10 +51,6 @@ bool operator==(WeightedVectorSpace<dimensionality> const &lhs, WeightedVectorSp
 template<int dimensionality>
 class WeightedVectorSpace : public VectorSpace<dimensionality + 1> {
  private:
-  template<typename ...Types>
-  using Tuple_ = std::tuple<Types...>;
-  template<typename Type>
-  using Vector_ = std::vector<Type>;
   using VectorSpace_ = VectorSpace<dimensionality>;
 
  public:
@@ -64,9 +58,9 @@ class WeightedVectorSpace : public VectorSpace<dimensionality + 1> {
   using Coordinate_ = typename VectorSpace_::Coordinate_;
   using Coordinates_ = typename VectorSpace_::Coordinates_;
   using HomogeneousCoordinate_ = typename Base_::Coordinate_;
-  using MaximumDistanceFromOriginAndMinimumWeight_ = Tuple_<Coordinate, Weight>;
-  using OutputInformation_ = Tuple_<Vector_<StringArray<dimensionality>>, StringVector>;
-  using Weights_ = Vector_<Weight>;
+  using MaximumDistanceFromOriginAndMinimumWeight_ = Tuple<Coordinate, Weight>;
+  using OutputInformation_ = Tuple<Vector<StringArray<dimensionality>>, StringVector>;
+  using Weights_ = Vector<Weight>;
 
   WeightedVectorSpace() = default;
   WeightedVectorSpace(Coordinates_ const &coordinates, Weights_ const &weights);

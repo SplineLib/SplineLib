@@ -36,6 +36,9 @@ Examples/*/*build*
 # Mac related files
 *.DS_Store
 
+# VSC related files
+.vscode
+
 # Spack related files
 spack-configure-args.txt
 __pycache__

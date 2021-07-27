@@ -73,7 +73,7 @@ Spline<parametric_dimensionality, dimensionality>::Spline(bool is_rational) :
     SplineItem(parametric_dimensionality, dimensionality, std::move(is_rational)) {}
 
 template<int parametric_dimensionality, int dimensionality>
-Spline<parametric_dimensionality, dimensionality>::Spline(SharedPointer_<ParameterSpace_> parameter_space,
+Spline<parametric_dimensionality, dimensionality>::Spline(SharedPointer<ParameterSpace_> parameter_space,
     bool is_rational) : Spline(std::move(is_rational)) {
   static_assert(parametric_dimensionality > 0, "The parametric dimensionality must be positive");
   static_assert(dimensionality > 0, "The dimensionality must be positive");

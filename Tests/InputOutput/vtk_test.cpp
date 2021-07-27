@@ -13,11 +13,10 @@ WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEM
 COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. */
 
-#include <memory>
-
 #include <gtest/gtest.h>
 #include "Sources/InputOutput/vtk.hpp"
 #include "Sources/Utilities/error_handling.hpp"
+#include "Sources/Utilities/std_container_operations.hpp"
 #include "Tests/Splines/b_spline_mock.hpp"
 
 namespace splinelib::tests::input_output {
@@ -34,7 +33,7 @@ class VtkSuite : public testing::Test {
 
   VtkSuite();
 
-  std::shared_ptr<BSpline_> b_spline_{std::make_shared<BSpline_>()};
+  SharedPointer<BSpline_> b_spline_{std::make_shared<BSpline_>()};
 };
 
 VtkSuite::VtkSuite() {
@@ -55,7 +54,7 @@ TEST_F(VtkSuite, ThrowIfNumbersOfParametricCoordinatesIsInvalid) {
 TEST_F(VtkSuite, ThrowIfDimensionanlityIsGreaterThanThree) {
   using BSpline = splines::A2d4dBSplineMock;
 
-  std::shared_ptr b_spline{std::make_shared<BSpline>()};
+  SharedPointer<BSpline> b_spline{std::make_shared<BSpline>()};
   b_spline->NurbsBookExe4_4();
 
   EXPECT_THROW(Sample({b_spline}, kFilename_, {{k3_, k3_}}), RuntimeError);

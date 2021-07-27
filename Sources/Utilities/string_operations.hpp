@@ -17,7 +17,6 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 #define SOURCES_UTILITIES_STRING_OPERATIONS_HPP_
 
 #include <algorithm>
-#include <array>
 // NOLINTNEXTLINE(whitespace/comments)
 //#include <format>  // TODO(all): C++20 library providing std::format to replace Write (not yet implemented).
 #include <functional>
@@ -25,7 +24,6 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 #include <sstream>
 #include <string>
 #include <type_traits>
-#include <vector>
 
 #include "Sources/Utilities/error_handling.hpp"
 #include "Sources/Utilities/named_type.hpp"
@@ -38,18 +36,18 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 // Example:
 //   StartsWith("hello world", "hello");  // Evaluates to true as "hello world" starts with "hello".
 //   String delimited_string{"delimited"};
-//   Append(delimited_string, " ", std::vector{"by", TrimCharacter(" spaces ", ' ')});
+//   Append(delimited_string, " ", Vector{"by", TrimCharacter(" spaces ", ' ')});
 //   StringVector const &splitted_at_spaces = SplitAtDelimiter(delimited_string, ' ');  // {"delimited", "by", "spaces"}
 //   Degree const &four = ConvertToNumbers<Degree>("4,3", ',')[0];
-//   StringArray const &written = Write<StringArray>(std::array{Coordinate{1.8765}}, Precision{4});  // {"1.877"}
+//   StringArray const &written = Write<StringArray>(Array{Coordinate{1.8765}}, Precision{4});  // {"1.877"}
 namespace splinelib::sources::utilities::string_operations {
 
 template<typename Type>
-using Numbers = std::vector<Type>;
+using Numbers = Vector<Type>;
 using String = std::string;
 template<int length>
-using StringArray = std::array<String, length>;
-using StringVector = std::vector<String>;
+using StringArray = Array<String, length>;
+using StringVector = Vector<String>;
 using StringVectorConstIterator = StringVector::const_iterator;
 
 bool EndsWith(String const &string, String const &pattern);

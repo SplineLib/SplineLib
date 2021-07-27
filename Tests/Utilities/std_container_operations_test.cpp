@@ -14,7 +14,6 @@ COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER I
 OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. */
 
 #include <cmath>
-#include <memory>
 
 #include <gtest/gtest.h>
 #include "Sources/Utilities/error_handling.hpp"
@@ -31,15 +30,11 @@ class StdContainerOperationsTestSuite : public testing::Test {
   using NamedType_ = sources::utilities::NamedType<Name, Type>;
 
  protected:
-  template<typename Type, size_t size>
-  using Array_ = std::array<Type, size>;
   using Double_ = NamedType_<struct DoubleName, double>;
   using Int_ = NamedType_<struct IntName, int>;
-  using Ints_ = Array_<Int_, 6>;
-  template<typename Type>
-  using Vector_ = std::vector<Type>;
+  using Ints_ = Array<Int_, 6>;
   using DoubleTmp_ = Double_::Type_;
-  using Doubles_ = Vector_<Double_>;
+  using Doubles_ = Vector<Double_>;
 
   constexpr static DoubleTmp_ const kEpsilon_{sources::utilities::numeric_operations::GetEpsilon<DoubleTmp_>()};
   constexpr static DoubleTmp_ const &kTolerance_ = (1.2 * kEpsilon_);
@@ -54,13 +49,13 @@ class StdContainerOperationsTestSuite : public testing::Test {
 };
 
 TEST_F(StdContainerOperationsTestSuite, IsArray) {
-  EXPECT_TRUE((is_array<Array_<int, 2>>));
-  EXPECT_FALSE(is_array<Vector_<int>>);
+  EXPECT_TRUE((is_array<Array<int, 2>>));
+  EXPECT_FALSE(is_array<Vector<int>>);
 }
 
 TEST_F(StdContainerOperationsTestSuite, IsVector) {
-  EXPECT_FALSE((is_vector<Array_<double, 3>>));
-  EXPECT_TRUE(is_vector<Vector_<double>>);
+  EXPECT_FALSE((is_vector<Array<double, 3>>));
+  EXPECT_TRUE(is_vector<Vector<double>>);
 }
 
 TEST_F(StdContainerOperationsTestSuite, GetFront) {
@@ -86,7 +81,7 @@ TEST_F(StdContainerOperationsTestSuite, GetValue) {
 }
 
 TEST_F(StdContainerOperationsTestSuite, TransformNamedTypes) {
-  using TestTypeDoubles = Array_<Double_, 6>;
+  using TestTypeDoubles = Array<Double_, 6>;
 
   EXPECT_EQ(TransformNamedTypes<TestTypeDoubles>(ints_), (TestTypeDoubles{k1_0_, k2_0_, k3_0_, k4_0_, k0_0_,
                                                                           Double_{6.0}}));
@@ -96,7 +91,7 @@ TEST_F(StdContainerOperationsTestSuite, TransformNamedTypes) {
 }
 
 TEST_F(StdContainerOperationsTestSuite, DoesContainEqualValuesDoesContainPointersToEqualValuesAndOperatorEqual) {
-  using Double = std::shared_ptr<Double_>;
+  using Double = SharedPointer<Double_>;
   using std::make_shared;
 
   constexpr Double_ const kMinus3_4Perturbed{kMinus3_4_ + Double_{1.1 * kEpsilon_}};
@@ -109,7 +104,7 @@ TEST_F(StdContainerOperationsTestSuite, DoesContainEqualValuesDoesContainPointer
 
   Double const &kMinus4_0 = make_shared<Double_>(kMinus4_0_), &kMinus3_4 = make_shared<Double_>(kMinus3_4_),
       &k0_5 = make_shared<Double_>(k0_5_), &k1_2 = make_shared<Double_>(k1_2_), &k2_9 = make_shared<Double_>(k2_9_);
-  Vector_<Double> const kDoublesPointers{k0_5, k1_2, k2_9, kMinus3_4, kMinus4_0},
+  Vector<Double> const kDoublesPointers{k0_5, k1_2, k2_9, kMinus3_4, kMinus4_0},
       kDoublesPerturbedPointers{k0_5, k1_2, k2_9, make_shared<Double_>(kMinus3_4Perturbed), kMinus4_0};
   EXPECT_TRUE(DoesContainPointersToEqualValues(kDoublesPointers, kDoublesPointers));
   EXPECT_FALSE(DoesContainPointersToEqualValues(kDoublesPerturbedPointers, kDoublesPointers));
@@ -213,7 +208,7 @@ TEST_F(StdContainerOperationsTestSuite, ThrowIfIndexIsOutOfRange) {
   EXPECT_THROW(GetFront(doubles1_), OutOfRange);
   EXPECT_THROW(GetBack(doubles1_), OutOfRange);
 
-  Array_<int, 0> array_empty;
+  Array<int, 0> array_empty;
   EXPECT_THROW(GetValue(ints_, k6_), OutOfRange);
   EXPECT_THROW(GetFront(array_empty), OutOfRange);
   EXPECT_THROW(GetBack(array_empty), OutOfRange);

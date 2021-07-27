@@ -25,7 +25,7 @@ namespace splinelib::sources::splines {
 //
 // Example:
 //   using std::make_shared;
-//   std::vector<SplineItem> const splines{make_shared<BSpline<2, 3>>(), make_shared<Nurbs<3, 4>>()};
+//   Vector<SplineItem> const splines{make_shared<BSpline<2, 3>>(), make_shared<Nurbs<3, 4>>()};
 //   int const &two = splines[0]->parametric_dimensionality_;
 class SplineItem {
  public:

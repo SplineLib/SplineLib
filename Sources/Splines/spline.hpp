@@ -17,7 +17,6 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 #define SOURCES_SPLINES_SPLINE_HPP_
 
 #include <algorithm>
-#include <memory>
 #include <utility>
 
 #include "Sources/ParameterSpaces/parameter_space.hpp"
@@ -25,6 +24,7 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 #include "Sources/Utilities/error_handling.hpp"
 #include "Sources/Utilities/named_type.hpp"
 #include "Sources/Utilities/numeric_operations.hpp"
+#include "Sources/Utilities/std_container_operations.hpp"
 #include "Sources/VectorSpaces/vector_space.hpp"
 
 namespace splinelib::sources::splines {
@@ -46,10 +46,6 @@ bool operator==(Spline<parametric_dimensionality, dimensionality> const &lhs,
 //   spline.RefineKnots(Dimension{1}, {Spline<2, 3>::Knot_{0.5}});
 template<int parametric_dimensionality, int dimensionality>
 class Spline : public SplineItem {
- private:
-  template<typename Type>
-  using SharedPointer_ = std::shared_ptr<Type>;
-
  protected:
   using VectorSpace_ = vector_spaces::VectorSpace<dimensionality>;
 
@@ -98,13 +94,13 @@ class Spline : public SplineItem {
 
   Spline() = default;
   explicit Spline(bool is_rational);
-  Spline(SharedPointer_<ParameterSpace_> parameter_space, bool is_rational);
+  Spline(SharedPointer<ParameterSpace_> parameter_space, bool is_rational);
   Spline(Spline const &other);
   Spline(Spline &&other) noexcept = default;
   Spline & operator=(Spline const &rhs);
   Spline & operator=(Spline &&rhs) noexcept = default;
 
-  SharedPointer_<ParameterSpace_> parameter_space_;
+  SharedPointer<ParameterSpace_> parameter_space_;
 };
 
 #include "Sources/Splines/spline.inc"
