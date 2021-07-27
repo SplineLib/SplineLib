@@ -17,7 +17,6 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 #define SOURCES_UTILITIES_INDEX_HPP_
 
 #include <algorithm>
-#include <array>
 #include <functional>
 #include <numeric>
 #include <utility>
@@ -58,7 +57,7 @@ template<int size>
 class Index {
  private:
   template<typename Type>
-  using Array_ = std::array<Type, size>;
+  using Array_ = Array<Type, size>;
 
  public:
   using Index_ = splinelib::Index;

@@ -16,15 +16,11 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 #ifndef SOURCES_PARAMETERSPACES_PARAMETER_SPACE_HPP_
 #define SOURCES_PARAMETERSPACES_PARAMETER_SPACE_HPP_
 
-#include <array>
 #include <algorithm>
 #include <functional>
 #include <iterator>
-#include <memory>
 #include <numeric>
-#include <tuple>
 #include <utility>
-#include <vector>
 
 #include "Sources/ParameterSpaces/b_spline_basis_function.hpp"
 #include "Sources/ParameterSpaces/knot_vector.hpp"
@@ -69,39 +65,32 @@ bool operator==(ParameterSpace<parametric_dimensionality> const &lhs,
 template<int parametric_dimensionality>
 class ParameterSpace {
  private:
-  template<typename Type, size_t size>
-  using Array_ = std::array<Type, size>;
   using StringArray_ = StringArray<parametric_dimensionality>;
-  template<typename ...Types>
-  using Tuple_ = std::tuple<Types...>;
-  template<typename Type>
-  using Vector_ = std::vector<Type>;
 
  protected:
   using BSplineBasisFunctions_ = BSplineBasisFunctions<parametric_dimensionality>;
 
  public:
-  using BinomialRatios_ = Vector_<BinomialRatio>;
-  using Degrees_ = Array_<Degree, parametric_dimensionality>;
-  using Derivative_ = Array_<Derivative, parametric_dimensionality>;
-  using ElevationCoefficients_ = Vector_<BinomialRatios_>;
-  using ElevationInformation_ = Tuple_<Index, ElevationCoefficients_>;
+  using BinomialRatios_ = Vector<BinomialRatio>;
+  using Degrees_ = Array<Degree, parametric_dimensionality>;
+  using Derivative_ = Array<Derivative, parametric_dimensionality>;
+  using ElevationCoefficients_ = Vector<BinomialRatios_>;
+  using ElevationInformation_ = Tuple<Index, ElevationCoefficients_>;
   using Index_ = utilities::Index<parametric_dimensionality>;
   using IndexLength_ = typename Index_::Length_;
   using IndexValue_ = typename Index_::Value_;
-  using KnotRatios_ = Vector_<KnotRatio>;
+  using KnotRatios_ = Vector<KnotRatio>;
   using KnotVectors_ = KnotVectors<parametric_dimensionality>;
   using NumberOfBasisFunctions_ = IndexLength_;
   using NumberOfParametricCoordinates_ = IndexLength_;
-  using OutputInformation_ = Tuple_<KnotVectorsOutputInformation<parametric_dimensionality>, StringArray_,
-                                    StringArray_>;
-  using ParametricCoordinate_ = Array_<ParametricCoordinate, parametric_dimensionality>;
-  using ParametricCoordinates_ = Vector_<ParametricCoordinate_>;
+  using OutputInformation_ = Tuple<KnotVectorsOutputInformation<parametric_dimensionality>, StringArray_, StringArray_>;
+  using ParametricCoordinate_ = Array<ParametricCoordinate, parametric_dimensionality>;
+  using ParametricCoordinates_ = Vector<ParametricCoordinate_>;
   using Type_ = typename BSplineBasisFunctions_::value_type::value_type::element_type::Type_;
-  using InsertionCoefficients_ = Vector_<KnotRatios_>;
-  using InsertionInformation_ = Tuple_<Index, InsertionCoefficients_>;
+  using InsertionCoefficients_ = Vector<KnotRatios_>;
+  using InsertionInformation_ = Tuple<Index, InsertionCoefficients_>;
   using Knots_ = typename KnotVectors_::value_type::element_type::Knots_;
-  using BezierInformation_ = Tuple_<int, Knots_>;
+  using BezierInformation_ = Tuple<int, Knots_>;
   using Knot_ = typename Knots_::value_type;
 
   ParameterSpace() = default;

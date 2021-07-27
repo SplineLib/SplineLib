@@ -13,10 +13,9 @@ WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEM
 COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. */
 
-#include <memory>
-
 #include <gtest/gtest.h>
 #include "Sources/Utilities/error_handling.hpp"
+#include "Sources/Utilities/std_container_operations.hpp"
 #include "Sources/Utilities/string_operations.hpp"
 #include "Sources/Utilities/system_operations.hpp"
 #include "Tests/Splines/spline_item_mock.hpp"
@@ -75,8 +74,9 @@ TEST_F(LogOperationsSuite, SkipBlankLineAndReadSectionIdentifier) {
 }
 
 TEST_F(LogOperationsSuite, RemoveSplinesOfTooHighDimensionalities) {
-  std::shared_ptr const b_spline_surface{
-      std::make_shared<testing::StrictMock<splinelib::tests::splines::ASplineItem>>()};
+  using SplineItem = testing::StrictMock<splinelib::tests::splines::ASplineItem>;
+
+  SharedPointer<SplineItem> const b_spline_surface{std::make_shared<SplineItem>()};
   b_spline_surface->NurbsBookExe3_8();
   SplinesRead splines_read{b_spline_surface};
   EXPECT_EQ((RemoveSplinesOfTooHighDimensionalities<1, 3>(kSplinesConsidered_, splines_read,

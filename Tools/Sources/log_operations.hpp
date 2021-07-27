@@ -13,11 +13,9 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 #ifndef TOOLS_SOURCES_LOG_OPERATIONS_HPP_
 #define TOOLS_SOURCES_LOG_OPERATIONS_HPP_
 
-#include <tuple>
-#include <vector>
-
 #include "Sources/InputOutput/vtk.hpp"
 #include "Sources/Utilities/named_type.hpp"
+#include "Sources/Utilities/std_container_operations.hpp"
 #include "Sources/Utilities/string_operations.hpp"
 #include "Sources/Utilities/system_operations.hpp"
 
@@ -32,9 +30,9 @@ namespace splinelib::tools::sources::log_operations {
 enum class LogType { kConverter, kSampler };
 using InputStream = splinelib::sources::utilities::system_operations::InputStream;
 using NumbersOfParametricCoordinates = splinelib::sources::input_output::vtk::NumbersOfParametricCoordinates;
-using SplinesConsidered = std::vector<Index>;
+using SplinesConsidered = Vector<Index>;
 using SplinesRead = splinelib::sources::input_output::Splines;
-using LogInformation = std::tuple<String, String, SplinesConsidered, NumbersOfParametricCoordinates>;
+using LogInformation = Tuple<String, String, SplinesConsidered, NumbersOfParametricCoordinates>;
 
 void Append(String const &name_log, LogInformation const &log_information);
 template<LogType log_type>

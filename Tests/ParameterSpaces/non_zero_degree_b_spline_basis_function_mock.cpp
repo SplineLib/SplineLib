@@ -15,15 +15,14 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 
 #include "Tests/ParameterSpaces/non_zero_degree_b_spline_basis_function_mock.hpp"
 
-#include <memory>
-
+#include "Sources/Utilities/std_container_operations.hpp"
 #include "Tests/ParameterSpaces/zero_degree_b_spline_basis_function_mock.hpp"
 
 namespace splinelib::tests::parameter_spaces {
 
 namespace {
 
-using std::shared_ptr, testing::StrictMock;
+using testing::StrictMock;
 using NonZeroDegreeBSplineBasisFunction_ = StrictMock<ANonZeroDegreeBSplineBasisFunctionMock>;
 using ZeroDegreeBSplineBasisFunction_ = StrictMock<AZeroDegreeBSplineBasisFunctionMock>;
 using Type = NonZeroDegreeBSplineBasisFunction_::Type_;
@@ -47,10 +46,12 @@ Type ANonZeroDegreeBSplineBasisFunctionMock::operator()(ParametricCoordinate con
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_1_0_1() {
   ABSplineBasisFunctionMock::NurbsBookExa2_1_0_1();
   left_denominator_inverse_ = k0_0; right_denominator_inverse_ = k0_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<ZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<ZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                     make_shared<ZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExa2_1_1_0();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<ZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<ZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                     make_shared<ZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExa2_1_1_0();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -58,10 +59,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_1_0_1() {
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_1_1_1() {
   ABSplineBasisFunctionMock::NurbsBookExa2_1_1_1();
   left_denominator_inverse_ = k0_0; right_denominator_inverse_ = k1_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<ZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<ZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                     make_shared<ZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExa2_1_1_0();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<ZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<ZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                     make_shared<ZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExa2_1_2_0();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -69,10 +72,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_1_1_1() {
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_1_2_1() {
   ABSplineBasisFunctionMock::NurbsBookExa2_1_2_1();
   left_denominator_inverse_ = k1_0; right_denominator_inverse_ = k0_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<ZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<ZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                     make_shared<ZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExa2_1_2_0();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<ZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<ZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                     make_shared<ZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExa2_1_3_0();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -80,10 +85,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_1_2_1() {
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_1_3_1() {
   ABSplineBasisFunctionMock::NurbsBookExa2_1_3_1();
   left_denominator_inverse_ = k0_0; right_denominator_inverse_ = k0_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<ZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<ZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                     make_shared<ZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExa2_1_3_0();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<ZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<ZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                     make_shared<ZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExa2_1_3_0();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -94,10 +101,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_1_0_2() {
 
   ABSplineBasisFunctionMock::NurbsBookExa2_1_0_2();
   left_denominator_inverse_ = k0_0; right_denominator_inverse_ = k1_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExa2_1_0_1();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExa2_1_1_1();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 
@@ -110,10 +119,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_1_0_2() {
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_1_1_2() {
   ABSplineBasisFunctionMock::NurbsBookExa2_1_1_2();
   left_denominator_inverse_ = k1_0; right_denominator_inverse_ = k1_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExa2_1_1_1();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExa2_1_2_1();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -121,10 +132,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_1_1_2() {
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_1_2_2() {
   ABSplineBasisFunctionMock::NurbsBookExa2_1_2_2();
   left_denominator_inverse_ = k1_0; right_denominator_inverse_ = k0_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExa2_1_2_1();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExa2_1_3_1();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -132,10 +145,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_1_2_2() {
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2_0_1() {
   ABSplineBasisFunctionMock::NurbsBookExa2_2_0_1();
   left_denominator_inverse_ = k0_0; right_denominator_inverse_ = k0_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<ZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<ZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                     make_shared<ZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExa2_2_1_0();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<ZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<ZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                     make_shared<ZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExa2_2_1_0();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -143,10 +158,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2_0_1() {
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2_1_1() {
   ABSplineBasisFunctionMock::NurbsBookExa2_2_1_1();
   left_denominator_inverse_ = k0_0; right_denominator_inverse_ = k1_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<ZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<ZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                     make_shared<ZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExa2_2_1_0();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<ZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<ZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                     make_shared<ZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExa2_2_2_0();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -154,10 +171,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2_1_1() {
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2_2_1() {
   ABSplineBasisFunctionMock::NurbsBookExa2_2_2_1();
   left_denominator_inverse_ = k1_0; right_denominator_inverse_ = k1_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<ZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<ZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                     make_shared<ZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExa2_2_2_0();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<ZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<ZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                     make_shared<ZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExa2_2_3_0();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -165,10 +184,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2_2_1() {
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2_3_1() {
   ABSplineBasisFunctionMock::NurbsBookExa2_2_3_1();
   left_denominator_inverse_ = k1_0; right_denominator_inverse_ = k1_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<ZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<ZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                     make_shared<ZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExa2_2_3_0();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<ZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<ZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                     make_shared<ZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExa2_2_4_0();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -176,10 +197,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2_3_1() {
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_3_1() {
   ABSplineBasisFunctionMock::NurbsBookExa2_2_1_1();
   left_denominator_inverse_ = k1_0; right_denominator_inverse_ = k0_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<ZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<ZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                     make_shared<ZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExa2_2_2_0();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<ZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<ZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                     make_shared<ZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExa2_2ElevatedOnce_4_0();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -187,10 +210,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_3_1() {
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2_4_1() {
   ABSplineBasisFunctionMock::NurbsBookExa2_2_4_1();
   left_denominator_inverse_ = k1_0; right_denominator_inverse_ = k1_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<ZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<ZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                     make_shared<ZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExa2_2_4_0();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<ZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<ZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                     make_shared<ZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExa2_2_5_0();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -198,10 +223,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2_4_1() {
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_4_1() {
   ABSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_4_1();
   left_denominator_inverse_ = k0_0; right_denominator_inverse_ = k1_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<ZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<ZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                     make_shared<ZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExa2_2ElevatedOnce_4_0();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<ZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<ZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                     make_shared<ZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExa2_2_3_0();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -209,10 +236,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_4_1() {
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2_5_1() {
   ABSplineBasisFunctionMock::NurbsBookExa2_2_5_1();
   left_denominator_inverse_ = k1_0; right_denominator_inverse_ = k0_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<ZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<ZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                     make_shared<ZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExa2_2_5_0();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<ZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<ZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                     make_shared<ZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExa2_2_6_0();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -220,10 +249,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2_5_1() {
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_5_1() {
   ABSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_4_1();
   left_denominator_inverse_ = k1_0; right_denominator_inverse_ = k0_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<ZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<ZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                     make_shared<ZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExa2_2_3_0();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<ZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<ZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                     make_shared<ZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExa2_2ElevatedOnce_6_0();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -231,10 +262,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_5_1() {
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2_6_1() {
   ABSplineBasisFunctionMock::NurbsBookExa2_2_6_1();
   left_denominator_inverse_ = k0_0; right_denominator_inverse_ = k1_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<ZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<ZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                     make_shared<ZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExa2_2_6_0();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<ZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<ZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                     make_shared<ZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExa2_2_7_0();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -242,10 +275,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2_6_1() {
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_6_1() {
   ABSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_6_1();
   left_denominator_inverse_ = k0_0; right_denominator_inverse_ = k1_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<ZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<ZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                     make_shared<ZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExa2_2ElevatedOnce_6_0();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<ZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<ZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                     make_shared<ZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExa2_2_4_0();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -253,10 +288,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_6_1() {
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2_7_1() {
   ABSplineBasisFunctionMock::NurbsBookExa2_2_7_1();
   left_denominator_inverse_ = k1_0; right_denominator_inverse_ = k0_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<ZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<ZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                     make_shared<ZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExa2_2_7_0();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<ZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<ZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                     make_shared<ZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExa2_2_8_0();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -264,10 +301,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2_7_1() {
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_7_1() {
   ABSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_6_1();
   left_denominator_inverse_ = k1_0; right_denominator_inverse_ = k0_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<ZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<ZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                     make_shared<ZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExa2_2_4_0();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<ZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<ZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                     make_shared<ZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExa2_2ElevatedOnce_8_0();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -275,10 +314,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_7_1() {
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2_8_1() {
   ABSplineBasisFunctionMock::NurbsBookExa2_2_8_1();
   left_denominator_inverse_ = k0_0; right_denominator_inverse_ = k0_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<ZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<ZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                     make_shared<ZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExa2_2_8_0();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<ZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<ZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                     make_shared<ZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExa2_2_8_0();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -286,10 +327,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2_8_1() {
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_8_1() {
   ABSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_8_1();
   left_denominator_inverse_ = k0_0; right_denominator_inverse_ = k1_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<ZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<ZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                     make_shared<ZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExa2_2ElevatedOnce_8_0();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<ZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<ZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                     make_shared<ZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExa2_2_5_0();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -297,10 +340,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_8_1() {
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_9_1() {
   ABSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_8_1();
   left_denominator_inverse_ = k1_0; right_denominator_inverse_ = k0_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<ZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<ZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                     make_shared<ZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExa2_2_5_0();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<ZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<ZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                     make_shared<ZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExa2_2ElevatedOnce_11_0();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -308,10 +353,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_9_1() {
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_10_1() {
   ABSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_10_1();
   left_denominator_inverse_ = k0_0; right_denominator_inverse_ = k0_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<ZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<ZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                     make_shared<ZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExa2_2ElevatedOnce_11_0();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<ZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<ZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                     make_shared<ZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExa2_2ElevatedOnce_11_0();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -319,10 +366,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_10_1() 
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_11_1() {
   ABSplineBasisFunctionMock::NurbsBookExa2_2_7_1();
   left_denominator_inverse_ = k0_0; right_denominator_inverse_ = k1_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<ZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<ZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                     make_shared<ZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExa2_2ElevatedOnce_11_0();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<ZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<ZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                     make_shared<ZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExa2_2_7_0();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -330,10 +379,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_11_1() 
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_12_1() {
   ABSplineBasisFunctionMock::NurbsBookExa2_2_7_1();
   left_denominator_inverse_ = k1_0; right_denominator_inverse_ = k0_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<ZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<ZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                     make_shared<ZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExa2_2_7_0();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<ZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<ZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                     make_shared<ZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExa2_2_8_0();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -341,10 +392,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_12_1() 
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_13_1() {
   ABSplineBasisFunctionMock::NurbsBookExa2_2_8_1();
   left_denominator_inverse_ = k0_0; right_denominator_inverse_ = k0_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<ZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<ZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                     make_shared<ZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExa2_2_8_0();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<ZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<ZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                     make_shared<ZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExa2_2_8_0();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -352,10 +405,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_13_1() 
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2_0_2() {
   ABSplineBasisFunctionMock::NurbsBookExa2_2_0_2();
   left_denominator_inverse_ = k0_0; right_denominator_inverse_ = k1_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExa2_2_0_1();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExa2_2_1_1();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -363,10 +418,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2_0_2() {
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_0_2() {
   ABSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_0_2();
   left_denominator_inverse_ = k0_0; right_denominator_inverse_ = k0_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExa2_2_0_1();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExa2_2_0_1();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -376,10 +433,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2_1_2() {
 
   ABSplineBasisFunctionMock::NurbsBookExa2_2_1_2();
   left_denominator_inverse_ = k1_0; right_denominator_inverse_ = k0_5; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExa2_2_1_1();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExa2_2_2_1();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 
@@ -392,10 +451,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2_1_2() {
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_1_2() {
   ABSplineBasisFunctionMock::NurbsBookExa2_2_0_2();
   left_denominator_inverse_ = k0_0; right_denominator_inverse_ = k1_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExa2_2_0_1();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExa2_2_2_1();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -403,10 +464,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_1_2() {
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2_2_2() {
   ABSplineBasisFunctionMock::NurbsBookExa2_2_2_2();
   left_denominator_inverse_ = k0_5; right_denominator_inverse_ = k0_5; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExa2_2_2_1();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExa2_2_3_1();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -414,10 +477,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2_2_2() {
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_2_2() {
   ABSplineBasisFunctionMock::NurbsBookExa2_2_0_2();
   left_denominator_inverse_ = k1_0; right_denominator_inverse_ = k1_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExa2_2_2_1();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExa2_2ElevatedOnce_3_1();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -425,10 +490,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_2_2() {
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2_3_2() {
   ABSplineBasisFunctionMock::NurbsBookExa2_2_3_2();
   left_denominator_inverse_ = k0_5; right_denominator_inverse_ = k0_5; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExa2_2_3_1();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExa2_2_4_1();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -436,10 +503,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2_3_2() {
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_3_2() {
   ABSplineBasisFunctionMock::NurbsBookExa2_2_1_2();
   left_denominator_inverse_ = k1_0; right_denominator_inverse_ = k1_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExa2_2ElevatedOnce_3_1();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExa2_2ElevatedOnce_4_1();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -447,10 +516,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_3_2() {
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2_4_2() {
   ABSplineBasisFunctionMock::NurbsBookExa2_2_4_2();
   left_denominator_inverse_ = k0_5; right_denominator_inverse_ = k1_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExa2_2_4_1();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExa2_2_5_1();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -458,10 +529,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2_4_2() {
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_4_2() {
   ABSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_4_2();
   left_denominator_inverse_ = k1_0; right_denominator_inverse_ = k1_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExa2_2ElevatedOnce_4_1();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExa2_2ElevatedOnce_5_1();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -469,10 +542,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_4_2() {
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2_5_2() {
   ABSplineBasisFunctionMock::NurbsBookExa2_2_5_2();
   left_denominator_inverse_ = k1_0; right_denominator_inverse_ = k1_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExa2_2_5_1();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExa2_2_6_1();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -480,10 +555,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2_5_2() {
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_5_2() {
   ABSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_5_2();
   left_denominator_inverse_ = k1_0; right_denominator_inverse_ = k1_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExa2_2ElevatedOnce_5_1();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExa2_2ElevatedOnce_6_1();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -491,10 +568,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_5_2() {
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2_6_2() {
   ABSplineBasisFunctionMock::NurbsBookExa2_2_6_2();
   left_denominator_inverse_ = k1_0; right_denominator_inverse_ = k1_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExa2_2_6_1();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExa2_2_7_1();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -502,10 +581,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2_6_2() {
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_6_2() {
   ABSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_6_2();
   left_denominator_inverse_ = k1_0; right_denominator_inverse_ = k1_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExa2_2ElevatedOnce_6_1();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExa2_2ElevatedOnce_7_1();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -513,10 +594,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_6_2() {
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2_7_2() {
   ABSplineBasisFunctionMock::NurbsBookExa2_2_7_2();
   left_denominator_inverse_ = k1_0; right_denominator_inverse_ = k0_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExa2_2_7_1();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExa2_2_8_1();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -524,10 +607,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2_7_2() {
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_7_2() {
   ABSplineBasisFunctionMock::NurbsBookExa2_2_4_2();
   left_denominator_inverse_ = k1_0; right_denominator_inverse_ = k1_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExa2_2ElevatedOnce_7_1();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExa2_2ElevatedOnce_8_1();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -535,10 +620,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_7_2() {
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_8_2() {
   ABSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_8_2();
   left_denominator_inverse_ = k1_0; right_denominator_inverse_ = k1_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExa2_2ElevatedOnce_8_1();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExa2_2ElevatedOnce_9_1();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -546,10 +633,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_8_2() {
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_9_2() {
   ABSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_8_2();
   left_denominator_inverse_ = k1_0; right_denominator_inverse_ = k0_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExa2_2ElevatedOnce_9_1();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExa2_2ElevatedOnce_10_1();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -557,10 +646,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_9_2() {
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_10_2() {
   ABSplineBasisFunctionMock::NurbsBookExa2_2_7_2();
   left_denominator_inverse_ = k0_0; right_denominator_inverse_ = k1_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExa2_2ElevatedOnce_10_1();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExa2_2ElevatedOnce_11_1();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -568,10 +659,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_10_2() 
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_11_2() {
   ABSplineBasisFunctionMock::NurbsBookExa2_2_7_2();
   left_denominator_inverse_ = k1_0; right_denominator_inverse_ = k1_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExa2_2ElevatedOnce_11_1();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExa2_2ElevatedOnce_12_1();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -579,10 +672,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_11_2() 
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_12_2() {
   ABSplineBasisFunctionMock::NurbsBookExa2_2_7_2();
   left_denominator_inverse_ = k1_0; right_denominator_inverse_ = k0_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExa2_2ElevatedOnce_12_1();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExa2_2ElevatedOnce_13_1();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -590,10 +685,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_12_2() 
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_13_2() {
   ABSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_13_2();
   left_denominator_inverse_ = k0_0; right_denominator_inverse_ = k0_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExa2_2ElevatedOnce_13_1();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExa2_2ElevatedOnce_13_1();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -601,10 +698,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_13_2() 
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_0_3() {
   ABSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_0_3();
   left_denominator_inverse_ = k0_0; right_denominator_inverse_ = k1_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExa2_2ElevatedOnce_0_2();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExa2_2ElevatedOnce_1_2();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -612,10 +711,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_0_3() {
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_1_3() {
   ABSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_0_3();
   left_denominator_inverse_ = k1_0; right_denominator_inverse_ = k1_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExa2_2ElevatedOnce_1_2();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExa2_2ElevatedOnce_2_2();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -623,10 +724,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_1_3() {
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_2_3() {
   ABSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_2_3();
   left_denominator_inverse_ = k1_0; right_denominator_inverse_ = k0_5; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExa2_2ElevatedOnce_2_2();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExa2_2ElevatedOnce_3_2();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -634,10 +737,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_2_3() {
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_3_3() {
   ABSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_2_3();
   left_denominator_inverse_ = k0_5; right_denominator_inverse_ = k1_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExa2_2ElevatedOnce_3_2();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExa2_2ElevatedOnce_4_2();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -645,10 +750,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_3_3() {
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_4_3() {
   ABSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_4_3();
   left_denominator_inverse_ = k1_0; right_denominator_inverse_ = k0_5; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExa2_2ElevatedOnce_4_2();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExa2_2ElevatedOnce_5_2();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -656,10 +763,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_4_3() {
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_5_3() {
   ABSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_4_3();
   left_denominator_inverse_ = k0_5; right_denominator_inverse_ = k1_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExa2_2ElevatedOnce_5_2();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExa2_2ElevatedOnce_6_2();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -667,10 +776,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_5_3() {
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_6_3() {
   ABSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_6_3();
   left_denominator_inverse_ = k1_0; right_denominator_inverse_ = k0_5; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExa2_2ElevatedOnce_6_2();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExa2_2ElevatedOnce_7_2();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -678,10 +789,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_6_3() {
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_7_3() {
   ABSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_6_3();
   left_denominator_inverse_ = k0_5; right_denominator_inverse_ = k1_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExa2_2ElevatedOnce_7_2();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExa2_2ElevatedOnce_8_2();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -689,10 +802,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_7_3() {
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_8_3() {
   ABSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_8_3();
   left_denominator_inverse_ = k1_0; right_denominator_inverse_ = k1_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExa2_2ElevatedOnce_8_2();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExa2_2ElevatedOnce_9_2();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -700,10 +815,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_8_3() {
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_9_3() {
   ABSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_9_3();
   left_denominator_inverse_ = k1_0; right_denominator_inverse_ = k1_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExa2_2ElevatedOnce_9_2();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExa2_2ElevatedOnce_10_2();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -711,10 +828,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_9_3() {
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_10_3() {
   ABSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_10_3();
   left_denominator_inverse_ = k1_0; right_denominator_inverse_ = k1_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExa2_2ElevatedOnce_10_2();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExa2_2ElevatedOnce_11_2();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -722,10 +841,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_10_3() 
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_11_3() {
   ABSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_10_3();
   left_denominator_inverse_ = k1_0; right_denominator_inverse_ = k1_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExa2_2ElevatedOnce_11_2();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExa2_2ElevatedOnce_12_2();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -733,10 +854,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_11_3() 
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_12_3() {
   ABSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_10_3();
   left_denominator_inverse_ = k1_0; right_denominator_inverse_ = k0_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExa2_2ElevatedOnce_12_2();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExa2_2ElevatedOnce_13_2();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -744,20 +867,24 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_12_3() 
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExe3_8_0_0_1() {
   ABSplineBasisFunctionMock::NurbsBookExe3_8_0_0_1();
   left_denominator_inverse_ = k0_0; right_denominator_inverse_ = k0_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<ZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<ZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                     make_shared<ZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExe3_8_0_1_0();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<ZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<ZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                     make_shared<ZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExe3_8_0_1_0();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExe3_8_0_1_1() {
   ABSplineBasisFunctionMock::NurbsBookExe3_8_0_1_1();
   left_denominator_inverse_ = k0_0; right_denominator_inverse_ = k2_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<ZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<ZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                     make_shared<ZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExe3_8_0_1_0();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<ZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<ZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                     make_shared<ZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExe3_8_0_2_0();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -765,10 +892,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExe3_8_0_1_1() {
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExe3_8_0_2_1() {
   ABSplineBasisFunctionMock::NurbsBookExe3_8_0_2_1();
   left_denominator_inverse_ = k2_0; right_denominator_inverse_ = k2_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<ZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<ZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                     make_shared<ZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExe3_8_0_2_0();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<ZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<ZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                     make_shared<ZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExe3_8_0_3_0();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -776,10 +905,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExe3_8_0_2_1() {
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExe3_8_0Subdivided_2_1() {
   ABSplineBasisFunctionMock::NurbsBookExe3_8_0Subdivided_2_1();
   left_denominator_inverse_ = k2_0; right_denominator_inverse_ = k0_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<ZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<ZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                     make_shared<ZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExe3_8_0_2_0();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<ZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<ZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                     make_shared<ZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExe3_8_0Subdivided_3_0();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -787,10 +918,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExe3_8_0Subdivided_2_1() {
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExe3_8_0_3_1() {
   ABSplineBasisFunctionMock::NurbsBookExe3_8_0_3_1();
   left_denominator_inverse_ = k2_0; right_denominator_inverse_ = k0_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<ZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<ZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                     make_shared<ZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExe3_8_0_3_0();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<ZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<ZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                     make_shared<ZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExe3_8_0_4_0();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -798,10 +931,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExe3_8_0_3_1() {
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExe3_8_0Subdivided_3_1() {
   ABSplineBasisFunctionMock::NurbsBookExe3_8_0_3_1();
   left_denominator_inverse_ = k0_0; right_denominator_inverse_ = k2_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<ZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<ZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                     make_shared<ZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExe3_8_0Subdivided_3_0();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<ZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<ZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                     make_shared<ZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExe3_8_0Subdivided_4_0();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -809,10 +944,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExe3_8_0Subdivided_3_1() {
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExe3_8_0_4_1() {
   ABSplineBasisFunctionMock::NurbsBookExe3_8_0_4_1();
   left_denominator_inverse_ = k0_0; right_denominator_inverse_ = k0_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<ZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<ZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                     make_shared<ZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExe3_8_0_4_0();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<ZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<ZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                     make_shared<ZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExe3_8_0_4_0();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -820,10 +957,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExe3_8_0_4_1() {
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExe3_8_0Subdivided_4_1() {
   ABSplineBasisFunctionMock::NurbsBookExe3_8_0Subdivided_4_1();
   left_denominator_inverse_ = k2_0; right_denominator_inverse_ = k0_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<ZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<ZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                     make_shared<ZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExe3_8_0Subdivided_4_0();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<ZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<ZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                     make_shared<ZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExe3_8_0_4_0();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -831,10 +970,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExe3_8_0Subdivided_4_1() {
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExe3_8_0_0_2() {
   ABSplineBasisFunctionMock::NurbsBookExe3_8_0_0_2();
   left_denominator_inverse_ = k0_0; right_denominator_inverse_ = k2_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExe3_8_0_0_1();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExe3_8_0_1_1();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -842,10 +983,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExe3_8_0_0_2() {
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExe3_8_0_1_2() {
   ABSplineBasisFunctionMock::NurbsBookExe3_8_0_1_2();
   left_denominator_inverse_ = k2_0; right_denominator_inverse_ = k1_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExe3_8_0_1_1();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExe3_8_0_2_1();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -853,10 +996,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExe3_8_0_1_2() {
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExe3_8_0Subdivided_1_2() {
   ABSplineBasisFunctionMock::NurbsBookExe3_8_0Subdivided_1_2();
   left_denominator_inverse_ = k2_0; right_denominator_inverse_ = k2_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExe3_8_0_1_1();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExe3_8_0Subdivided_2_1();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -864,10 +1009,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExe3_8_0Subdivided_1_2() {
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExe3_8_0_2_2() {
   ABSplineBasisFunctionMock::NurbsBookExe3_8_0_2_2();
   left_denominator_inverse_ = k1_0; right_denominator_inverse_ = k2_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExe3_8_0_2_1();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExe3_8_0_3_1();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -875,10 +1022,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExe3_8_0_2_2() {
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExe3_8_0Subdivided_2_2() {
   ABSplineBasisFunctionMock::NurbsBookExe3_8_0_2_2();
   left_denominator_inverse_ = k2_0; right_denominator_inverse_ = k2_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExe3_8_0Subdivided_2_1();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExe3_8_0Subdivided_3_1();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -886,10 +1035,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExe3_8_0Subdivided_2_2() {
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExe3_8_0_3_2() {
   ABSplineBasisFunctionMock::NurbsBookExe3_8_0_3_2();
   left_denominator_inverse_ = k2_0; right_denominator_inverse_ = k0_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExe3_8_0_3_1();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExe3_8_0_4_1();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -897,10 +1048,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExe3_8_0_3_2() {
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExe3_8_0Subdivided_3_2() {
   ABSplineBasisFunctionMock::NurbsBookExe3_8_0_3_2();
   left_denominator_inverse_ = k2_0; right_denominator_inverse_ = k2_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExe3_8_0Subdivided_3_1();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExe3_8_0Subdivided_4_1();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }
@@ -908,10 +1061,12 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExe3_8_0Subdivided_3_2() {
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExe3_8_0Subdivided_4_2() {
   ABSplineBasisFunctionMock::NurbsBookExe3_8_0_3_2();
   left_denominator_inverse_ = k2_0; right_denominator_inverse_ = k0_0; SetLeftAndRightQuotientDerivative();
-  shared_ptr left_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> left_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   left_lower_degree_basis_function->NurbsBookExe3_8_0Subdivided_4_1();
   left_lower_degree_basis_function_ = left_lower_degree_basis_function;
-  shared_ptr right_lower_degree_basis_function{make_shared<NonZeroDegreeBSplineBasisFunction_>()};
+  SharedPointer<NonZeroDegreeBSplineBasisFunction_> right_lower_degree_basis_function{
+                                                        make_shared<NonZeroDegreeBSplineBasisFunction_>()};
   right_lower_degree_basis_function->NurbsBookExe3_8_0_4_1();
   right_lower_degree_basis_function_ = right_lower_degree_basis_function;
 }

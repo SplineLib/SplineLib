@@ -18,7 +18,7 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 
 #include <SplineLib/Sources/Splines/b_spline.hpp>
 
-using std::cerr, std::cout, std::endl, std::make_shared, std::shared_ptr;
+using splinelib::SharedPointer, std::cerr, std::cout, std::endl, std::make_shared;
 
 int main() {
   // Construct a B-spline curve that embeds into a plane.
@@ -41,12 +41,12 @@ int main() {
   constexpr Coordinate const kCoordinate0{kCoordinate0_0, kCoordinate0_0},
       kCoordinate1{ScalarCoordinate{0.25}, ScalarCoordinate{0.75}}, kCoordinate2{kCoordinate1_0, kCoordinate1_0};
   constexpr Degree const kDegree{1};
-  shared_ptr const knot_vector{make_shared<KnotVector>(knots)};
+  SharedPointer<KnotVector> const knot_vector{make_shared<KnotVector>(knots)};
   Coordinates const coordinates{kCoordinate0, kCoordinate1, kCoordinate2};
   constexpr Degrees const kDegrees{kDegree};
   KnotVectors const knot_vectors{knot_vector};
-  shared_ptr const parameter_space{make_shared<ParameterSpace>(knot_vectors, kDegrees)};
-  shared_ptr const vector_space{make_shared<VectorSpace>(coordinates)};
+  SharedPointer<ParameterSpace> const parameter_space{make_shared<ParameterSpace>(knot_vectors, kDegrees)};
+  SharedPointer<VectorSpace> const vector_space{make_shared<VectorSpace>(coordinates)};
   BSpline const b_spline{parameter_space, vector_space};
 
   // Evaluate the planar B-spline curve.

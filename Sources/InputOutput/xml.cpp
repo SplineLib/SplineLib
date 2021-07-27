@@ -17,7 +17,6 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 
 #include <algorithm>
 #include <iterator>
-#include <memory>
 #include <utility>
 
 #include <pugixml.hpp>  // Cf. documentation at <https://pugixml.org/docs/manual.html>.
@@ -35,13 +34,13 @@ namespace {
 
 template<int parametric_dimensionality>
 using ParameterSpace = typename splines::Spline<parametric_dimensionality, parametric_dimensionality>::ParameterSpace_;
-using std::for_each, std::shared_ptr, std::to_string, utilities::string_operations::ConvertToNumber,
+using std::for_each, std::to_string, utilities::string_operations::ConvertToNumber,
       utilities::string_operations::ConvertToNumbers, utilities::string_operations::TrimCharacter;
 
 template<int parametric_dimensionality>
 SplineEntry CreateSpline(Node const &spline_entry);
 template<int parametric_dimensionality, int dimensionality>
-SplineEntry CreateSpline(shared_ptr<ParameterSpace<parametric_dimensionality>> parameter_space,
+SplineEntry CreateSpline(SharedPointer<ParameterSpace<parametric_dimensionality>> parameter_space,
                          Node const &spline_entry);
 
 template<int parametric_dimensionality>
@@ -149,7 +148,7 @@ SplineEntry CreateSpline(Node const &spline_entry) {
       knot_vectors[dimension.Get()] =
           make_shared<KnotVector>(ConvertToNumbers<typename KnotVector::Knot_>(child.first_child().value(), ' '));
       child = child.next_sibling(); });
-  shared_ptr parameter_space{make_shared<ParameterSpace>(move(knot_vectors),
+  SharedPointer<ParameterSpace> parameter_space{make_shared<ParameterSpace>(move(knot_vectors),
       move(utilities::std_container_operations::TransformNamedTypes<Degrees>(
                ConvertToNumbers<typename Degrees::value_type>(spline_entry.child("deg").first_child().value(), ' '))))};
   SplineEntry spline;
@@ -178,7 +177,7 @@ SplineEntry CreateSpline(Node const &spline_entry) {
 }
 
 template<int parametric_dimensionality, int dimensionality>
-SplineEntry CreateSpline(shared_ptr<ParameterSpace<parametric_dimensionality>> parameter_space,
+SplineEntry CreateSpline(SharedPointer<ParameterSpace<parametric_dimensionality>> parameter_space,
                          Node const &spline_entry) {
   using BSpline = BSpline<parametric_dimensionality, dimensionality>;
   using Nurbs = Nurbs<parametric_dimensionality, dimensionality>;

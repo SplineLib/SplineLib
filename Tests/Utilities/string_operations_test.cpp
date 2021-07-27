@@ -16,6 +16,7 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 #include <gtest/gtest.h>
 #include "Sources/Utilities/error_handling.hpp"
 #include "Sources/Utilities/numeric_operations.hpp"
+#include "Sources/Utilities/std_container_operations.hpp"
 #include "Sources/Utilities/string_operations.hpp"
 
 namespace splinelib::tests::utilities::string_operations {
@@ -25,8 +26,6 @@ template<typename Name, typename Type>
 using NamedType = sources::utilities::NamedType<Name, Type>;
 using Double = NamedType<struct DoubleName, double>;
 using Int = NamedType<struct IntName, int>;
-template<typename Type>
-using Vector = std::vector<Type>;
 
 constexpr Double const k0_5{0.5}, k8_765432101234567{8.765432101234567};
 constexpr Int const kInt{1};
@@ -129,11 +128,10 @@ TEST(StringOperationsSuite, ConvertToNumbers) {
 }
 
 TEST(StringOperationsSuite, Write) {
-  using std::array;
   using StringArray = StringArray<2>;
 
   String const kDouble{"8.76543210123457"}, kDoubleTruncated{"8.765"};
-  array<Double, 2> const kDoubles{k0_5, k8_765432101234567};
+  Array<Double, 2> const kDoubles{k0_5, k8_765432101234567};
 
   EXPECT_EQ(Write(k0_5), kZeroPointFive);
   EXPECT_EQ(Write(k8_765432101234567), kDouble);

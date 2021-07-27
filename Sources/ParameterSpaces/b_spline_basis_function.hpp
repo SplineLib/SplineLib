@@ -16,12 +16,9 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 #ifndef SOURCES_PARAMETERSPACES_B_SPLINE_BASIS_FUNCTION_HPP_
 #define SOURCES_PARAMETERSPACES_B_SPLINE_BASIS_FUNCTION_HPP_
 
-#include <array>
-#include <memory>
-#include <vector>
-
 #include "Sources/ParameterSpaces/knot_vector.hpp"
 #include "Sources/Utilities/named_type.hpp"
+#include "Sources/Utilities/std_container_operations.hpp"
 
 namespace splinelib::sources::parameter_spaces {
 
@@ -77,7 +74,7 @@ bool IsEqual(BSplineBasisFunction const &lhs, BSplineBasisFunction const &rhs, T
 bool operator==(BSplineBasisFunction const &lhs, BSplineBasisFunction const &rhs);
 
 template<int parametric_dimensionality>
-using BSplineBasisFunctions = std::array<std::vector<std::shared_ptr<BSplineBasisFunction>>, parametric_dimensionality>;
+using BSplineBasisFunctions = Array<Vector<SharedPointer<BSplineBasisFunction>>, parametric_dimensionality>;
 
 }  // namespace splinelib::sources::parameter_spaces
 

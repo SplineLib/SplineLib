@@ -15,7 +15,7 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 
 #include "Tests/ParameterSpaces/knot_vector_mock.hpp"
 
-#include <memory>
+#include "Sources/Utilities/std_container_operations.hpp"
 
 namespace splinelib::tests::parameter_spaces {
 
@@ -40,7 +40,7 @@ constexpr ParametricCoordinate const k0_0{}, kPerturbed{1.1 * kEpsilon}, k0_5{0.
                                      k4_0{4.0}, k5_0{5.0};
 constexpr ParametricCoordinate const &k1_0Perturbed = (k1_0 + kPerturbed), &k5_0Perturbed = (k5_0 + kPerturbed);
 Knots const kUniqueKnots2_1{k0_0, k1_0}, kUniqueKnots2_2{k0_0, k1_0, k2_0, k3_0, k4_0, k5_0},
-                   kUniqueKnots3_8{k0_0, k0_5, k1_0};
+            kUniqueKnots3_8{k0_0, k0_5, k1_0};
 String const &kZero = Write(k0_0), &kOne = Write(k1_0);
 IsGeAndLtMatcherP2<double, double> const &IsGe0_0AndLtPerturbation = IsGeAndLt(0.0, kPerturbation),
     &IsGe0_0AndLt0_5 = IsGeAndLt(0.0, 0.5), &IsGe0_0AndLt1_0Perturbed = IsGeAndLt(0.0, 1.0 - kPerturbation),
@@ -511,89 +511,88 @@ namespace mock_knot_vectors {
 namespace {
 
 using KnotVector = testing::StrictMock<AKnotVectorMock>;
-using std::shared_ptr;
 using std::make_shared;
 
 }  // namespace
 
 KnotVectors Empty() {
-  shared_ptr knot_vector{make_shared<KnotVector>()};
+  SharedPointer<KnotVector> knot_vector{make_shared<KnotVector>()};
   return KnotVectors{knot_vector, knot_vector};
 }
 
 KnotVectors NurbsBookExa2_2() {
-  shared_ptr knot_vector0{make_shared<KnotVector>()}; knot_vector0->NurbsBookExa2_2();
-  shared_ptr knot_vector1{make_shared<KnotVector>()}; knot_vector1->NurbsBookExa2_1();
+  SharedPointer<KnotVector> knot_vector0{make_shared<KnotVector>()}; knot_vector0->NurbsBookExa2_2();
+  SharedPointer<KnotVector> knot_vector1{make_shared<KnotVector>()}; knot_vector1->NurbsBookExa2_1();
   return KnotVectors{knot_vector0, knot_vector1};
 }
 
 KnotVectors NurbsBookExa2_2IncreasedOnce() {
-  shared_ptr knot_vector0{make_shared<KnotVector>()}; knot_vector0->NurbsBookExa2_2IncreasedOnce();
-  shared_ptr knot_vector1{make_shared<KnotVector>()}; knot_vector1->NurbsBookExa2_1();
+  SharedPointer<KnotVector> knot_vector0{make_shared<KnotVector>()}; knot_vector0->NurbsBookExa2_2IncreasedOnce();
+  SharedPointer<KnotVector> knot_vector1{make_shared<KnotVector>()}; knot_vector1->NurbsBookExa2_1();
   return KnotVectors{knot_vector0, knot_vector1};
 }
 
 KnotVectors NurbsBookExa2_2IncreasedTwice() {
-  shared_ptr knot_vector0{make_shared<KnotVector>()}; knot_vector0->NurbsBookExa2_2IncreasedTwice();
-  shared_ptr knot_vector1{make_shared<KnotVector>()}; knot_vector1->NurbsBookExa2_1();
+  SharedPointer<KnotVector> knot_vector0{make_shared<KnotVector>()}; knot_vector0->NurbsBookExa2_2IncreasedTwice();
+  SharedPointer<KnotVector> knot_vector1{make_shared<KnotVector>()}; knot_vector1->NurbsBookExa2_1();
   return KnotVectors{knot_vector0, knot_vector1};
 }
 
 KnotVectors NurbsBookExa2_2Inserted() {
-  shared_ptr knot_vector0{make_shared<KnotVector>()}; knot_vector0->NurbsBookExa2_2();
-  shared_ptr knot_vector1{make_shared<KnotVector>()}; knot_vector1->NurbsBookExe3_8_0();
+  SharedPointer<KnotVector> knot_vector0{make_shared<KnotVector>()}; knot_vector0->NurbsBookExa2_2();
+  SharedPointer<KnotVector> knot_vector1{make_shared<KnotVector>()}; knot_vector1->NurbsBookExe3_8_0();
   return KnotVectors{knot_vector0, knot_vector1};
 }
 
 KnotVectors NurbsBookExa2_2Subdivided() {
-  shared_ptr knot_vector0{make_shared<KnotVector>()}; knot_vector0->NurbsBookExa2_2();
-  shared_ptr knot_vector1{make_shared<KnotVector>()}; knot_vector1->NurbsBookExe3_8_0Subdivided();
+  SharedPointer<KnotVector> knot_vector0{make_shared<KnotVector>()}; knot_vector0->NurbsBookExa2_2();
+  SharedPointer<KnotVector> knot_vector1{make_shared<KnotVector>()}; knot_vector1->NurbsBookExe3_8_0Subdivided();
   return KnotVectors{knot_vector0, knot_vector1};
 }
 
 KnotVectors NurbsBookExe3_8() {
-  shared_ptr knot_vector0{make_shared<KnotVector>()}; knot_vector0->NurbsBookExe3_8_0();
-  shared_ptr knot_vector1{make_shared<KnotVector>()}; knot_vector1->NurbsBookExa2_1();
+  SharedPointer<KnotVector> knot_vector0{make_shared<KnotVector>()}; knot_vector0->NurbsBookExe3_8_0();
+  SharedPointer<KnotVector> knot_vector1{make_shared<KnotVector>()}; knot_vector1->NurbsBookExa2_1();
   return KnotVectors{knot_vector0, knot_vector1};
 }
 
 KnotVectors NurbsBookExe3_8IncreaseDecrease() {
-  shared_ptr knot_vector0{make_shared<KnotVector>()}; knot_vector0->NurbsBookExe3_8_0IncreaseDecrease();
-  shared_ptr knot_vector1{make_shared<KnotVector>()}; knot_vector1->NurbsBookExa2_1();
+  SharedPointer<KnotVector> knot_vector0{make_shared<KnotVector>()}; knot_vector0->NurbsBookExe3_8_0IncreaseDecrease();
+  SharedPointer<KnotVector> knot_vector1{make_shared<KnotVector>()}; knot_vector1->NurbsBookExa2_1();
   return KnotVectors{knot_vector0, knot_vector1};
 }
 
 KnotVectors NurbsBookExe3_8IncreasedTwice() {
-  shared_ptr knot_vector0{make_shared<KnotVector>()}; knot_vector0->NurbsBookExe3_8_0IncreasedTwice();
-  shared_ptr knot_vector1{make_shared<KnotVector>()}; knot_vector1->NurbsBookExa2_1();
+  SharedPointer<KnotVector> knot_vector0{make_shared<KnotVector>()}; knot_vector0->NurbsBookExe3_8_0IncreasedTwice();
+  SharedPointer<KnotVector> knot_vector1{make_shared<KnotVector>()}; knot_vector1->NurbsBookExa2_1();
   return KnotVectors{knot_vector0, knot_vector1};
 }
 
 KnotVectors NurbsBookExe3_8InsertRemove() {
-  shared_ptr knot_vector{make_shared<KnotVector>()}; knot_vector->NurbsBookExe3_8_0();
+  SharedPointer<KnotVector> knot_vector{make_shared<KnotVector>()}; knot_vector->NurbsBookExe3_8_0();
   return KnotVectors{knot_vector, knot_vector};
 }
 
 KnotVectors NurbsBookExe3_8Perturbed() {
-  shared_ptr knot_vector0 = make_shared<KnotVector>(); knot_vector0->NurbsBookExe3_8_0();
-  shared_ptr knot_vector1 = make_shared<KnotVector>(); knot_vector1->NurbsBookExa2_1Perturbed();
+  SharedPointer<KnotVector> knot_vector0 = make_shared<KnotVector>(); knot_vector0->NurbsBookExe3_8_0();
+  SharedPointer<KnotVector> knot_vector1 = make_shared<KnotVector>(); knot_vector1->NurbsBookExa2_1Perturbed();
   return KnotVectors{knot_vector0, knot_vector1};
 }
 
 KnotVectors NurbsBookExe3_8Subdivided() {
-  shared_ptr knot_vector0{make_shared<KnotVector>()}; knot_vector0->NurbsBookExe3_8_0();
-  shared_ptr knot_vector1{make_shared<KnotVector>()}; knot_vector1->NurbsBookExe3_8_0Subdivided();
+  SharedPointer<KnotVector> knot_vector0{make_shared<KnotVector>()}; knot_vector0->NurbsBookExe3_8_0();
+  SharedPointer<KnotVector> knot_vector1{make_shared<KnotVector>()}; knot_vector1->NurbsBookExe3_8_0Subdivided();
   return KnotVectors{knot_vector0, knot_vector1};
 }
 
 KnotVectors NurbsBookExe4_4() {
-  shared_ptr knot_vector{make_shared<KnotVector>()}; knot_vector->NurbsBookExe4_4();
+  SharedPointer<KnotVector> knot_vector{make_shared<KnotVector>()}; knot_vector->NurbsBookExe4_4();
   return KnotVectors{knot_vector, knot_vector};
 }
 
 KnotVectors NurbsBookExe4_4Perturbed() {
-  shared_ptr knot_vector0 = make_shared<KnotVector>(); knot_vector0->NurbsBookExe4_4();
-  shared_ptr knot_vector1 = make_shared<KnotVector>(); knot_vector1->NurbsBookExe4_4Perturbed();
+  SharedPointer<KnotVector> knot_vector0 = make_shared<KnotVector>(); knot_vector0->NurbsBookExe4_4();
+  SharedPointer<KnotVector> knot_vector1 = make_shared<KnotVector>(); knot_vector1->NurbsBookExe4_4Perturbed();
   return KnotVectors{knot_vector0, knot_vector1};
 }
 

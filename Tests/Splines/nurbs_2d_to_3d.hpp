@@ -16,22 +16,17 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 #ifndef TESTS_SPLINES_NURBS_2D_TO_3D_HPP_
 #define TESTS_SPLINES_NURBS_2D_TO_3D_HPP_
 
-#include <memory>
-
+#include "Sources/Utilities/std_container_operations.hpp"
 #include "Sources/Splines/nurbs.hpp"
 
 namespace splinelib::tests::splines {
 
 class Nurbs2dTo3d final : public sources::splines::Nurbs<2, 3> {
- private:
-  template<typename Type>
-  using SharedPointer_ = std::shared_ptr<Type>;
-
  public:
   Nurbs2dTo3d() = default;
-  Nurbs2dTo3d(SharedPointer_<ParameterSpace_> parameter_space,
-              SharedPointer_<WeightedVectorSpace_> weighted_vector_space,
-              SharedPointer_<HomogeneousBSpline_> homogeneous_b_spline);
+  Nurbs2dTo3d(SharedPointer<ParameterSpace_> parameter_space,
+              SharedPointer<WeightedVectorSpace_> weighted_vector_space,
+              SharedPointer<HomogeneousBSpline_> homogeneous_b_spline);
   Nurbs2dTo3d(Nurbs2dTo3d const &other) = default;
   Nurbs2dTo3d(Nurbs2dTo3d &&other) noexcept = default;
   Nurbs2dTo3d & operator=(Nurbs2dTo3d const &rhs) = default;

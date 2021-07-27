@@ -25,7 +25,7 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 
 namespace splinelib::tests::splines {
 
-using sources::splines::BSpline, std::shared_ptr;
+using sources::splines::BSpline;
 using std::make_shared;
 
 // Test B-spline from NURBS book Exe. 3.8.
@@ -53,9 +53,9 @@ class BSplineSuite : public testing::Test {
 
   BSplineSuite();
 
-  shared_ptr<ParameterSpace_> parameter_space_{make_shared<ParameterSpace_>()},
-                              parameter_space_insert_remove_{make_shared<ParameterSpace_>()};
-  shared_ptr<VectorSpace_> vector_space_{make_shared<VectorSpace_>()};
+  SharedPointer<ParameterSpace_> parameter_space_{make_shared<ParameterSpace_>()},
+                                 parameter_space_insert_remove_{make_shared<ParameterSpace_>()};
+  SharedPointer<VectorSpace_> vector_space_{make_shared<VectorSpace_>()};
   BSpline_ b_spline_, b_spline_insert_remove_, b_spline_elevate_reduce_;
 };
 
@@ -66,12 +66,12 @@ BSplineSuite::BSplineSuite() {
   vector_space_->NurbsBookExe3_8();
   b_spline_ = BSpline_{parameter_space_, vector_space_};
   parameter_space_insert_remove_->NurbsBookExe3_8InsertRemove();
-  shared_ptr vector_space_insert_remove{make_shared<VectorSpace_>()};
+  SharedPointer<VectorSpace_> vector_space_insert_remove{make_shared<VectorSpace_>()};
   vector_space_insert_remove->NurbsBookExe3_8InsertRemove();
   b_spline_insert_remove_ = BSpline_{parameter_space_insert_remove_, move(vector_space_insert_remove)};
-  shared_ptr parameter_space_elevate_reduce{make_shared<ParameterSpace_>()};
+  SharedPointer<ParameterSpace_> parameter_space_elevate_reduce{make_shared<ParameterSpace_>()};
   parameter_space_elevate_reduce->NurbsBookExe3_8ElevateReduce();
-  shared_ptr vector_space_elevate_reduce{make_shared<VectorSpace_>()};
+  SharedPointer<VectorSpace_> vector_space_elevate_reduce{make_shared<VectorSpace_>()};
   vector_space_elevate_reduce->NurbsBookExe3_8ElevateReduce();
   b_spline_elevate_reduce_ = BSpline_{move(parameter_space_elevate_reduce), move(vector_space_elevate_reduce)};
 }
@@ -89,7 +89,7 @@ TEST_F(BSplineSuite, IsEqualAndOperatorEqual) {
   EXPECT_TRUE(IsEqual(b_spline, b_spline_));
   EXPECT_TRUE(b_spline == b_spline_);
 
-  shared_ptr vector_space{make_shared<VectorSpace_>()};
+  SharedPointer<VectorSpace_> vector_space{make_shared<VectorSpace_>()};
   vector_space->NurbsBookExe3_8Perturbed();
   BSpline_ b_spline_vector_space;
   ASSERT_NO_THROW(b_spline_vector_space = BSpline_(parameter_space_, vector_space));
@@ -115,8 +115,8 @@ TEST_F(BSplineSuite, Evaluate) {
 TEST_F(BSplineSuite, EvaluateDerivative) {
   constexpr Coordinate const kCoordinate12_0{12.0};
   constexpr Derivative const kDerivative0{}, kDerivative1{1};
-  constexpr BSpline_::Derivative_ const kDerivative1_0{kDerivative1, kDerivative0}, kDerivative0_1{kDerivative0,
-                                            kDerivative1}, kDerivative1_1{kDerivative1, kDerivative1};
+  constexpr BSpline_::Derivative_ const kDerivative1_0{kDerivative1, kDerivative0},
+      kDerivative0_1{kDerivative0, kDerivative1}, kDerivative1_1{kDerivative1, kDerivative1};
   constexpr ParametricCoordinate_ const kParametricCoordinate0{kParametricCoordinate0_0_, kParametricCoordinate0_0_};
 
   EXPECT_EQ(b_spline_(kParametricCoordinate_, {kDerivative0, kDerivative0}), b_spline_(kParametricCoordinate_));
@@ -134,14 +134,14 @@ TEST_F(BSplineSuite, EvaluateDerivative) {
 }
 
 TEST_F(BSplineSuite, InsertKnot) {
-  shared_ptr parameter_space_insert{make_shared<ParameterSpace_>()},
-             parameter_space_subdivide{make_shared<ParameterSpace_>()},
-             parameter_space_subdivided{make_shared<ParameterSpace_>()};
+  SharedPointer<ParameterSpace_> parameter_space_insert{make_shared<ParameterSpace_>()},
+                                 parameter_space_subdivide{make_shared<ParameterSpace_>()},
+                                 parameter_space_subdivided{make_shared<ParameterSpace_>()};
   parameter_space_insert->NurbsBookExe3_8();
   parameter_space_subdivide->NurbsBookExe3_8();
   parameter_space_subdivided->NurbsBookExe3_8Subdivided();
-  shared_ptr vector_space_insert{make_shared<VectorSpace_>()}, vector_space_subdivide{make_shared<VectorSpace_>()},
-             vector_space_subdivided{make_shared<VectorSpace_>()};
+  SharedPointer<VectorSpace_> vector_space_insert{make_shared<VectorSpace_>()},
+      vector_space_subdivide{make_shared<VectorSpace_>()}, vector_space_subdivided{make_shared<VectorSpace_>()};
   vector_space_insert->NurbsBookExe3_8Insert();
   vector_space_subdivide->NurbsBookExe3_8Insert();
   vector_space_subdivided->NurbsBookExe3_8Subdivided();
@@ -159,13 +159,13 @@ TEST_F(BSplineSuite, InsertKnot) {
 TEST_F(BSplineSuite, RemoveKnot) {
   constexpr Multiplicity const &kMultiplicity = sources::splines::kMultiplicity;
 
-  shared_ptr parameter_space_remove{make_shared<ParameterSpace_>()}, parameter_space{make_shared<ParameterSpace_>()},
-             parameter_space_unsuccessful{make_shared<ParameterSpace_>()};
+  SharedPointer<ParameterSpace_> parameter_space_remove{make_shared<ParameterSpace_>()},
+      parameter_space{make_shared<ParameterSpace_>()}, parameter_space_unsuccessful{make_shared<ParameterSpace_>()};
   parameter_space_remove->NurbsBookExe3_8Subdivided();
   parameter_space->NurbsBookExe3_8Subdivided();
   parameter_space_unsuccessful->NurbsBookExe3_8Unsuccessful();
-  shared_ptr vector_space_remove{make_shared<VectorSpace_>()}, vector_space{make_shared<VectorSpace_>()},
-             vector_space_unsuccessful{make_shared<VectorSpace_>()}, vector_space_b_spline{make_shared<VectorSpace_>()};
+  SharedPointer<VectorSpace_> vector_space_remove{make_shared<VectorSpace_>()}, vector_space{make_shared<VectorSpace_>()},
+      vector_space_unsuccessful{make_shared<VectorSpace_>()}, vector_space_b_spline{make_shared<VectorSpace_>()};
   vector_space_remove->NurbsBookExe3_8Remove();
   vector_space->NurbsBookExe3_8Remove();
   vector_space_unsuccessful->NurbsBookExe3_8Unsuccessful();
@@ -184,13 +184,13 @@ TEST_F(BSplineSuite, RemoveKnot) {
 }
 
 TEST_F(BSplineSuite, ElevateDegreeDependingOnMakeBezierAndMakeBSpline) {
-  shared_ptr parameter_space_elevate_once{make_shared<ParameterSpace_>()},
-             parameter_space_elevate_twice{make_shared<ParameterSpace_>()},
-             parameter_space_elevated_twice{make_shared<ParameterSpace_>()};
+  SharedPointer<ParameterSpace_> parameter_space_elevate_once{make_shared<ParameterSpace_>()},
+                                 parameter_space_elevate_twice{make_shared<ParameterSpace_>()},
+                                 parameter_space_elevated_twice{make_shared<ParameterSpace_>()};
   parameter_space_elevate_once->NurbsBookExe3_8();
   parameter_space_elevate_twice->NurbsBookExe3_8();
   parameter_space_elevated_twice->NurbsBookExe3_8ElevatedTwice();
-  shared_ptr vector_space_elevate_once{make_shared<VectorSpace_>()},
+  SharedPointer<VectorSpace_> vector_space_elevate_once{make_shared<VectorSpace_>()},
       vector_space_elevate_twice{make_shared<VectorSpace_>()}, vector_space_elevated_twice{make_shared<VectorSpace_>()};
   vector_space_elevate_once->NurbsBookExe3_8ElevateOnce();
   vector_space_elevate_twice->NurbsBookExe3_8ElevateTwice();
@@ -207,13 +207,13 @@ TEST_F(BSplineSuite, ElevateDegreeDependingOnMakeBezierAndMakeBSpline) {
 }
 
 TEST_F(BSplineSuite, ReduceDegreeDependingOnMakeBezierAndMakeBSpline) {
-  shared_ptr parameter_space_reduce{make_shared<ParameterSpace_>()}, parameter_space{make_shared<ParameterSpace_>()},
-             parameter_space_unsuccessful{make_shared<ParameterSpace_>()};
+  SharedPointer<ParameterSpace_> parameter_space_reduce{make_shared<ParameterSpace_>()},
+      parameter_space{make_shared<ParameterSpace_>()}, parameter_space_unsuccessful{make_shared<ParameterSpace_>()};
   parameter_space_reduce->NurbsBookExe3_8ElevatedTwice();
   parameter_space->NurbsBookExe3_8ElevatedTwice();
   parameter_space_unsuccessful->NurbsBookExe3_8();
-  shared_ptr vector_space_reduce{make_shared<VectorSpace_>()}, vector_space{make_shared<VectorSpace_>()},
-             vector_space_unsuccessful{make_shared<VectorSpace_>()};
+  SharedPointer<VectorSpace_> vector_space_reduce{make_shared<VectorSpace_>()}, vector_space{make_shared<VectorSpace_>()},
+                           vector_space_unsuccessful{make_shared<VectorSpace_>()};
   vector_space_reduce->NurbsBookExe3_8ReduceOnce();
   vector_space->NurbsBookExe3_8ReduceTwice();
   vector_space_unsuccessful->NurbsBookExe3_8();

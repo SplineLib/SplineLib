@@ -16,11 +16,11 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 #include "Sources/InputOutput/irit.hpp"
 
 #include <iterator>
-#include <memory>
 #include <utility>
 
 #include "Sources/Splines/spline.hpp"
 #include "Sources/Utilities/error_handling.hpp"
+#include "Sources/Utilities/std_container_operations.hpp"
 #include "Sources/Utilities/string_operations.hpp"
 #include "Sources/Utilities/system_operations.hpp"
 
@@ -31,7 +31,7 @@ namespace {
 template<int parametric_dimensionality>
 using ParameterSpace = typename splines::Spline<parametric_dimensionality, parametric_dimensionality>::ParameterSpace_;
 using StringVectorConstIterator = utilities::string_operations::StringVectorConstIterator;
-using std::make_shared, std::move, std::shared_ptr, std::to_string, utilities::string_operations::ConvertToNumber,
+using std::make_shared, std::move, std::to_string, utilities::string_operations::ConvertToNumber,
       utilities::string_operations::StartsWith, utilities::string_operations::TrimCharacter,
       utilities::system_operations::InputStream, utilities::system_operations::Open,
       utilities::system_operations::OutputStream;
@@ -40,7 +40,7 @@ void SkipAttributes(StringVectorConstIterator &entry);
 template<int parametric_dimensionality>
 SplineEntry CreateSpline(StringVectorConstIterator &entry);
 template<int parametric_dimensionality, int dimensionality>
-SplineEntry CreateSpline(shared_ptr<ParameterSpace<parametric_dimensionality>> parameter_space,
+SplineEntry CreateSpline(SharedPointer<ParameterSpace<parametric_dimensionality>> parameter_space,
                          bool const &is_non_rational, StringVectorConstIterator &entry);
 
 template<int parametric_dimensionality>
@@ -155,7 +155,7 @@ SplineEntry CreateSpline(StringVectorConstIterator &entry) {
           knots.emplace_back(ConvertToNumber<Knot>(*(entry++))); });
       knots.emplace_back(ConvertToNumber<Knot>(TrimCharacter(*(entry++), ']')));
       knot_vectors[current_dimension] = make_shared<KnotVector>(knots); });
-  shared_ptr parameter_space{make_shared<ParameterSpace>(move(knot_vectors), move(degrees))};
+  SharedPointer<ParameterSpace> parameter_space{make_shared<ParameterSpace>(move(knot_vectors), move(degrees))};
   SplineEntry spline;
   DimensionType const &dimensionality = ConvertToNumber<DimensionType>(point_type.substr(1, 1));
   bool const &is_non_rational = StartsWith(point_type, "E");
@@ -183,7 +183,7 @@ SplineEntry CreateSpline(StringVectorConstIterator &entry) {
 }
 
 template<int parametric_dimensionality, int dimensionality>
-SplineEntry CreateSpline(shared_ptr<ParameterSpace<parametric_dimensionality>> parameter_space,
+SplineEntry CreateSpline(SharedPointer<ParameterSpace<parametric_dimensionality>> parameter_space,
                          bool const &is_non_rational, StringVectorConstIterator &entry) {
   int const &total_number_of_coordinates = parameter_space->GetTotalNumberOfBasisFunctions(),
             &maximum_dimension = (dimensionality - 1);

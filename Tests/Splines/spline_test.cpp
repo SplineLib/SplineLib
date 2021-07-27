@@ -13,13 +13,13 @@ WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEM
 COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. */
 
-#include <memory>
 #include <utility>
 
 #include <gtest/gtest.h>
 #include "Sources/Splines/spline.hpp"
 #include "Sources/Splines/b_spline.hpp"
 #include "Sources/Utilities/error_handling.hpp"
+#include "Sources/Utilities/std_container_operations.hpp"
 #include "Tests/ParameterSpaces/parameter_space_mock.hpp"
 #include "Tests/Splines/b_spline_mock.hpp"
 #include "Tests/Splines/nurbs_2d_to_3d.hpp"
@@ -28,7 +28,7 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 
 namespace splinelib::tests::splines {
 
-using sources::splines::Spline, std::shared_ptr;
+using sources::splines::Spline;
 using std::make_shared, std::move;
 
 // Test B-spline and NURBS from NURBS book Exe. 3.8 and Exe. 4.4, respectively.
@@ -53,12 +53,12 @@ class SplineSuite : public testing::Test {
 
   SplineSuite();
 
-  shared_ptr<ParameterSpace_> parameter_space_b_spline_{make_shared<ParameterSpace_>()},
-                              parameter_space_nurbs_{make_shared<ParameterSpace_>()};
-  shared_ptr<VectorSpace_> vector_space_{make_shared<VectorSpace_>()};
-  shared_ptr<WeightedVectorSpace_> weighted_vector_space_{make_shared<WeightedVectorSpace_>()};
-  shared_ptr<HomogeneousBSpline_> homogeneous_b_spline_{make_shared<HomogeneousBSpline_>()};
-  shared_ptr<Spline_> b_spline_, nurbs_;
+  SharedPointer<ParameterSpace_> parameter_space_b_spline_{make_shared<ParameterSpace_>()},
+                                 parameter_space_nurbs_{make_shared<ParameterSpace_>()};
+  SharedPointer<VectorSpace_> vector_space_{make_shared<VectorSpace_>()};
+  SharedPointer<WeightedVectorSpace_> weighted_vector_space_{make_shared<WeightedVectorSpace_>()};
+  SharedPointer<HomogeneousBSpline_> homogeneous_b_spline_{make_shared<HomogeneousBSpline_>()};
+  SharedPointer<Spline_> b_spline_, nurbs_;
 };
 
 SplineSuite::SplineSuite() {
@@ -75,11 +75,11 @@ SplineSuite::SplineSuite() {
 TEST_F(SplineSuite, IsEqualAndOperatorEqual) {
   constexpr Tolerance_ const kTolerance{1.2 * kEpsilon_};
 
-  shared_ptr<Spline_> b_spline;
+  SharedPointer<Spline_> b_spline;
   ASSERT_NO_THROW(b_spline = make_shared<BSpline_>(parameter_space_b_spline_, vector_space_));
-  shared_ptr parameter_space_b_spline_knot_vector{make_shared<ParameterSpace_>()};
+  SharedPointer<ParameterSpace_> parameter_space_b_spline_knot_vector{make_shared<ParameterSpace_>()};
   parameter_space_b_spline_knot_vector->NurbsBookExe3_8KnotVector();
-  shared_ptr<Spline_> b_spline_knot_vector;
+  SharedPointer<Spline_> b_spline_knot_vector;
   ASSERT_NO_THROW(b_spline_knot_vector = make_shared<BSpline_>(parameter_space_b_spline_knot_vector, vector_space_));
   EXPECT_TRUE(IsEqual(*b_spline, *b_spline_));
   EXPECT_TRUE(*b_spline == *b_spline_);
@@ -87,14 +87,14 @@ TEST_F(SplineSuite, IsEqualAndOperatorEqual) {
   EXPECT_FALSE(*b_spline_knot_vector == *b_spline_);
   EXPECT_TRUE(IsEqual(*b_spline_knot_vector, *b_spline_, kTolerance));
 
-  shared_ptr<Spline_> nurbs;
+  SharedPointer<Spline_> nurbs;
   ASSERT_NO_THROW(nurbs = make_shared<Nurbs2dTo3d>(parameter_space_nurbs_, weighted_vector_space_,
                                                    homogeneous_b_spline_));
-  shared_ptr parameter_space_nurbs_knot_vector{make_shared<ParameterSpace_>()};
+  SharedPointer<ParameterSpace_> parameter_space_nurbs_knot_vector{make_shared<ParameterSpace_>()};
   parameter_space_nurbs_knot_vector->NurbsBookExe4_4KnotVector();
-  shared_ptr homogeneous_b_spline_knot_vector{make_shared<HomogeneousBSpline_>()};
+  SharedPointer<HomogeneousBSpline_> homogeneous_b_spline_knot_vector{make_shared<HomogeneousBSpline_>()};
   homogeneous_b_spline_knot_vector->NurbsBookExe4_4KnotVector();
-  shared_ptr<Spline_> nurbs_knot_vector;
+  SharedPointer<Spline_> nurbs_knot_vector;
   ASSERT_NO_THROW(nurbs_knot_vector = make_shared<Nurbs2dTo3d>(parameter_space_nurbs_knot_vector,
                                           weighted_vector_space_, homogeneous_b_spline_knot_vector));
   EXPECT_TRUE(IsEqual(*nurbs, *nurbs_));
@@ -105,11 +105,11 @@ TEST_F(SplineSuite, IsEqualAndOperatorEqual) {
 }
 
 TEST_F(SplineSuite, RefineKnots) {
-  shared_ptr parameter_space{make_shared<ParameterSpace_>()};
+  SharedPointer<ParameterSpace_> parameter_space{make_shared<ParameterSpace_>()};
   parameter_space->NurbsBookExe3_8();
-  shared_ptr vector_space{make_shared<VectorSpace_>()};
+  SharedPointer<VectorSpace_> vector_space{make_shared<VectorSpace_>()};
   vector_space->NurbsBookExe3_8Insert();
-  shared_ptr<Spline_> b_spline;
+  SharedPointer<Spline_> b_spline;
   ASSERT_NO_THROW(b_spline = make_shared<BSpline_>(move(parameter_space), move(vector_space)));
   EXPECT_NO_THROW(b_spline->RefineKnots(kDimension1_, kKnots_));
 
@@ -117,11 +117,11 @@ TEST_F(SplineSuite, RefineKnots) {
 }
 
 TEST_F(SplineSuite, CoarsenKnots) {
-  shared_ptr parameter_space{make_shared<ParameterSpace_>()};
+  SharedPointer<ParameterSpace_> parameter_space{make_shared<ParameterSpace_>()};
   parameter_space->NurbsBookExe3_8Subdivided();
-  shared_ptr vector_space{make_shared<VectorSpace_>()};
+  SharedPointer<VectorSpace_> vector_space{make_shared<VectorSpace_>()};
   vector_space->NurbsBookExe3_8Remove();
-  shared_ptr<Spline_> b_spline;
+  SharedPointer<Spline_> b_spline;
   ASSERT_NO_THROW(b_spline = make_shared<BSpline_>(move(parameter_space), move(vector_space)));
   EXPECT_EQ(b_spline->CoarsenKnots(kDimension1_, kKnots_, kEpsilon_), sources::splines::kMultiplicity);
 

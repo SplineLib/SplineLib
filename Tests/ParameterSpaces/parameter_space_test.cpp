@@ -24,7 +24,7 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 
 namespace splinelib::tests::parameter_spaces {
 
-using sources::parameter_spaces::ParameterSpace, std::shared_ptr, testing::StrictMock;
+using sources::parameter_spaces::ParameterSpace, testing::StrictMock;
 using sources::utilities::numeric_operations::IsEqual, std::make_shared;
 
 // Test parameter space combining knot vectors from NURBS book Exa. 2.2 (U_0) and Exa. 2.1 (U_1).
@@ -77,7 +77,7 @@ class ParameterSpaceSuite : public testing::Test {
 
   StrictMock<ANonZeroDegreeBSplineBasisFunctionMock> basis_function0_, basis_function1_;
   Index_ basis_function1_0_;
-  shared_ptr<KnotVector_> knot_vector_{make_shared<KnotVector_>()};
+  SharedPointer<KnotVector_> knot_vector_{make_shared<KnotVector_>()};
   ParameterSpace2d parameter_space_{kKnotVectors_, kDegrees_, mock_b_spline_basis_functions::NurbsBookExa2_2()};
 };
 
@@ -103,7 +103,7 @@ TEST_F(ParameterSpaceSuite, IsEqualAndOperatorEqual) {
   EXPECT_TRUE(IsEqual(parameter_space, parameter_space_));
   EXPECT_TRUE(parameter_space == parameter_space_);
 
-  shared_ptr knot_vector{make_shared<KnotVector_>()};
+  SharedPointer<KnotVector_> knot_vector{make_shared<KnotVector_>()};
   knot_vector->NurbsBookExa2_2Perturbed();
   ParameterSpace_ parameter_space_knot_vector;
   ASSERT_NO_THROW(parameter_space_knot_vector = ParameterSpace_({knot_vector, knot_vector_}, kDegrees_, kTolerance));
@@ -241,7 +241,7 @@ TEST_F(ParameterSpaceSuite, WriteDependingOnGetNumberOfBasisFunctions) {
 
 #ifndef NDEBUG
 TEST_F(ParameterSpaceSuite, ThrowIfKnotVectorsAreNotClamped) {
-  shared_ptr knot_vector_unclamped{make_shared<KnotVector_>()}, knot_vector_interior{make_shared<KnotVector_>()};
+  SharedPointer<KnotVector_> knot_vector_unclamped{make_shared<KnotVector_>()}, knot_vector_interior{make_shared<KnotVector_>()};
   knot_vector_unclamped->NurbsBookExa2_2Unclamped();
   knot_vector_interior->NurbsBookExa2_2Interior();
   EXPECT_THROW(ParameterSpace_({knot_vector_unclamped, knot_vector_}, kDegrees_), DomainError);
