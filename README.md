@@ -105,3 +105,4 @@ Research Assistants:
   - Corinna M&uuml;ller
   - Max Spahn
   - Christoph Susen
+  - Konstantin Varbenov

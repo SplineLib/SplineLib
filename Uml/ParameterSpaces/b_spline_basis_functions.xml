@@ -1,0 +1,46 @@
+<diagram program="umletino" version="14.3.0"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>310</x><y>162</y><w>650</w><h>210</h></coordinates><panel_attributes>BSplineBasisFunction
+--
+degree_ : Degree
+start_knot_ : ParametricCoordinate
+end_knot_ : ParametricCoordinate
+end_knot_equals_last_knot_ : bool
+--
+_CreateDynamic(KnotVector const &amp;, KnotSpan const &amp;, Degree, Tolerance const &amp; = kEpsilon) : BSplineBasisFunction * _
+/operator()(ParametricCoordinate const &amp;, Tolerance const &amp; = kEpsilon) const : Type_/
+/operator()(ParametricCoordinate const &amp;, Derivative const &amp;, Tolerance const &amp; = kEpsilon) const : Type_/
+--
+IsEqual(BSplineBasisFunction const &amp;, BSplineBasisFunction const &amp;, Tolerance const &amp;) : bool
+operator==(BSplineBasisFunction const &amp;, BSplineBasisFunction const &amp;) : bool
+--
+Type_ : ParametricCoordinate::Type_
+--
+BSplineBasisFunctions : array&lt;vector&lt;shared_ptr&lt;BSplineBasisFunction&gt; &gt;, parametric_dimensionality&gt;
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>432</y><w>650</w><h>120</h></coordinates><panel_attributes>ZeroDegreeBSplineBasisFunction
+--
+--
+ZeroDegreeBSplineBasisFunction(KnotVector const &amp;, KnotSpan const &amp;, Tolerance const &amp; = kEpsilon)
+--
+IsEqual(ZeroDegreeBSplineBasisFunction const &amp;, ZeroDegreeBSplineBasisFunction const &amp;, Tolerance const &amp;) : bool
+operator==(ZeroDegreeBSplineBasisFunction const &amp;, ZeroDegreeBSplineBasisFunction const &amp;) : bool
+--
+Base_ : BSplineBasisFunction
+Type_ : Base_::Type_
+--</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>670</x><y>432</y><w>690</w><h>210</h></coordinates><panel_attributes>NonZeroDegreeBSplineBasisFunction
+--
+left_denominator_inverse_ : Type_
+right_denominator_inverse_ : Type_
+left_quotient_derivative_ : Type_
+right_quotient_derivative_ : Type_
+left_lower_degree_basis_function_ : shared_pointer&lt;Base_&gt;
+right_lower_degree_basis_function_ : shared_pointer&lt;Base_&gt;
+--
+NonZeroDegreeBSplineBasisFunction(KnotVector const &amp;, KnotSpan const &amp;, Degree, Tolerance const &amp; = kEpsilon)
+--
+IsEqual(NonZeroDegreeBSplineBasisFunction const &amp;, NonZeroDegreeBSplineBasisFunction const &amp;, Tolerance const &amp;) : bool
+operator==(NonZeroDegreeBSplineBasisFunction const &amp;, NonZeroDegreeBSplineBasisFunction const &amp;) : bool
+--
+Base_ : BSplineBasisFunction
+Type_ : Base_::Type_
+--</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>450</x><y>362</y><w>90</w><h>90</h></coordinates><panel_attributes>lt=&lt;&lt;-
+degree_ = 0</panel_attributes><additional_attributes>10;10;10;70</additional_attributes></element><element><id>Relation</id><coordinates><x>850</x><y>362</y><w>90</w><h>90</h></coordinates><panel_attributes>lt=&lt;&lt;-
+degree_ ≠ 0</panel_attributes><additional_attributes>10;10;10;70</additional_attributes></element><element><id>Relation</id><coordinates><x>750</x><y>362</y><w>30</w><h>90</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;70;10;10</additional_attributes></element></diagram>
