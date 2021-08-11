@@ -1,0 +1,62 @@
+<diagram program="umletino" version="14.3.0"><zoom_level>10</zoom_level><element><id>UMLPackage</id><coordinates><x>0</x><y>56</y><w>1250</w><h>600</h></coordinates><panel_attributes>Splines
+--
+bg=orange
+
+group=1</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>490</x><y>106</y><w>180</w><h>90</h></coordinates><panel_attributes>SplineItem
+--
+parametric_dimensionality_ : int
+dimensionality_ : int
+is_rational_ : bool
+--
+--
+--
+--
+group=1</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>170</x><y>216</y><w>970</w><h>250</h></coordinates><panel_attributes>template=parametric_dimensionality : int,  dimensionality : int
+Spline
+--
+parameter_space_  : shared_pointer&lt;ParameterSpace_&gt;
+--
+/operator()(ParametricCoordinate_ const &amp;, Tolerance const &amp; = kEpsilon) const : Coordinate_ /
+/operator()(ParametricCoordinate_ const &amp;, Derivative_ const &amp; , Tolerance const &amp; = kEpsilon) const : Coordinate_/
+RefineKnots(Dimension const &amp;, Knots_, Multiplicity const &amp; = kMultiplicity, Tolerance const &amp; = kEpsilon) const : void
+CoarsenKnots(Dimension const &amp;, Knots_ const &amp;, Tolerance const &amp;, Multiplicity const &amp; = kMultiplicity, Tolerance const &amp; = kEpsilon) const : Multiplicity
+/ElevateDegree(Dimension const &amp;, Multiplicity const &amp; = kMultiplicity, Tolerance const &amp; = kEpsilon) const : void/
+/ReduceDegree(Dimension const &amp;, Tolerance const &amp;, Multiplicity const &amp; = kMultiplicity, Tolerance const &amp; = kEpsilon) const : bool/
+--
+--
+Coordinate_ : VectorSpace&lt;dimensionality&gt;::Coordinate_
+ParameterSpace_ : ParameterSpace&lt;parametric_dimensionality&gt;
+Derivative_ : ParameterSpace_::Derivative_
+Knots_ : ParameterSpace_::Knots_
+ParametricCoordinate_ : ParameterSpace_::ParametricCoordinate_
+--
+group=1</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>570</x><y>186</y><w>30</w><h>60</h></coordinates><panel_attributes>lt=&lt;&lt;-
+group=1</panel_attributes><additional_attributes>10;10;10;40</additional_attributes></element><element><id>UMLClass</id><coordinates><x>30</x><y>486</y><w>530</w><h>130</h></coordinates><panel_attributes>template=parametric_dimensionality : int,  dimensionality : int
+BSpline
+--
+vector_space_ : shared_pointer&lt;VectorSpace_&gt;
+--
+BSpline(shared_ptr&lt; ParameterSpace_&gt;, shared_ptr&lt;VectorSpace_&gt;)
+--
+--
+ParameterSpace_ : Base_::ParameterSpace_
+VectorSpace_ : Base_::VectorSpace_
+--
+group=1</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>210</x><y>456</y><w>30</w><h>60</h></coordinates><panel_attributes>lt=&lt;&lt;-
+group=1</panel_attributes><additional_attributes>10;10;10;40</additional_attributes></element><element><id>Relation</id><coordinates><x>880</x><y>456</y><w>30</w><h>60</h></coordinates><panel_attributes>lt=&lt;&lt;-
+group=1</panel_attributes><additional_attributes>10;10;10;40</additional_attributes></element><element><id>Relation</id><coordinates><x>400</x><y>546</y><w>270</w><h>50</h></coordinates><panel_attributes>lt=-&gt;&gt;&gt;&gt;&gt;
+dimensionality + 1 =
+dimensionality
+group=1</panel_attributes><additional_attributes>10;20;250;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>650</x><y>486</y><w>570</w><h>140</h></coordinates><panel_attributes>template=parametric_dimensionality : int,  dimensionality : int
+Nurbs
+--
+homogeneous_b_spline_ : shared_pointer&lt;HomogeneousBSpline_&gt;
+weighted_vector_space_ : shared_pointer&lt;WeightedVectorSpace_&gt;
+--
+Nurbs(shared_ptr&lt;ParameterSpace_&gt; , shared_ptr&lt;WeightedVectorSpace_&gt;)
+--
+--
+ParameterSpace_ : Base_::ParameterSpace_
+WeightedVectorSpace_ : WeightedVectorSpace&lt;dimensionality&gt;
+--
+group=1</panel_attributes><additional_attributes></additional_attributes></element></diagram>
