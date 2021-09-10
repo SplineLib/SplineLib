@@ -217,7 +217,7 @@ SplineEntry CreateSpline(shared_ptr<ParameterSpace<parametric_dimensionality>> p
   coordinates.reserve(total_number_of_coordinates);
   Index::ForEach(0, total_number_of_coordinates, [&] (Index const &) {
       Coordinate scalar_coordinates;
-      Dimension::ForEach(0, parametric_dimensionality, [&] (Dimension const &dimension) {
+      Dimension::ForEach(0, dimensionality, [&] (Dimension const &dimension) {
           scalar_coordinates[dimension.Get()] = ScalarCoordinate{*(scalar_coordinate_raw++)}; });
       coordinates.emplace_back(scalar_coordinates);
       scalar_coordinate_raw += (ConvertToNumber<int>(TrimCharacter(spline_entry.attribute("numOfCntrlPntVars").value(),
