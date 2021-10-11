@@ -15,9 +15,9 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 
 #include "Tests/Splines/nurbs_mock.hpp"
 
-#include <memory>
 #include <utility>
 
+#include "Sources/Utilities/std_container_operations.hpp"
 #include "Tests/ParameterSpaces/parameter_space_mock.hpp"
 #include "Tests/Splines/b_spline_mock.hpp"
 #include "Tests/VectorSpaces/weighted_vector_space_mock.hpp"
@@ -25,11 +25,14 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 namespace splinelib::tests::splines {
 
 void A2d3dNurbsMock::SquareUnitFirstOrderBezier() {
-  using std::make_shared, std::move, std::shared_ptr, testing::StrictMock;
+  using testing::StrictMock;
+  using HomogeneousBSpline = StrictMock<splines::A2d4dBSplineMock>;
+  using WeightedVectorSpace = StrictMock<vector_spaces::A3dWeightedVectorSpaceMock>;
+  using std::make_shared, std::move;
 
-  shared_ptr weighted_vector_space{make_shared<StrictMock<vector_spaces::A3dWeightedVectorSpaceMock>>()};
+  SharedPointer<WeightedVectorSpace> weighted_vector_space{make_shared<WeightedVectorSpace>()};
   weighted_vector_space->SquareUnit04(); weighted_vector_space_ = move(weighted_vector_space);
-  shared_ptr homogeneous_b_spline{make_shared<StrictMock<splines::A2d4dBSplineMock>>()};
+  SharedPointer<HomogeneousBSpline> homogeneous_b_spline{make_shared<HomogeneousBSpline>()};
   homogeneous_b_spline->SquareUnitFirstOrderBezier(); homogeneous_b_spline_ = move(homogeneous_b_spline);
 }
 

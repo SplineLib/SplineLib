@@ -16,11 +16,10 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 #ifndef SOURCES_PARAMETERSPACES_NON_ZERO_DEGREE_B_SPLINE_BASIS_FUNCTION_HPP_
 #define SOURCES_PARAMETERSPACES_NON_ZERO_DEGREE_B_SPLINE_BASIS_FUNCTION_HPP_
 
-#include <memory>
-
 #include "Sources/ParameterSpaces/b_spline_basis_function.hpp"
 #include "Sources/ParameterSpaces/knot_vector.hpp"
 #include "Sources/Utilities/named_type.hpp"
+#include "Sources/Utilities/std_container_operations.hpp"
 
 namespace splinelib::sources::parameter_spaces {
 
@@ -62,7 +61,7 @@ class NonZeroDegreeBSplineBasisFunction : public virtual BSplineBasisFunction {
  protected:
   Type_ left_denominator_inverse_, right_denominator_inverse_, left_quotient_derivative_, right_quotient_derivative_;
   // Shared instead of unique pointers as BSplineBasisFunctions cannot be modified after their construction.
-  std::shared_ptr<Base_> left_lower_degree_basis_function_, right_lower_degree_basis_function_;
+  SharedPointer<Base_> left_lower_degree_basis_function_, right_lower_degree_basis_function_;
 
  private:
   Type_ InvertPotentialZero(ParametricCoordinate const &potential_zero, Tolerance const &tolerance) const;  // 1/0 := 0.

@@ -16,13 +16,11 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 #ifndef SOURCES_INPUTOUTPUT_OPERATIONS_HPP_
 #define SOURCES_INPUTOUTPUT_OPERATIONS_HPP_
 
-#include <memory>
-#include <vector>
-
 #include "Sources/Splines/b_spline.hpp"
 #include "Sources/Splines/nurbs.hpp"
 #include "Sources/Splines/spline_item.hpp"
 #include "Sources/Utilities/error_handling.hpp"
+#include "Sources/Utilities/std_container_operations.hpp"
 #include "Sources/Utilities/string_operations.hpp"
 
 // Input and output operations such as 1.) determining the file format and reading spline files, 2.) casting
@@ -31,7 +29,7 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 //
 // Example:
 //   Splines const &b_splines = Read(b_splines.irit);
-//   shared_ptr<BSpline<2, 3>> const &b_spline = CastToSpline<2, 3, false>(b_splines[0]);
+//   SharedPointer<BSpline<2, 3>> const &b_spline = CastToSpline<2, 3, false>(b_splines[0]);
 namespace splinelib::sources::input_output::operations {
 
 enum class FileFormat { kInvalid, kIges, kIrit, kVtk, kXml };
@@ -39,8 +37,8 @@ template<int parametric_dimensionality, int dimensionality>
 using BSpline = splines::BSpline<parametric_dimensionality, dimensionality>;
 template<int parametric_dimensionality, int dimensionality>
 using Nurbs = splines::Nurbs<parametric_dimensionality, dimensionality>;
-using SplineEntry = std::shared_ptr<splines::SplineItem>;
-using Splines = std::vector<SplineEntry>;
+using SplineEntry = SharedPointer<splines::SplineItem>;
+using Splines = Vector<SplineEntry>;
 
 FileFormat DetermineFileFormat(String const &file_name);
 Splines Read(String const &file_name);

@@ -17,11 +17,8 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 #define SOURCES_VECTORSPACES_VECTOR_SPACE_HPP_
 
 #include <algorithm>
-#include <array>
 #include <functional>
-#include <tuple>
 #include <utility>
-#include <vector>
 
 #include "Sources/Utilities/error_handling.hpp"
 #include "Sources/Utilities/named_type.hpp"
@@ -52,16 +49,10 @@ bool operator==(VectorSpace<dimensionality> const &lhs, VectorSpace<dimensionali
 //   ScalarCoordinate const &one_point_zero = vector_space.DetermineMaximumDistanceFromOrigin();
 template<int dimensionality>
 class VectorSpace {
- private:
-  template<typename Type, size_t size>
-  using Array_ = std::array<Type, size>;
-  template<typename Type>
-  using Vector_ = std::vector<Type>;
-
  public:
-  using Coordinate_ = Array_<Coordinate, dimensionality>;
-  using Coordinates_ = Vector_<Coordinate_>;
-  using OutputInformation_ = std::tuple<Vector_<StringArray<dimensionality>>>;
+  using Coordinate_ = Array<Coordinate, dimensionality>;
+  using Coordinates_ = Vector<Coordinate_>;
+  using OutputInformation_ = Tuple<Vector<StringArray<dimensionality>>>;
 
   VectorSpace() = default;
   explicit VectorSpace(Coordinates_ coordinates);

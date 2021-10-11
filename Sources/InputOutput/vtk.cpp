@@ -16,8 +16,6 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 #include "Sources/InputOutput/vtk.hpp"
 
 #include <algorithm>
-#include <memory>
-#include <vector>
 
 #include "Sources/Splines/b_spline.hpp"
 #include "Sources/Splines/nurbs.hpp"
@@ -184,7 +182,7 @@ void Sample(SplineType const &spline, NumberOfParametricCoordinates const &numbe
   using Coordinates = typename SplineType::Base_::Coordinates_;
   using Index = Index<parametric_dimensionality>;
   using IndexLength = typename Index::Length_;
-  using Vertices = std::vector<ScalarIndex>;
+  using Vertices = Vector<ScalarIndex>;
   using std::for_each, utilities::string_operations::Write;
 
   constexpr Dimension const kDimension0{}, kDimension1{1};

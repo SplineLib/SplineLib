@@ -26,7 +26,7 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 
 namespace splinelib::tests::splines {
 
-using sources::splines::Nurbs, std::shared_ptr;
+using sources::splines::Nurbs;
 using std::make_shared;
 
 // Test NURBS from NURBS book Exe. 4.4.
@@ -53,9 +53,9 @@ class NurbsSuite : public testing::Test {
 
   NurbsSuite();
 
-  shared_ptr<ParameterSpace_> parameter_space_{make_shared<ParameterSpace_>()};
-  shared_ptr<WeightedVectorSpace_> weighted_vector_space_{make_shared<WeightedVectorSpace_>()};
-  shared_ptr<BSpline_> homogeneous_b_spline_{make_shared<BSpline_>()};
+  SharedPointer<ParameterSpace_> parameter_space_{make_shared<ParameterSpace_>()};
+  SharedPointer<WeightedVectorSpace_> weighted_vector_space_{make_shared<WeightedVectorSpace_>()};
+  SharedPointer<BSpline_> homogeneous_b_spline_{make_shared<BSpline_>()};
   Nurbs2dTo3d nurbs_, non_rational_nurbs_;
   StrictMock_<A2d3dBSplineMock> b_spline_;
 };
@@ -67,9 +67,9 @@ NurbsSuite::NurbsSuite() {
   weighted_vector_space_->NurbsBookExe4_4();
   homogeneous_b_spline_->NurbsBookExe4_4();
   nurbs_ = Nurbs2dTo3d{parameter_space_, weighted_vector_space_, homogeneous_b_spline_};
-  shared_ptr non_rational_weighted_vector_space{make_shared<WeightedVectorSpace_>()};
+  SharedPointer<WeightedVectorSpace_> non_rational_weighted_vector_space{make_shared<WeightedVectorSpace_>()};
   non_rational_weighted_vector_space->NurbsBookExe4_4BSpline();
-  shared_ptr non_rational_homogeneous_b_spline{make_shared<BSpline_>()};
+  SharedPointer<BSpline_> non_rational_homogeneous_b_spline{make_shared<BSpline_>()};
   non_rational_homogeneous_b_spline->NurbsBookExe4_4BSpline();
   non_rational_nurbs_ = Nurbs2dTo3d{parameter_space_, move(non_rational_weighted_vector_space),
                                     move(non_rational_homogeneous_b_spline)};
@@ -89,7 +89,7 @@ TEST_F(NurbsSuite, IsEqualAndOperatorEqual) {
   EXPECT_TRUE(IsEqual(nurbs, nurbs_));
   EXPECT_TRUE(nurbs == nurbs_);
 
-  shared_ptr weighted_vector_space{make_shared<WeightedVectorSpace_>()};
+  SharedPointer<WeightedVectorSpace_> weighted_vector_space{make_shared<WeightedVectorSpace_>()};
   weighted_vector_space->NurbsBookExe4_4Perturbed();
   Nurbs_ nurbs_weighted_vector_space;
   ASSERT_NO_THROW(nurbs_weighted_vector_space = Nurbs_(parameter_space_, weighted_vector_space));
@@ -184,7 +184,7 @@ TEST_F(NurbsSuite, Write) {
 
 #ifndef NDEBUG
 TEST_F(NurbsSuite, ThrowIfNotParameterSpaceAndVectorSpaceDoNotMatch) {
-  shared_ptr parameter_space{make_shared<ParameterSpace_>()};
+  SharedPointer<ParameterSpace_> parameter_space{make_shared<ParameterSpace_>()};
   parameter_space->NurbsBookExe3_8();
   EXPECT_THROW(Nurbs_(parameter_space, weighted_vector_space_), DomainError);
 }

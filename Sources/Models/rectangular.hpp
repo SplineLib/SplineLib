@@ -16,12 +16,11 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 #ifndef SOURCES_MODELS_RECTANGULAR_HPP_
 #define SOURCES_MODELS_RECTANGULAR_HPP_
 
-#include <array>
-
 #include "Sources/ParameterSpaces/parameter_space.hpp"
 #include "Sources/Splines/b_spline.hpp"
 #include "Sources/Splines/nurbs.hpp"
 #include "Sources/Utilities/named_type.hpp"
+#include "Sources/Utilities/std_container_operations.hpp"
 
 // Generates maximally-smooth spline models of rectangular unit domains.
 //
@@ -33,7 +32,7 @@ namespace splinelib::sources::models::rectangular {
 template<int parametric_dimensionality>
 using Degrees = typename parameter_spaces::ParameterSpace<parametric_dimensionality>::Degrees_;
 template<int parametric_dimensionality>
-using NumbersOfNonZeroKnotSpans = std::array<Length, parametric_dimensionality>;
+using NumbersOfNonZeroKnotSpans = Array<Length, parametric_dimensionality>;
 
 template<int parametric_dimensionality, int geometric_dimensionality, bool is_rational>
 auto Generate(NumbersOfNonZeroKnotSpans<parametric_dimensionality> const &numbers_of_non_zero_knot_spans,

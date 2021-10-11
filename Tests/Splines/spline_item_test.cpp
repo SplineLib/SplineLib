@@ -13,12 +13,11 @@ WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEM
 COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. */
 
-#include <memory>
-
 #include <gtest/gtest.h>
 #include "Sources/Splines/b_spline.hpp"
 #include "Sources/Splines/nurbs.hpp"
 #include "Sources/Splines/spline_item.hpp"
+#include "Sources/Utilities/std_container_operations.hpp"
 
 namespace splinelib::tests::splines {
 
@@ -40,7 +39,7 @@ class SplineItemSuite : public testing::Test {
 
   SplineItemSuite();
 
-  std::shared_ptr<SplineItem> b_spline_, nurbs_;
+  SharedPointer<SplineItem> b_spline_, nurbs_;
 };
 
 SplineItemSuite::SplineItemSuite() {

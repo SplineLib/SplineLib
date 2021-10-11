@@ -17,8 +17,8 @@ template<int parametric_dimensionality, int dimensionality>
 Nurbs<parametric_dimensionality, dimensionality>::Nurbs() : Base_(true) {}
 
 template<int parametric_dimensionality, int dimensionality>
-Nurbs<parametric_dimensionality, dimensionality>::Nurbs(SharedPointer_<ParameterSpace_> parameter_space,
-    SharedPointer_<WeightedVectorSpace_> weighted_vector_space) : Base_(std::move(parameter_space), true) {
+Nurbs<parametric_dimensionality, dimensionality>::Nurbs(SharedPointer<ParameterSpace_> parameter_space,
+    SharedPointer<WeightedVectorSpace_> weighted_vector_space) : Base_(std::move(parameter_space), true) {
   using std::to_string;
 
 #ifndef NDEBUG
@@ -74,7 +74,7 @@ template<int parametric_dimensionality, int dimensionality>
 typename Spline<parametric_dimensionality, dimensionality>::Coordinate_
 Nurbs<parametric_dimensionality, dimensionality>::operator()(ParametricCoordinate_ const &parametric_coordinate,
     Derivative_ const &derivative, Tolerance const &tolerance) const {
-  using BinomialCoefficients = std::vector<Derivative::Type_>;
+  using BinomialCoefficients = Vector<Derivative::Type_>;
   using DemandForPartialDerivatives = std::deque<bool>;  // std::vector<bool> is not a proper STD container.
   using Index = typename Base_::Index_;
   using IndexLength = typename Index::Length_;
@@ -102,7 +102,7 @@ Nurbs<parametric_dimensionality, dimensionality>::operator()(ParametricCoordinat
                                                      TransformNamedTypes<Derivative_>(current_derivative.GetIndex())));
 
   // Compute binomial coefficients of derivatives up to maximum order.
-  std::vector<BinomialCoefficients> binomial_coefficients;
+  Vector<BinomialCoefficients> binomial_coefficients;
   ScalarIndexValueType const &number_of_derivatives = ((*std::max_element(derivative.begin(), derivative.end())).Get() +
                                                        1);
   binomial_coefficients.reserve(number_of_derivatives);

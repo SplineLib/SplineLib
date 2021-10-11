@@ -19,8 +19,8 @@ template<int parametric_dimensionality, int dimensionality>
 BSpline<parametric_dimensionality, dimensionality>::BSpline() : Base_(false) {}
 
 template<int parametric_dimensionality, int dimensionality>
-BSpline<parametric_dimensionality, dimensionality>::BSpline(SharedPointer_<ParameterSpace_> parameter_space,
-    SharedPointer_<VectorSpace_> vector_space) : Base_(std::move(parameter_space), false) {
+BSpline<parametric_dimensionality, dimensionality>::BSpline(SharedPointer<ParameterSpace_> parameter_space,
+    SharedPointer<VectorSpace_> vector_space) : Base_(std::move(parameter_space), false) {
   using std::to_string;
 
 #ifndef NDEBUG

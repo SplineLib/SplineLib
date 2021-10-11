@@ -13,13 +13,11 @@ WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEM
 COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. */
 
-#include <array>
-#include <vector>
-
 #include <gtest/gtest.h>
 #include "Sources/Utilities/error_handling.hpp"
 #include "Sources/Utilities/named_type.hpp"
 #include "Sources/Utilities/numeric_operations.hpp"
+#include "Sources/Utilities/std_container_operations.hpp"
 
 namespace splinelib::tests::utilities {
 
@@ -180,18 +178,19 @@ TEST_F(NamedTypeSuite, IsNamedType) {
 }
 
 TEST_F(NamedTypeSuite, ForEach) {
-  using std::array, std::vector;
+  using TestTypeDoubles = Vector<TestTypeDouble_>;
+  using TestTypeInts = Array<TestTypeInt_, 2>;
 
-  vector doubles{kMinus0_5_};
+  TestTypeDoubles doubles{kMinus0_5_};
   EXPECT_NO_THROW(TestTypeInt_::ForEach(0, 1, [&] (TestTypeInt_ const &test_type_int) { doubles[test_type_int.Get()] =
       TestTypeDouble_{static_cast<TestTypeDouble_::Type_>(test_type_int.Get())} *  // NOLINT(whitespace/braces)
       test_type_double_; }));
-  EXPECT_EQ(doubles, (vector{TestTypeDouble_{} * kMinus0_5_}));  // NOLINT(whitespace/braces)
+  EXPECT_EQ(doubles, (TestTypeDoubles{TestTypeDouble_{} * kMinus0_5_}));  // NOLINT(whitespace/braces)
 
-  array integers{test_type_int_, test_type_int_};
+  TestTypeInts integers{test_type_int_, test_type_int_};
   EXPECT_NO_THROW(TestTypeInt_::ForEach(0, 2, [&] (TestTypeInt_ const &test_type_int) { integers[test_type_int.Get()] +=
                                                                                             test_type_int; }));
-  EXPECT_EQ(integers, (array{k1_, k2_}));
+  EXPECT_EQ(integers, (TestTypeInts{k1_, k2_}));
 }
 
 #ifndef NDEBUG

@@ -18,8 +18,6 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 
 #include <algorithm>
 #include <iterator>
-#include <memory>
-#include <tuple>
 #include <utility>
 
 #include "Sources/Splines/spline.hpp"
@@ -50,10 +48,6 @@ bool operator==(BSpline<parametric_dimensionality, dimensionality> const &lhs,
 //   bool const &successful = surface.ReduceDegree(Dimension{1}, kEpsilon);  // True if spline's degree p_0 be reduced.
 template<int parametric_dimensionality, int dimensionality>
 class BSpline : public Spline<parametric_dimensionality, dimensionality> {
- private:
-  template<typename Type>
-  using SharedPointer_ = std::shared_ptr<Type>;
-
  public:
   using Base_ = Spline<parametric_dimensionality, dimensionality>;
   using Coordinate_ = typename Base_::Coordinate_;
@@ -62,11 +56,11 @@ class BSpline : public Spline<parametric_dimensionality, dimensionality> {
   using ParameterSpace_ = typename Base_::ParameterSpace_;
   using ParametricCoordinate_ = typename Base_::ParametricCoordinate_;
   using VectorSpace_ = typename Base_::VectorSpace_;
-  using OutputInformation_ = std::tuple<typename ParameterSpace_::OutputInformation_,
-                                        typename VectorSpace_::OutputInformation_>;
+  using OutputInformation_ = Tuple<typename ParameterSpace_::OutputInformation_,
+                                   typename VectorSpace_::OutputInformation_>;
 
   BSpline();
-  BSpline(SharedPointer_<ParameterSpace_> parameter_space, SharedPointer_<VectorSpace_> vector_space);
+  BSpline(SharedPointer<ParameterSpace_> parameter_space, SharedPointer<VectorSpace_> vector_space);
   BSpline(BSpline const &other);
   BSpline(BSpline &&other) noexcept = default;
   BSpline & operator=(BSpline const &rhs);
@@ -98,7 +92,7 @@ class BSpline : public Spline<parametric_dimensionality, dimensionality> {
   OutputInformation_ Write(Precision const &precision = kPrecision) const;
 
  protected:
-  SharedPointer_<VectorSpace_> vector_space_;
+  SharedPointer<VectorSpace_> vector_space_;
 
  private:
   using BezierInformation_ = typename ParameterSpace_::BezierInformation_;

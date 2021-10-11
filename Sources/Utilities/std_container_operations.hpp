@@ -21,7 +21,9 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 #include <cmath>
 #include <functional>
 #include <iterator>
+#include <memory>
 #include <numeric>
+#include <tuple>
 #include <type_traits>
 #include <vector>
 
@@ -29,18 +31,30 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 #include "Sources/Utilities/named_type.hpp"
 #include "Sources/Utilities/numeric_operations.hpp"
 
+namespace splinelib {
+
+// Class Template Argument Deduction (CTAD) for aliases possible since C++20, but not yet fully supported by compilers.
+template<typename Type, size_t size>
+using Array = std::array<Type, size>;
+template<typename Type>
+using SharedPointer = std::shared_ptr<Type>;
+template<typename ...Types>
+using Tuple = std::tuple<Types...>;
+template<typename Type>
+using Vector = std::vector<Type>;
+
+}  // namespace splinelib
+
 // STD container operations such as 1.) checking container types at compile time (currently std::array and std::vector),
 // 2.) checked and unchecked (i.e., faster) access to containers in debug and release mode, respectively, 3.)
 // transforming containers storing NamedTypes, 4.) generalized comparisons of contained/pointed at values, and 5.) basic
 // arithmetic operations.
 //
 // Example:
-//   template<typename Type>
-//   using Vector = std::vector<Type>;
 //   using NamedInts = Vector<NamedInt>;
 //   constexpr bool const &kTrue = is_vector<NamedInts>;
 //   NamedInts named_ints{NamedInt{1}, NamedInt{2}, NamedInt{3}}, more_named_ints(named_ints);
-//   int const &two = GetValue(TransformNamedTypes<std::array<int, 3>>(named_ints), Index{1});
+//   int const &two = GetValue(TransformNamedTypes<Array<int, 3>>(named_ints), Index{1});
 //   GetValue(named_ints, Index{3}) = NamedInt{};  // out_of_range (debug mode) or undefined behavior (release mode).
 //   AddAndAssignToFirst(more_named_ints, named_ints);  // more_named_ints = (2 * named_ints).
 //   DoesContainEqualValues(more_named_ints, named_ints);  // Yields false as containers do not store equal values.
@@ -50,13 +64,13 @@ namespace splinelib::sources::utilities::std_container_operations {
 template<typename Type>
 struct IsArrayStruct : std::false_type {};
 template<typename Type, size_t size>
-struct IsArrayStruct<std::array<Type, size>> : std::true_type {};
+struct IsArrayStruct<Array<Type, size>> : std::true_type {};
 template<typename Type>
 constexpr bool const is_array{IsArrayStruct<Type>::value};
 template<typename Type>
 struct IsVectorStruct : std::false_type {};
 template<typename Type>
-struct IsVectorStruct<std::vector<Type>> : std::true_type {};
+struct IsVectorStruct<Vector<Type>> : std::true_type {};
 template<typename Type>
 constexpr bool const is_vector{IsVectorStruct<Type>::value};
 
