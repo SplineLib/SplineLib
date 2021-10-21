@@ -185,7 +185,7 @@ void Sample(SplineType const &spline, NumberOfParametricCoordinates const &numbe
   using Vertices = Vector<ScalarIndex>;
   using std::for_each, utilities::string_operations::Write;
 
-  constexpr Dimension const kDimension0{}, kDimension1{1};
+  constexpr static Dimension const kDimension0{}, kDimension1{1};
 
   IndexLength number_of_vertices;
   std::copy(number_of_parametric_coordinates.begin(), number_of_parametric_coordinates.end(),

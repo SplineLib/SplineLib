@@ -26,8 +26,8 @@ using namespace sources::models::rectangular;  // NOLINT(build/namespaces)
 TEST(RectangularSuite, Generate) {
   using testing::StrictMock;
 
-  constexpr Degree const kDegreeOne{1}, kDegreeTwo{2};
-  constexpr Length const kLengthOne{1};
+  constexpr static Degree const kDegreeOne{1}, kDegreeTwo{2};
+  constexpr static Length const kLengthOne{1};
 
   StrictMock<splines::A2d3dBSplineMock> square_b_spline;
   square_b_spline.SquareUnitSecondOrderMaximallySmooth();

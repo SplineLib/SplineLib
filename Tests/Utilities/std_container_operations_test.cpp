@@ -33,15 +33,15 @@ class StdContainerOperationsTestSuite : public testing::Test {
   using Double_ = NamedType_<struct DoubleName, double>;
   using Int_ = NamedType_<struct IntName, int>;
   using Ints_ = Array<Int_, 6>;
-  using DoubleTmp_ = Double_::Type_;
+  using DoubleType_ = Double_::Type_;
   using Doubles_ = Vector<Double_>;
 
-  constexpr static DoubleTmp_ const kEpsilon_{sources::utilities::numeric_operations::GetEpsilon<DoubleTmp_>()};
-  constexpr static DoubleTmp_ const &kTolerance_ = (1.2 * kEpsilon_);
-  constexpr static Double_ const kMinus4_3_{-4.3}, kMinus4_0_{-4.0}, kMinus3_4_{-3.4}, kMinus0_4_{-0.4}, k0_0_{},
+  constexpr inline static DoubleType_ const &kEpsilon_ =
+      sources::utilities::numeric_operations::GetEpsilon<DoubleType_>(), &kTolerance_ = (1.2 * kEpsilon_);
+  constexpr inline static Double_ const kMinus4_3_{-4.3}, kMinus4_0_{-4.0}, kMinus3_4_{-3.4}, kMinus0_4_{-0.4}, k0_0_{},
       k0_2_{0.2}, k0_5_{0.5}, k1_0_{1.0}, k1_2_{1.2}, k2_0_{2.0}, k2_9_{2.9}, k3_0_{3.0}, k4_0_{4.0};
-  constexpr static Int_ const k0_{}, k1_{1}, k2_{2}, k3_{3}, k4_{4}, k5_{5}, k6_{6}, k8_{8};
-  constexpr static Ints_ const kInts_{k3_, k2_, k1_, k0_, k1_, k2_};
+  constexpr inline static Int_ const k0_{}, k1_{1}, k2_{2}, k3_{3}, k4_{4}, k5_{5}, k6_{6}, k8_{8};
+  constexpr inline static Ints_ const kInts_{k3_, k2_, k1_, k0_, k1_, k2_};
 
   Ints_ ints_{k1_, k2_, k3_, k4_, k0_, k6_};
   Doubles_ doubles0_{k0_5_, k1_2_, k2_9_, kMinus3_4_, kMinus4_0_},
@@ -94,7 +94,7 @@ TEST_F(StdContainerOperationsTestSuite, DoesContainEqualValuesDoesContainPointer
   using Double = SharedPointer<Double_>;
   using std::make_shared;
 
-  constexpr Double_ const kMinus3_4Perturbed{kMinus3_4_ + Double_{1.1 * kEpsilon_}};
+  constexpr static Double_ const kMinus3_4Perturbed{kMinus3_4_ + Double_{1.1 * kEpsilon_}};
   Doubles_ const kDoubles{doubles0_}, kDoublesPerturbed{k0_5_, k1_2_, k2_9_, kMinus3_4Perturbed, kMinus4_0_};
   EXPECT_TRUE(DoesContainEqualValues(kDoubles, doubles0_));
   EXPECT_TRUE(kDoubles == doubles0_);
@@ -139,7 +139,7 @@ TEST_F(StdContainerOperationsTestSuite, AddDependingOnAddAndAssignToFirst) {
 }
 
 TEST_F(StdContainerOperationsTestSuite, SubtractAndAssignToFirst) {
-  constexpr Ints_ kZeros{k0_, k0_, k0_, k0_, k0_, k0_};
+  constexpr static Ints_ kZeros{k0_, k0_, k0_, k0_, k0_, k0_};
 
   EXPECT_EQ(SubtractAndAssignToFirst(doubles0_, doubles1_), (Doubles_{Double_{0.8}, kMinus0_4_, Double_{0.7},
                                                                       kMinus0_4_, Double_{-8.0}}));

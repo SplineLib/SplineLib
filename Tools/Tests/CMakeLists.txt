@@ -34,9 +34,7 @@ configure_file(config_log.in.hpp config_log.hpp)
 
 add_executable(test_tools ${TEST_SOURCES})
 target_include_directories(test_tools PRIVATE $<BUILD_INTERFACE:${PROJECT_BINARY_DIR}>)
-target_include_directories(test_tools SYSTEM PRIVATE ${GMOCK_INCLUDE_DIRS})
-target_link_libraries(test_tools PRIVATE utilities tools ${GMOCK_LDFLAGS} mock_splines)
-target_compile_definitions(test_tools PRIVATE ${GMOCK_CFLAGS_OTHER})
+target_link_libraries(test_tools PRIVATE utilities tools GTest::gmock_main mock_splines)
 target_compile_options(test_tools PRIVATE ${COMPILE_OPTIONS})
 
 add_test(NAME tools_test COMMAND test_tools)

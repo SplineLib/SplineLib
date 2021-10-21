@@ -35,12 +35,13 @@ using VectorSpace3d = StrictMock<vector_spaces::A3dVectorSpaceMock>;
 using sources::utilities::std_container_operations::Add, sources::utilities::std_container_operations::Multiply,
       sources::utilities::std_container_operations::Subtract, std::make_shared, std::move, testing::Ge, testing::Return;
 
-constexpr Index const kIndex0{}, kIndex1{1}, kIndex2{2}, kIndex3{3};
-constexpr ParametricCoordinate const kParametricCoordinate0_5{0.5};
-constexpr A2d3dBSplineMock::ParametricCoordinate_ const kParametricCoordinate{kParametricCoordinate0_5,
-                                                                              kParametricCoordinate0_5};
-constexpr ScalarDerivative const kDerivative1{1}, kDerivative2{2};
-constexpr Derivative kDerivative1_1{kDerivative1, kDerivative1}, kDerivative2_2{kDerivative2, kDerivative2};
+constexpr inline static Index const kIndex0{}, kIndex1{1}, kIndex2{2}, kIndex3{3};
+constexpr inline static ParametricCoordinate const kParametricCoordinate0_5{0.5};
+constexpr inline static A2d3dBSplineMock::ParametricCoordinate_ const kParametricCoordinate{kParametricCoordinate0_5,
+                                                                                            kParametricCoordinate0_5};
+constexpr inline static ScalarDerivative const kDerivative1{1}, kDerivative2{2};
+constexpr inline static Derivative kDerivative1_1{kDerivative1, kDerivative1}, kDerivative2_2{kDerivative2,
+                                                                                              kDerivative2};
 
 }  // namespace
 
@@ -61,7 +62,7 @@ A2d3dBSplineMock::Sample(NumberOfParametricCoordinates_ const &number_of_paramet
 }
 
 void A2d3dBSplineMock::NurbsBookExe4_4() {
-  constexpr NumberOfParametricCoordinates_::value_type const kLength3{3};
+  constexpr static NumberOfParametricCoordinates_::value_type const kLength3{3};
 
   SharedPointer<ParameterSpace> parameter_space{make_shared<ParameterSpace>()};
   parameter_space->NurbsBookExe4_4(); parameter_space_ = parameter_space;
@@ -98,12 +99,14 @@ namespace {
 using Coordinate4d = A2d4dBSplineMock::Coordinate_;
 using VectorSpace4d = StrictMock<vector_spaces::A4dVectorSpaceMock>;
 
-constexpr Coordinate4d::value_type kCoordinate0_0{};
-constexpr Coordinate4d const kCoordinateOrigin{kCoordinate0_0, kCoordinate0_0, kCoordinate0_0, kCoordinate0_0};
-constexpr ScalarDerivative const kDerivative0{};
-constexpr Derivative const kDerivative0_0{kDerivative0, kDerivative0}, kDerivative1_0{kDerivative1, kDerivative0},
-    kDerivative2_0{kDerivative2, kDerivative0}, kDerivative0_1{kDerivative0, kDerivative1}, kDerivative2_1{kDerivative2,
-        kDerivative1}, kDerivative0_2{kDerivative0, kDerivative2}, kDerivative1_2{kDerivative1, kDerivative2};
+constexpr inline static Coordinate4d::value_type kCoordinate0_0{};
+constexpr inline static Coordinate4d const kCoordinateOrigin{kCoordinate0_0, kCoordinate0_0, kCoordinate0_0,
+                                                             kCoordinate0_0};
+constexpr inline static ScalarDerivative const kDerivative0{};
+constexpr inline static Derivative const kDerivative0_0{kDerivative0, kDerivative0}, kDerivative1_0{kDerivative1,
+    kDerivative0}, kDerivative2_0{kDerivative2, kDerivative0}, kDerivative0_1{kDerivative0, kDerivative1},
+        kDerivative2_1{kDerivative2, kDerivative1}, kDerivative0_2{kDerivative0, kDerivative2},
+            kDerivative1_2{kDerivative1, kDerivative2};
 
 }  // namespace
 
@@ -140,9 +143,10 @@ bool A2d4dBSplineMock::ReduceDegree(Dimension const &dimension, Tolerance const 
 void A2d4dBSplineMock::NurbsBookExe4_4() {
   using testing::AtMost;
 
-  constexpr Dimension const kDimension0{};
-  constexpr ParametricCoordinate const kParametricCoordinate0_0{}, kParametricCoordinate1_0{1.0};
-  constexpr ParametricCoordinate_ const kParametricCoordinate0{kParametricCoordinate0_0, kParametricCoordinate0_0};
+  constexpr static Dimension const kDimension0{};
+  constexpr static ParametricCoordinate const kParametricCoordinate0_0{}, kParametricCoordinate1_0{1.0};
+  constexpr static ParametricCoordinate_ const kParametricCoordinate0{kParametricCoordinate0_0,
+                                                                      kParametricCoordinate0_0};
 
   SharedPointer<ParameterSpace> parameter_space{make_shared<ParameterSpace>()};
   parameter_space->NurbsBookExe4_4(); parameter_space_ = parameter_space;

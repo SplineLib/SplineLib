@@ -28,8 +28,8 @@ using ZeroDegreeBSplineBasisFunction_ = StrictMock<AZeroDegreeBSplineBasisFuncti
 using Type = NonZeroDegreeBSplineBasisFunction_::Type_;
 using std::make_shared, testing::Ge, testing::Return;
 
-constexpr Type const kMinus1_0{-1.0}, k0_0{}, k0_5{0.5}, k1_0{1.0}, k2_0{2.0};
-constexpr Derivative const kDerivative0{}, kDerivative1{1};
+constexpr inline static Type const kMinus1_0{-1.0}, k0_0{}, k0_5{0.5}, k1_0{1.0}, k2_0{2.0};
+constexpr inline static Derivative const kDerivative0{}, kDerivative1{1};
 
 }  // namespace
 
@@ -96,8 +96,8 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_1_3_1() {
 }
 
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_1_0_2() {
-  constexpr ParametricCoordinate const kParametricCoordinate0_5{0.5};
-  constexpr Type_ const k0_25{0.25};
+  constexpr static ParametricCoordinate const kParametricCoordinate0_5{0.5};
+  constexpr static Type_ const k0_25{0.25};
 
   ABSplineBasisFunctionMock::NurbsBookExa2_1_0_2();
   left_denominator_inverse_ = k0_0; right_denominator_inverse_ = k1_0; SetLeftAndRightQuotientDerivative();
@@ -429,7 +429,7 @@ void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2ElevatedOnce_0_2() {
 }
 
 void ANonZeroDegreeBSplineBasisFunctionMock::NurbsBookExa2_2_1_2() {
-  constexpr ParametricCoordinate const kParametricCoordinate1_0{1.0};
+  constexpr static ParametricCoordinate const kParametricCoordinate1_0{1.0};
 
   ABSplineBasisFunctionMock::NurbsBookExa2_2_1_2();
   left_denominator_inverse_ = k1_0; right_denominator_inverse_ = k0_5; SetLeftAndRightQuotientDerivative();

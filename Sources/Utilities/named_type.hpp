@@ -88,7 +88,7 @@ constexpr bool operator>(NamedType<Name, Type> const &lhs, NamedType<Name, Type>
 //   parametric_coordinate == ParametricCoordinate{0.9 * epsilon};  // Equal with respect to tolerance = epsilon.
 //   parametric_coordinate == ParametricCoordinate{1.1 * epsilon});  // Not equal with respect to tolerance = epsilon.
 //   IsEqual(parametric_coordinate, ParametricCoordinate{1.1 * epsilon}, 1.2 * epsilon);  // Approximately equal.
-//   constexpr bool const &kFalse = is_named_type<int>;
+//   constexpr inline static bool const &kFalse = is_named_type<int>;
 template<typename Name, typename Type>
 class NamedType {
  public:
@@ -147,9 +147,9 @@ class NamedType {
 #include "Sources/Utilities/named_type.inc"
 
 template<typename Type>
-constexpr bool const is_named_type{false};
+constexpr inline static bool const is_named_type{false};
 template<typename Name, typename Type>
-constexpr bool const is_named_type<NamedType<Name, Type>>{true};
+constexpr inline static bool const is_named_type<NamedType<Name, Type>>{true};
 
 }  // namespace splinelib::sources::utilities
 
@@ -175,9 +175,9 @@ using BinomialRatio = Type;
 using KnotRatio = Type;
 using Tolerance = Type;
 
-constexpr Multiplicity const kMultiplicity{1};
-constexpr Precision const kPrecision{utilities::numeric_operations::GetPrecision<Type>()};
-constexpr Tolerance const kEpsilon{utilities::numeric_operations::GetEpsilon<Tolerance>()};
+constexpr inline static Tolerance const &kEpsilon = utilities::numeric_operations::GetEpsilon<Tolerance>();
+constexpr inline static Multiplicity const kMultiplicity{1};
+constexpr inline static Precision const kPrecision{utilities::numeric_operations::GetPrecision<Type>()};
 
 }  // namespace sources::parameter_spaces
 
@@ -190,8 +190,8 @@ namespace sources::vector_spaces {
 using Type = Coordinate::Type_;
 using Tolerance = Type;
 
-constexpr Precision const kPrecision{utilities::numeric_operations::GetPrecision<Type>()};
-constexpr Tolerance const kEpsilon{utilities::numeric_operations::GetEpsilon<Tolerance>()};
+constexpr inline static Tolerance const &kEpsilon = utilities::numeric_operations::GetEpsilon<Tolerance>();
+constexpr inline static Precision const kPrecision{utilities::numeric_operations::GetPrecision<Type>()};
 
 }  // namespace sources::vector_spaces
 
@@ -201,9 +201,9 @@ namespace sources::splines {
 using Type = vector_spaces::Type;
 using Tolerance = Type;
 
-constexpr Multiplicity const kMultiplicity{parameter_spaces::kMultiplicity};
-constexpr Precision const kPrecision{utilities::numeric_operations::GetPrecision<Type>()};
-constexpr Tolerance const kEpsilon{utilities::numeric_operations::GetEpsilon<Tolerance>()};
+constexpr inline static Tolerance const &kEpsilon = utilities::numeric_operations::GetEpsilon<Tolerance>();
+constexpr inline static Multiplicity const &kMultiplicity = parameter_spaces::kMultiplicity;
+constexpr inline static Precision const kPrecision{utilities::numeric_operations::GetPrecision<Type>()};
 
 }  // namespace sources::splines
 
@@ -213,8 +213,8 @@ namespace sources::input_output {
 using Type = splines::Type;
 using Tolerance = Type;
 
-constexpr Precision const kPrecision{utilities::numeric_operations::GetPrecision<Type>()};
-constexpr Tolerance const kEpsilon{utilities::numeric_operations::GetEpsilon<Tolerance>()};
+constexpr inline static Tolerance const &kEpsilon = utilities::numeric_operations::GetEpsilon<Tolerance>();
+constexpr inline static Precision const kPrecision{utilities::numeric_operations::GetPrecision<Type>()};
 
 }  // namespace sources::input_output
 
@@ -224,8 +224,8 @@ namespace sources::models {
 using Type = splines::Type;
 using Tolerance = Type;
 
-constexpr Precision const kPrecision{utilities::numeric_operations::GetPrecision<Type>()};
-constexpr Tolerance const kEpsilon{utilities::numeric_operations::GetEpsilon<Tolerance>()};
+constexpr inline static Tolerance const &kEpsilon = utilities::numeric_operations::GetEpsilon<Tolerance>();
+constexpr inline static Precision const kPrecision{utilities::numeric_operations::GetPrecision<Type>()};
 
 }  // namespace sources::models
 

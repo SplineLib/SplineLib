@@ -35,7 +35,7 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 namespace splinelib::sources::utilities::numeric_operations {
 
 template<typename Type>
-constexpr Type const kEpsilonFactor{100};
+constexpr inline static Type const kEpsilonFactor{100};
 
 template<typename Type>
 constexpr Type GetEpsilon();

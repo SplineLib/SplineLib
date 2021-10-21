@@ -22,8 +22,9 @@ namespace splinelib::tests::parameter_spaces {
 
 namespace {
 
-constexpr Degree const kDegree0{}, kDegree1{1}, kDegree2{2}, kDegree3{3};
-constexpr ParametricCoordinate const k0_0{}, k0_5{0.5}, k1_0{1.0}, k2_0{2.0}, k3_0{3.0}, k4_0{4.0}, k5_0{5.0};
+constexpr inline static Degree const kDegree0{}, kDegree1{1}, kDegree2{2}, kDegree3{3};
+constexpr inline static ParametricCoordinate const k0_0{}, k0_5{0.5}, k1_0{1.0}, k2_0{2.0}, k3_0{3.0}, k4_0{4.0},
+                                                   k5_0{5.0};
 
 }  // namespace
 

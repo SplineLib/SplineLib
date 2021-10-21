@@ -17,7 +17,7 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 
 namespace splinelib::tests::splines {
 
-void ASplineItem::NurbsBookExe3_8() {
+void ASplineItemMock::NurbsBookExe3_8() {
   parametric_dimensionality_ = 2;
   dimensionality_ = 3;
   is_rational_ = false;

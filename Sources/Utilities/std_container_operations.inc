@@ -116,7 +116,7 @@ constexpr ContainerType & AddAndAssignToFirst(ContainerType &lhs, ContainerType 
 }
 template<typename ContainerType, typename ...ContainerTypes>
 constexpr ContainerType & AddAndAssignToFirst(ContainerType &lhs, ContainerType const &rhs,
-                                            ContainerTypes const &...further_rhs) {
+                                              ContainerTypes const &...further_rhs) {
   return AddAndAssignToFirst(AddAndAssignToFirst(lhs, rhs), further_rhs...);
 }
 

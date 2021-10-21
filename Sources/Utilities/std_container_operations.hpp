@@ -52,7 +52,7 @@ using Vector = std::vector<Type>;
 //
 // Example:
 //   using NamedInts = Vector<NamedInt>;
-//   constexpr bool const &kTrue = is_vector<NamedInts>;
+//   constexpr static bool const &kTrue = is_vector<NamedInts>;
 //   NamedInts named_ints{NamedInt{1}, NamedInt{2}, NamedInt{3}}, more_named_ints(named_ints);
 //   int const &two = GetValue(TransformNamedTypes<Array<int, 3>>(named_ints), Index{1});
 //   GetValue(named_ints, Index{3}) = NamedInt{};  // out_of_range (debug mode) or undefined behavior (release mode).
@@ -66,13 +66,13 @@ struct IsArrayStruct : std::false_type {};
 template<typename Type, size_t size>
 struct IsArrayStruct<Array<Type, size>> : std::true_type {};
 template<typename Type>
-constexpr bool const is_array{IsArrayStruct<Type>::value};
+constexpr inline static bool const &is_array = IsArrayStruct<Type>::value;
 template<typename Type>
 struct IsVectorStruct : std::false_type {};
 template<typename Type>
 struct IsVectorStruct<Vector<Type>> : std::true_type {};
 template<typename Type>
-constexpr bool const is_vector{IsVectorStruct<Type>::value};
+constexpr inline static bool const &is_vector = IsVectorStruct<Type>::value;
 
 // Member functions front() and back() have undefined behavior for empty containers.
 template<typename ContainerType>
@@ -94,7 +94,7 @@ constexpr bool DoesContainEqualValues(ContainerType const &lhs, ContainerType co
 template<typename ContainerType>
 constexpr bool DoesContainPointersToEqualValues(ContainerType const &lhs, ContainerType const &rhs,
     typename ContainerType::value_type::element_type::Type_ const &tolerance =
-    numeric_operations::GetEpsilon<typename ContainerType::value_type::element_type::Type_>());
+        numeric_operations::GetEpsilon<typename ContainerType::value_type::element_type::Type_>());
 
 template<typename ContainerType>
 constexpr ContainerType & AddAndAssignToFirst(ContainerType &lhs, ContainerType const &rhs);

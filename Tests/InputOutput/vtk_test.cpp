@@ -28,7 +28,7 @@ class VtkSuite : public testing::Test {
   using BSpline_ = splines::A2d3dBSplineMock;
 
  protected:
-  constexpr static NumbersOfParametricCoordinates::value_type::value_type const k3_{3};
+  constexpr inline static NumbersOfParametricCoordinates::value_type::value_type const k3_{3};
   inline static sources::utilities::string_operations::String const kFilename_{"test.vtk"};
 
   VtkSuite();

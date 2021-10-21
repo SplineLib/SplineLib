@@ -26,8 +26,8 @@ class A3dVectorSpaceMock : public VectorSpace<3> {
  private:
   using Tolerance_ = sources::vector_spaces::Tolerance;
 
-  constexpr static Precision const &kPrecision_ = sources::vector_spaces::kPrecision;
-  constexpr static Tolerance_ const &kEpsilon_ = sources::vector_spaces::kEpsilon;
+  constexpr inline static Tolerance_ const &kEpsilon_ = sources::vector_spaces::kEpsilon;
+  constexpr inline static Precision const &kPrecision_ = sources::vector_spaces::kPrecision;
 
  public:
   MOCK_METHOD(Coordinate_ const &, OperatorSubscript, (Index const &), (const));

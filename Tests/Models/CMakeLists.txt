@@ -19,9 +19,7 @@ set(
 )
 
 add_executable(test_models ${TEST_SOURCES})
-target_include_directories(test_models SYSTEM PRIVATE ${GMOCK_INCLUDE_DIRS})
-target_link_libraries(test_models PRIVATE utilities models ${GMOCK_LDFLAGS} mock_splines)
-target_compile_definitions(test_models PRIVATE ${GMOCK_CFLAGS_OTHER})
+target_link_libraries(test_models PRIVATE utilities models GTest::gmock_main mock_splines)
 target_compile_options(test_models PRIVATE ${COMPILE_OPTIONS})
 
 add_test(NAME models_test COMMAND test_models)

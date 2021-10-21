@@ -38,9 +38,8 @@ set_source_files_properties(${HEADERS} PROPERTIES LANGUAGE CXX HEADER_FILE_ONLY 
 
 add_library(mock_parameter_spaces ${SOURCES})
 target_include_directories(mock_parameter_spaces PUBLIC ${INCLUDE_DIRECTORIES})
-target_include_directories(mock_parameter_spaces SYSTEM PUBLIC ${GMOCK_INCLUDE_DIRS})
-target_link_libraries(mock_parameter_spaces PUBLIC parameter_spaces ${GMOCK_LDFLAGS})
-target_compile_definitions(mock_parameter_spaces PUBLIC ${GMOCK_CFLAGS_OTHER} INTERFACE ${COMPILE_DEFINITIONS})
+target_link_libraries(mock_parameter_spaces PUBLIC parameter_spaces GTest::gmock)
+target_compile_definitions(mock_parameter_spaces INTERFACE ${COMPILE_DEFINITIONS})
 target_compile_options(mock_parameter_spaces PRIVATE ${COMPILE_OPTIONS})
 
 install(
@@ -64,10 +63,8 @@ set(
 )
 
 add_executable(test_parameter_spaces ${TEST_SOURCES})
-target_include_directories(test_parameter_spaces SYSTEM PRIVATE ${GMOCK_INCLUDE_DIRS})
-target_link_libraries(test_parameter_spaces PRIVATE utilities parameter_spaces ${GMOCK_LDFLAGS} mock_utilities
+target_link_libraries(test_parameter_spaces PRIVATE utilities parameter_spaces GTest::gmock_main mock_utilities
                       mock_parameter_spaces)
-target_compile_definitions(test_parameter_spaces PRIVATE ${GMOCK_CFLAGS_OTHER})
 target_compile_options(test_parameter_spaces PRIVATE ${COMPILE_OPTIONS})
 
 add_test(NAME parameter_spaces_test COMMAND test_parameter_spaces)

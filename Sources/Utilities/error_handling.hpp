@@ -34,7 +34,7 @@ namespace splinelib::sources::utilities::error_handling {
 template<typename Type>
 struct DependentFalse : std::false_type {};
 template<typename Type>
-constexpr bool const is_false{DependentFalse<Type>::value};
+constexpr inline static bool const &is_false = DependentFalse<Type>::value;
 
 #ifndef NDEBUG
 using DomainError = std::domain_error;

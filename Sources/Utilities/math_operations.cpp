@@ -39,8 +39,7 @@ int ComputeBinomialCoefficient(int const &number_of_elements_in_set, int const &
                           to_string(number_of_elements_in_set) + ")."), kName);
   }
 #endif
-//  NOLINTNEXTLINE(whitespace/todo)
-//  TODO(all): C++17 library cmath should provide std::beta (not yet implemented).
+// TODO(all): C++17 library cmath should provide std::beta (not yet implemented).
 //  int const &number_of_elements_in_set_plus_1 = (number_of_elements_in_set + 1);
 //  return (1 / (number_of_elements_in_set_plus_1 *
 //      std::beta(number_of_elements_in_set_plus_1 - number_of_elements_in_subset, number_of_elements_in_subset + 1)));

@@ -31,15 +31,16 @@ class NonZeroDegreeBSplineBasisFunctionSuite : public testing::Test {
   using Tolerance_ = sources::parameter_spaces::Tolerance;
   using Type_ = NonZeroDegreeBSplineBasisFunction::Type_;
 
-  constexpr static Degree const kDegree2_{2};
-  constexpr static KnotSpan const kKnotSpan0_{};
-  constexpr static Tolerance_ const &kEpsilon_ = sources::parameter_spaces::kEpsilon;
-  constexpr static Tolerance_ const kTolerance_{1.2 * kEpsilon_}, kToleranceDegree_{kDegree2_.Get() * kTolerance_};
-  constexpr static ParametricCoordinate const kParametricCoordinate0_0_{}, kParametricCoordinate0_25_{0.25},
-                                              kPerturbation_{1.1 * kEpsilon_};
-  constexpr static ParametricCoordinate const &kParametricCoordinate0_0Perturbed_ = (kParametricCoordinate0_0_ -
+  constexpr inline static Degree const kDegree2_{2};
+  constexpr inline static KnotSpan const kKnotSpan0_{};
+  constexpr inline static Tolerance_ const &kEpsilon_ = sources::parameter_spaces::kEpsilon;
+  constexpr inline static Tolerance_ const kTolerance_{1.2 * kEpsilon_}, kToleranceDegree_{kDegree2_.Get() *
+                                                                                           kTolerance_};
+  constexpr inline static ParametricCoordinate const kParametricCoordinate0_0_{}, kParametricCoordinate0_25_{0.25},
+                                                     kPerturbation_{1.1 * kEpsilon_};
+  constexpr inline static ParametricCoordinate const &kParametricCoordinate0_0Perturbed_ = (kParametricCoordinate0_0_ -
       kPerturbation_), &kParametricCoordinate0_25Perturbed_ = (kParametricCoordinate0_25_ + kPerturbation_);
-  constexpr static Type_ const k0_0_{};
+  constexpr inline static Type_ const k0_0_{};
 
   NonZeroDegreeBSplineBasisFunctionSuite();
 
@@ -98,7 +99,7 @@ TEST_F(NonZeroDegreeBSplineBasisFunctionSuite, EvaluateDependingOnInvertPotentia
 }
 
 TEST_F(NonZeroDegreeBSplineBasisFunctionSuite, EvaluateDerivativeDependingOnInvertPotentialZero) {
-  constexpr Derivative kDerivative{1};
+  constexpr static Derivative const kDerivative{1};
 
   Type_ derivative;
   EXPECT_TRUE(IsEqual(derivative = basis_function_(kParametricCoordinate0_25_, kDerivative), Type_{-1.5}));

@@ -6,8 +6,10 @@
 *.lo
 *.o
 *.obj
-*build*
+*build*/
 Examples/*/*build*
+Python/Scripts/dist/
+Python/Scripts/splinelyp.egg-info/
 
 # Precompiled Headers
 *.gch
@@ -41,4 +43,5 @@ Examples/*/*build*
 
 # Spack related files
 spack-configure-args.txt
+spack-build-*.txt
 __pycache__

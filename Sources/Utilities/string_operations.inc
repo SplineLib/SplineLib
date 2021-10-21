@@ -85,7 +85,7 @@ ContainerTypeTo Write(ContainerTypeFrom const &from, Precision const &precision)
         std_container_operations::is_vector;
 
   ContainerTypeTo to;
-  constexpr bool const is_container_vector = is_vector<ContainerTypeTo>;
+  constexpr static bool const is_container_vector = is_vector<ContainerTypeTo>;
   if constexpr (is_array<ContainerTypeTo> || is_container_vector) {
     int const &from_size = from.size();
     if constexpr (is_container_vector) to.reserve(from_size);

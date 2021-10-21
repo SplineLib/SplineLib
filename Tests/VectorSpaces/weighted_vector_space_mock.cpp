@@ -24,8 +24,8 @@ namespace {
 using HomogeneousCoordinate = A3dWeightedVectorSpaceMock::HomogeneousCoordinate_;
 using testing::Return;
 
-constexpr Coordinate const k0_0{0.0}, k1_0{1.0}, k2_0{2.0}, k3_0{3.0};
-constexpr HomogeneousCoordinate const kHomogeneousCoordinate1_0{k0_0, k1_0, k3_0, k1_0},
+constexpr inline static Coordinate const k0_0{0.0}, k1_0{1.0}, k2_0{2.0}, k3_0{3.0};
+constexpr inline static HomogeneousCoordinate const kHomogeneousCoordinate1_0{k0_0, k1_0, k3_0, k1_0},
     kHomogeneousCoordinate0_1{k2_0, k1_0, k1_0, k1_0}, kHomogeneousCoordinate1_1{k2_0, k0_0, k3_0, k1_0};
 
 }  // namespace
@@ -48,7 +48,7 @@ A3dWeightedVectorSpaceMock::OutputInformation_ A3dWeightedVectorSpaceMock::Write
 void A3dWeightedVectorSpaceMock::NurbsBookExe4_4() {
   using sources::utilities::string_operations::Write;
 
-  constexpr Weight const kWeight{1.0};
+  constexpr static Weight const kWeight{1.0};
   String const kZero{Write(k0_0)}, kOne{Write(k1_0)}, kOneWeight(Write(kWeight)), kTwo{Write(k2_0)},
                kThree{Write(k3_0)};
 
@@ -70,7 +70,7 @@ void A3dWeightedVectorSpaceMock::NurbsBookExe4_4BSpline() {
 }
 
 void A3dWeightedVectorSpaceMock::NurbsBookExe4_4Perturbed() {
-  constexpr Coordinate const k2_0Perturbed{2.0 + (1.1 * kEpsilon_)};
+  constexpr static Coordinate const k2_0Perturbed{2.0 + (1.1 * kEpsilon_)};
 
   coordinates_.assign({HomogeneousCoordinate{k0_0, k0_0, k2_0Perturbed, k2_0Perturbed}, kHomogeneousCoordinate1_0,
                        kHomogeneousCoordinate0_1, kHomogeneousCoordinate1_1});

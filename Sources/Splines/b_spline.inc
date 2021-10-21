@@ -135,7 +135,7 @@ void BSpline<parametric_dimensionality, dimensionality>::InsertKnot(Dimension co
     ++number_of_coordinates[dimension_value];
     for (Index_ slice_coordinate{Index_::First(number_of_coordinates_in_slice)};
          slice_coordinate != Index_::Behind(number_of_coordinates_in_slice); ++slice_coordinate) {
-      constexpr KnotRatio_ const k1_0{1.0};
+      constexpr static KnotRatio_ const k1_0{1.0};
 
       IndexValue_ coordinate_value{slice_coordinate.GetIndex()};
       coordinate_value[dimension_value] = start_value;
@@ -190,7 +190,7 @@ Multiplicity BSpline<parametric_dimensionality, dimensionality>::RemoveKnot(Dime
     --number_of_coordinates[dimension_value];
     for (Index_ slice_coordinate{Index_::Last(number_of_coordinates_in_slice)};
          slice_coordinate != Index_::Before(number_of_coordinates_in_slice); --slice_coordinate) {
-      constexpr KnotRatio_ const k1_0{1.0};
+      constexpr static KnotRatio_ const k1_0{1.0};
 
       IndexValue_ coordinate_value{slice_coordinate.GetIndex()};
       coordinate_value[dimension_value] = (start_value - Index{static_cast<Index::Type_>(current_coefficients.size())});

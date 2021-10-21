@@ -37,15 +37,18 @@ class Splinelib(CMakePackage):
 
     variant('shared', default=True, description='Build shared libraries')
     variant('googletest', default=True, description='Enable testing')
+    variant('python', default=True, description='Build python bindings (splinelyp)')
 
-    conflicts('+googletest', when='~shared', msg='Googletest cannot be used when building static.')
-
-    depends_on('googletest+gmock~pthreads', when='+googletest')
-    depends_on('pugixml')
+    depends_on('googletest+gmock~pthreads', when='+googletest', type=('build', 'link'))
+    depends_on('pugixml', type=('build', 'link'))
+    depends_on('python@3:', when='+python', type=('build', 'run'))
+    depends_on('py-numpy', when='+python', type=('build', 'link', 'run'))  # Actually py-pybind11's dependency.
+    depends_on('py-pybind11', when='+python', type=('build', 'link'))
 
     def cmake_args(self):
         options = [
                    self.define_from_variant('SHARED'),
-                   self.define_from_variant('GOOGLETEST')
+                   self.define_from_variant('GOOGLETEST'),
+                   self.define_from_variant('PYTHON')
                   ]
         return options

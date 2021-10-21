@@ -25,9 +25,9 @@ class AKnotVectorMock : public sources::parameter_spaces::KnotVector {
  private:
   using Tolerance_ = sources::parameter_spaces::Tolerance;
 
-  constexpr static Multiplicity const &kMultiplicity_ = sources::parameter_spaces::kMultiplicity;
-  constexpr static Precision const &kPrecision_ = sources::parameter_spaces::kPrecision;
-  constexpr static Tolerance_ const &kEpsilon_ = sources::parameter_spaces::kEpsilon;
+  constexpr inline static Tolerance_ const &kEpsilon_ = sources::parameter_spaces::kEpsilon;
+  constexpr inline static Multiplicity const &kMultiplicity_ = sources::parameter_spaces::kMultiplicity;
+  constexpr inline static Precision const &kPrecision_ = sources::parameter_spaces::kPrecision;
 
  public:
   MOCK_METHOD(Knot_ const &, OperatorSubscript, (Index const &), (const));

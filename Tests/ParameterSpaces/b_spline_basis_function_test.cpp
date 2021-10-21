@@ -26,9 +26,9 @@ using sources::parameter_spaces::BSplineBasisFunction;
 TEST(BSplineBasisFunctionSuite, IsEqualAndOperatorEqual) {
   using KnotVector = testing::StrictMock<AKnotVectorMock>;
 
-  constexpr Degree const kDegree0{}, kDegree2{2};
-  constexpr KnotSpan const kKnotSpan0{}, kKnotSpan1{1}, kKnotSpan2{2};
-  constexpr sources::parameter_spaces::Tolerance const kTolerance{1.2 * sources::parameter_spaces::kEpsilon};
+  constexpr static Degree const kDegree0{}, kDegree2{2};
+  constexpr static KnotSpan const kKnotSpan0{}, kKnotSpan1{1}, kKnotSpan2{2};
+  constexpr static sources::parameter_spaces::Tolerance const &kTolerance = (1.2 * sources::parameter_spaces::kEpsilon);
 
   KnotVector knot_vector, knot_vector_perturbed;
   knot_vector.NurbsBookExa2_1();

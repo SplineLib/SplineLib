@@ -23,7 +23,7 @@ namespace splinelib::tests::splines {
 
 using sources::splines::SplineItem;
 
-class ASplineItem : public SplineItem {
+class ASplineItemMock : public SplineItem {
  public:
   void NurbsBookExe3_8();  // See NURBS book Exe. 3.8.
 };

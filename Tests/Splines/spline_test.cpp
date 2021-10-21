@@ -46,9 +46,9 @@ class SplineSuite : public testing::Test {
   using VectorSpace_ = StrictMock_<vector_spaces::A3dVectorSpaceMock>;
   using WeightedVectorSpace_ = StrictMock_<vector_spaces::A3dWeightedVectorSpaceMock>;
 
-  constexpr static Dimension const kDimension0_{}, kDimension1_{1};
-  constexpr static Spline_::Knot_ const kKnot0_5_{0.5};
-  constexpr static Tolerance_ const &kEpsilon_ = sources::splines::kEpsilon;
+  constexpr inline static Dimension const kDimension0_{}, kDimension1_{1};
+  constexpr inline static Tolerance_ const &kEpsilon_ = sources::splines::kEpsilon;
+  constexpr inline static Spline_::Knot_ const kKnot0_5_{0.5};
   inline static Spline_::Knots_ const kKnots_{kKnot0_5_, kKnot0_5_};
 
   SplineSuite();
@@ -73,7 +73,7 @@ SplineSuite::SplineSuite() {
 }
 
 TEST_F(SplineSuite, IsEqualAndOperatorEqual) {
-  constexpr Tolerance_ const kTolerance{1.2 * kEpsilon_};
+  constexpr static Tolerance_ const kTolerance{1.2 * kEpsilon_};
 
   SharedPointer<Spline_> b_spline;
   ASSERT_NO_THROW(b_spline = make_shared<BSpline_>(parameter_space_b_spline_, vector_space_));
@@ -131,9 +131,9 @@ TEST_F(SplineSuite, CoarsenKnots) {
 TEST_F(SplineSuite, Sample) {
   using Coordinates = Spline_::Coordinates_;
 
-  constexpr Coordinate const kCoordinate0_0{}, kCoordinate1_0{1.0}, kCoordinate2_0{2.0}, kCoordinate3_0{3.0},
-                             kCoordinate4_0{4.0}, kCoordinate9_0{9.0};
-  constexpr Length const kLength{2};
+  constexpr static Coordinate const kCoordinate0_0{}, kCoordinate1_0{1.0}, kCoordinate2_0{2.0}, kCoordinate3_0{3.0},
+                                    kCoordinate4_0{4.0}, kCoordinate9_0{9.0};
+  constexpr static Length const kLength{2};
   Spline_::NumberOfParametricCoordinates_ const kNumberOfParametricCoordinates{kLength, kLength};
 
   EXPECT_EQ(b_spline_->Sample(kNumberOfParametricCoordinates), (Coordinates{{kCoordinate0_0, kCoordinate0_0,

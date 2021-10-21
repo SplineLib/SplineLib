@@ -34,12 +34,12 @@ class WeightedVectorSpaceSuite : public testing::Test {
   using WeightedVectorSpace_ = WeightedVectorSpace<3>;
   using Coordinate_ = WeightedVectorSpace_::Coordinate_;
 
-  constexpr static Coordinate const kCoordinate0_0_{0.0}, kCoordinate1_0_{1.0}, kCoordinate2_0_{2.0},
-                                    kCoordinate3_0_{3.0};
-  constexpr static Coordinate_ const kCoordinate0_{kCoordinate0_0_, kCoordinate0_0_, kCoordinate1_0_};
-  constexpr static WeightedVectorSpace_::HomogeneousCoordinate_ const kHomogeneousCoordinate0_{kCoordinate0_0_,
+  constexpr inline static Coordinate const kCoordinate0_0_{0.0}, kCoordinate1_0_{1.0}, kCoordinate2_0_{2.0},
+                                           kCoordinate3_0_{3.0};
+  constexpr inline static Coordinate_ const kCoordinate0_{kCoordinate0_0_, kCoordinate0_0_, kCoordinate1_0_};
+  constexpr inline static WeightedVectorSpace_::HomogeneousCoordinate_ const kHomogeneousCoordinate0_{kCoordinate0_0_,
       kCoordinate0_0_, kCoordinate2_0_, kCoordinate2_0_};
-  constexpr static Weight const kWeight1_0_{1.0}, kWeight2_0_{2.0};
+  constexpr inline static Weight const kWeight1_0_{1.0}, kWeight2_0_{2.0};
 
   WeightedVectorSpaceSuite();
 
@@ -57,8 +57,7 @@ WeightedVectorSpaceSuite::WeightedVectorSpaceSuite() {
 
 TEST_F(WeightedVectorSpaceSuite, IsEqualAndOperatorEqual) {
   using Tolerance = sources::vector_spaces::Tolerance;
-  constexpr Tolerance const &kEpsilon = sources::vector_spaces::kEpsilon;
-  constexpr Tolerance const kPerturbation{1.1 * kEpsilon};
+  constexpr static Tolerance const &kEpsilon = sources::vector_spaces::kEpsilon, &kPerturbation = (1.1 * kEpsilon);
 
   WeightedVectorSpace_ weighted_vector_space;
   ASSERT_NO_THROW(weighted_vector_space = WeightedVectorSpace_(coordinates_, weights_));

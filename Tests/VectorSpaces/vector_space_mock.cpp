@@ -25,10 +25,10 @@ using Coordinate3d = A3dVectorSpaceMock::Coordinate_;
 using ScalarCoordinate = Coordinate3d::value_type;
 using testing::Assign, testing::InvokeWithoutArgs, testing::Return, testing::ReturnRef, testing::ReturnRefOfCopy;
 
-constexpr ScalarCoordinate const k0_0{}, k1_0{1.0}, k1_5{1.5}, k2_0{2.0}, k2_5{2.5}, k2_75{2.75}, k3_0{3.0}, k3_5{3.5},
-                                 k3_75{3.75}, k4_0{4.0}, k4_5{4.5}, k5_0{5.0}, k5_25{5.25}, k5_5{5.5}, k6_0{6.0},
-                                 k6_25{6.25}, k7_0{7.0}, k7_5{7.5}, k9_0{9.0};
-constexpr Coordinate3d const kCoordinate0_0{k0_0, k0_0, k0_0}, kCoordinate1_0{k3_0, k0_0, k3_0},
+constexpr inline static ScalarCoordinate const k0_0{}, k1_0{1.0}, k1_5{1.5}, k2_0{2.0}, k2_5{2.5}, k2_75{2.75},
+    k3_0{3.0}, k3_5{3.5}, k3_75{3.75}, k4_0{4.0}, k4_5{4.5}, k5_0{5.0}, k5_25{5.25}, k5_5{5.5}, k6_0{6.0}, k6_25{6.25},
+    k7_0{7.0}, k7_5{7.5}, k9_0{9.0};
+constexpr inline static Coordinate3d const kCoordinate0_0{k0_0, k0_0, k0_0}, kCoordinate1_0{k3_0, k0_0, k3_0},
     kCoordinateElevatedOnce1_0{k2_0, k0_0, k2_0}, kCoordinateElevatedTwice1_0{k1_5, k0_0, k1_5}, kCoordinate2_0{k6_0,
     k0_0, k3_0}, kCoordinateBezier2_0{k4_5, k0_0, k3_0}, kCoordinateElevatedOnce2_0_0{k3_5, k0_0, k3_0},
     kCoordinateElevatedOnce2_0_1{k5_5, k0_0, k3_0}, kCoordinateElevatedTwice2_0_0_0{k3_75, k0_0, k3_0},
@@ -53,16 +53,18 @@ constexpr Coordinate3d const kCoordinate0_0{k0_0, k0_0, k0_0}, kCoordinate1_0{k3
     k2_0}, kCoordinateElevatedTwice3_2_0{k7_5, k4_0, k1_5}, kCoordinateElevatedTwice3_2_1{k6_25, k4_0, k2_5},
     kCoordinateInserted3_2{k9_0, k3_0, k1_0}, kCoordinateSubdivided3_2{k9_0, k2_0, k1_0}, kCoordinateSquare{k1_0, k1_0,
     k0_0};
-constexpr Index const k0{}, k1{1}, k2{2}, k3{3}, k4{4}, k5{5}, k6{6}, k7{7}, k8{8}, k9{9}, k10{10}, k11{11}, k12{12},
-    k13{13}, k14{14}, k15{15}, k16{16}, k17{17}, k18{18}, k19{19}, k20{20}, k21{21}, k22{22}, k23{23}, k24{24}, k25{25};
-A3dVectorSpaceMock::Coordinates_ const kCoordinatesInsertRemove{kCoordinate0_0, kCoordinate1_0, kCoordinate2_0,
-    kCoordinate3_0, kCoordinateInserted0_1, kCoordinateInserted1_1, kCoordinateInserted2_1, kCoordinateInserted3_1,
-    kCoordinateInserted0_2, kCoordinateInserted1_2, kCoordinateInserted2_2, kCoordinateInserted3_2, kCoordinate0_2,
-    kCoordinate1_2, kCoordinate2_2, kCoordinate3_2}, kCoordinatesSubdivided{kCoordinate0_0, kCoordinate1_0,
+constexpr inline static Index const k0{}, k1{1}, k2{2}, k3{3}, k4{4}, k5{5}, k6{6}, k7{7}, k8{8}, k9{9}, k10{10},
+                                    k11{11}, k12{12}, k13{13}, k14{14}, k15{15}, k16{16}, k17{17}, k18{18}, k19{19},
+                                    k20{20}, k21{21}, k22{22}, k23{23}, k24{24}, k25{25};
+inline static A3dVectorSpaceMock::Coordinates_ const kCoordinatesInsertRemove{kCoordinate0_0, kCoordinate1_0,
     kCoordinate2_0, kCoordinate3_0, kCoordinateInserted0_1, kCoordinateInserted1_1, kCoordinateInserted2_1,
-    kCoordinateInserted3_1, kCoordinateSubdivided0_2, kCoordinateSubdivided1_2, kCoordinateSubdivided2_2,
-    kCoordinateSubdivided3_2, kCoordinateInserted0_2, kCoordinateInserted1_2, kCoordinateInserted2_2,
-    kCoordinateInserted3_2, kCoordinate0_2, kCoordinate1_2, kCoordinate2_2, kCoordinate3_2};
+    kCoordinateInserted3_1, kCoordinateInserted0_2, kCoordinateInserted1_2, kCoordinateInserted2_2,
+    kCoordinateInserted3_2, kCoordinate0_2, kCoordinate1_2, kCoordinate2_2, kCoordinate3_2},
+    kCoordinatesSubdivided{kCoordinate0_0, kCoordinate1_0, kCoordinate2_0, kCoordinate3_0, kCoordinateInserted0_1,
+    kCoordinateInserted1_1, kCoordinateInserted2_1, kCoordinateInserted3_1, kCoordinateSubdivided0_2,
+    kCoordinateSubdivided1_2, kCoordinateSubdivided2_2, kCoordinateSubdivided3_2, kCoordinateInserted0_2,
+    kCoordinateInserted1_2, kCoordinateInserted2_2, kCoordinateInserted3_2, kCoordinate0_2, kCoordinate1_2,
+    kCoordinate2_2, kCoordinate3_2};
 
 }  // namespace
 
@@ -664,7 +666,7 @@ void A3dVectorSpaceMock::NurbsBookExe3_8Subdivided() {
 }
 
 void A3dVectorSpaceMock::NurbsBookExe3_8Unsuccessful() {
-  constexpr Coordinate3d const kCoordinateUnremovable1_2{k6_0, k4_0, k6_0};
+  constexpr static Coordinate3d const kCoordinateUnremovable1_2{k6_0, k4_0, k6_0};
 
   NurbsBookExe3_8();
 
@@ -686,7 +688,7 @@ void A3dVectorSpaceMock::SquareUnit04() {
 }
 
 void A3dVectorSpaceMock::SquareUnit12() {
-  constexpr Coordinate const kOneOverThree{1.0 / 3.0}, k0_5{0.5}, kTwoOverThree{2.0 / 3.0};
+  constexpr static Coordinate const kOneOverThree{1.0 / 3.0}, k0_5{0.5}, kTwoOverThree{2.0 / 3.0};
 
   coordinates_.assign({kCoordinate0_0, Coordinate3d{kOneOverThree, k0_0, k0_0}, Coordinate3d{kTwoOverThree, k0_0, k0_0},
       Coordinate3d{k1_0, k0_0, k0_0}, Coordinate3d{k0_0, k0_5, k0_0}, Coordinate3d{kOneOverThree, k0_5, k0_0},
@@ -833,8 +835,8 @@ namespace {
 
 using Coordinate4d = A4dVectorSpaceMock::Coordinate_;
 
-constexpr Coordinate4d const kCoordinate4d1_0{k0_0, k1_0, k3_0, k1_0}, kCoordinate4d0_1{k2_0, k1_0, k1_0, k1_0},
-                             kCoordinate4d1_1{k2_0, k0_0, k3_0, k1_0};
+constexpr inline static Coordinate4d const kCoordinate4d1_0{k0_0, k1_0, k3_0, k1_0},
+    kCoordinate4d0_1{k2_0, k1_0, k1_0, k1_0}, kCoordinate4d1_1{k2_0, k0_0, k3_0, k1_0};
 
 }  // namespace
 
@@ -843,7 +845,7 @@ Coordinate4d const & A4dVectorSpaceMock::operator[](Index const &coordinate) con
 }
 
 void A4dVectorSpaceMock::NurbsBookExe4_4() {
-  constexpr Coordinate_ const kCoordinate4d0_0{k0_0, k0_0, k2_0, k2_0};
+  constexpr static Coordinate_ const kCoordinate4d0_0{k0_0, k0_0, k2_0, k2_0};
 
   coordinates_.assign({kCoordinate4d0_0, kCoordinate4d1_0, kCoordinate4d0_1, kCoordinate4d1_1});
 
@@ -854,7 +856,7 @@ void A4dVectorSpaceMock::NurbsBookExe4_4() {
 }
 
 void A4dVectorSpaceMock::NurbsBookExe4_4NonRational() {
-  constexpr Coordinate_ const kCoordinate4d0_0{k0_0, k0_0, k1_0, k1_0};
+  constexpr static Coordinate_ const kCoordinate4d0_0{k0_0, k0_0, k1_0, k1_0};
 
   coordinates_.assign({kCoordinate4d0_0, kCoordinate4d1_0, kCoordinate4d0_1, kCoordinate4d1_1});
 

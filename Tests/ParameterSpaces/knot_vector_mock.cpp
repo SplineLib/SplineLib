@@ -29,20 +29,21 @@ using Knots = AKnotVectorMock::Knots_;
 using sources::utilities::string_operations::Write, testing::AtMost, testing::Ge, testing::InvokeWithoutArgs,
       testing::Return, testing::ReturnRef;
 
-constexpr Index const kIndex0{}, kIndex1{1}, kIndex2{2}, kIndex3{3}, kIndex4{4}, kIndex5{5}, kIndex6{6}, kIndex7{7},
-                      kIndex8{8}, kIndex9{9}, kIndex10{10}, kIndex11{11}, kIndex12{12}, kIndex13{13}, kIndex14{14},
-                      kIndex15{15}, kIndex16{16};
-constexpr KnotSpan const kKnotSpan3{3};
-constexpr Multiplicity const kMultiplicity0{}, kMultiplicity2{2}, kMultiplicity3{3}, kMultiplicity4{4};
-constexpr sources::parameter_spaces::Tolerance const &kEpsilon = sources::parameter_spaces::kEpsilon,
-                                                     &kPerturbation = (1.1 * kEpsilon);
-constexpr ParametricCoordinate const k0_0{}, kPerturbed{1.1 * kEpsilon}, k0_5{0.5}, k1_0{1.0}, k2_0{2.0}, k3_0{3.0},
-                                     k4_0{4.0}, k5_0{5.0};
-constexpr ParametricCoordinate const &k1_0Perturbed = (k1_0 + kPerturbed), &k5_0Perturbed = (k5_0 + kPerturbed);
-Knots const kUniqueKnots2_1{k0_0, k1_0}, kUniqueKnots2_2{k0_0, k1_0, k2_0, k3_0, k4_0, k5_0},
-            kUniqueKnots3_8{k0_0, k0_5, k1_0};
-String const &kZero = Write(k0_0), &kOne = Write(k1_0);
-IsGeAndLtMatcherP2<double, double> const &IsGe0_0AndLtPerturbation = IsGeAndLt(0.0, kPerturbation),
+constexpr inline static Index const kIndex0{}, kIndex1{1}, kIndex2{2}, kIndex3{3}, kIndex4{4}, kIndex5{5}, kIndex6{6},
+                                    kIndex7{7}, kIndex8{8}, kIndex9{9}, kIndex10{10}, kIndex11{11}, kIndex12{12},
+                                    kIndex13{13}, kIndex14{14}, kIndex15{15}, kIndex16{16};
+constexpr inline static KnotSpan const kKnotSpan3{3};
+constexpr inline static Multiplicity const kMultiplicity0{}, kMultiplicity2{2}, kMultiplicity3{3}, kMultiplicity4{4};
+constexpr inline static sources::parameter_spaces::Tolerance const &kEpsilon = sources::parameter_spaces::kEpsilon,
+                                                                   &kPerturbation = (1.1 * kEpsilon);
+constexpr inline static ParametricCoordinate const k0_0{}, kPerturbed{kPerturbation}, k0_5{0.5}, k1_0{1.0}, k2_0{2.0},
+                                                   k3_0{3.0}, k4_0{4.0}, k5_0{5.0};
+constexpr inline static ParametricCoordinate const &k1_0Perturbed = (k1_0 + kPerturbed),
+                                                   &k5_0Perturbed = (k5_0 + kPerturbed);
+inline static Knots const kUniqueKnots2_1{k0_0, k1_0}, kUniqueKnots2_2{k0_0, k1_0, k2_0, k3_0, k4_0, k5_0},
+                          kUniqueKnots3_8{k0_0, k0_5, k1_0};
+inline static String const &kZero = Write(k0_0), &kOne = Write(k1_0);
+inline static IsGeAndLtMatcherP2<double, double> const &IsGe0_0AndLtPerturbation = IsGeAndLt(0.0, kPerturbation),
     &IsGe0_0AndLt0_5 = IsGeAndLt(0.0, 0.5), &IsGe0_0AndLt1_0Perturbed = IsGeAndLt(0.0, 1.0 - kPerturbation),
     &IsGe0_0AndLt1_0 = IsGeAndLt(0.0, 1.0), &IsGe0_0AndLt2_0 = IsGeAndLt(0.0, 2.0),
     &IsGe0_0AndLt3_0 = IsGeAndLt(0.0, 3.0), &IsGe0_0AndLt4_0 = IsGeAndLt(0.0, 4.0),
@@ -166,7 +167,7 @@ void AKnotVectorMock::NurbsBookExa2_1Perturbed() {
 void AKnotVectorMock::NurbsBookExa2_2() {
   using sources::utilities::string_operations::Write, testing::Throw;
 
-  constexpr ParametricCoordinate const kMinus0_5{-0.5};
+  constexpr static ParametricCoordinate const kMinus0_5{-0.5};
   String const &kFour = Write(k4_0), &kFive = Write(k5_0);
 
   knots_.assign({k0_0, k0_0, k0_0, k1_0, k2_0, k3_0, k4_0, k4_0, k5_0, k5_0, k5_0});
@@ -282,7 +283,7 @@ void AKnotVectorMock::NurbsBookExa2_2IncreasedOnce() {
 }
 
 void AKnotVectorMock::NurbsBookExa2_2IncreasedTwice() {
-  constexpr Multiplicity const kMultiplicity5{5};
+  constexpr static Multiplicity const kMultiplicity5{5};
 
   knots_.assign({k0_0, k0_0, k0_0, k0_0, k0_0, k1_0, k1_0, k1_0, k2_0, k2_0, k2_0, k3_0, k3_0, k3_0, k4_0, k4_0, k4_0,
                  k4_0, k5_0, k5_0, k5_0, k5_0, k5_0});

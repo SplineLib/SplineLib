@@ -24,7 +24,7 @@ namespace splinelib::tests::splines {
 
 using sources::splines::BSpline, sources::splines::Tolerance;
 
-constexpr static Tolerance const &kEpsilon = sources::splines::kEpsilon;
+constexpr inline static Tolerance const &kEpsilon = sources::splines::kEpsilon;
 
 class A2d3dBSplineMock : public BSpline<2, 3> {
  public:
@@ -44,7 +44,8 @@ class A2d3dBSplineMock : public BSpline<2, 3> {
 };
 
 class A2d4dBSplineMock : public BSpline<2, 4> {
-  constexpr static Multiplicity const &kMultiplicity_ = sources::splines::kMultiplicity;
+ private:
+  constexpr inline static Multiplicity const &kMultiplicity_ = sources::splines::kMultiplicity;
 
  public:
   MOCK_METHOD(Coordinate_, Evaluate, (ParametricCoordinate_ const &, Tolerance const &), (const));

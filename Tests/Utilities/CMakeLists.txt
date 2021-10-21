@@ -28,9 +28,8 @@ set_source_files_properties(${HEADERS} PROPERTIES LANGUAGE CXX HEADER_FILE_ONLY 
 
 add_library(mock_utilities ${SOURCES})
 target_include_directories(mock_utilities PUBLIC ${INCLUDE_DIRECTORIES})
-target_include_directories(mock_utilities SYSTEM PUBLIC ${GMOCK_INCLUDE_DIRS})
-target_link_libraries(mock_utilities PUBLIC utilities ${GMOCK_LDFLAGS})
-target_compile_definitions(mock_utilities PUBLIC ${GMOCK_CFLAGS_OTHER} INTERFACE ${COMPILE_DEFINITIONS})
+target_link_libraries(mock_utilities PUBLIC utilities GTest::gmock)
+target_compile_definitions(mock_utilities INTERFACE ${COMPILE_DEFINITIONS})
 target_compile_options(mock_utilities PRIVATE ${COMPILE_OPTIONS})
 
 install(
@@ -57,9 +56,7 @@ set(
 )
 
 add_executable(test_utilities ${TEST_SOURCES})
-target_include_directories(test_utilities SYSTEM PRIVATE ${GMOCK_INCLUDE_DIRS})
-target_link_libraries(test_utilities PRIVATE utilities ${GMOCK_LDFLAGS})
-target_compile_definitions(test_utilities PRIVATE ${GMOCK_CFLAGS_OTHER})
+target_link_libraries(test_utilities PRIVATE utilities GTest::gmock_main)
 target_compile_options(test_utilities PRIVATE ${COMPILE_OPTIONS})
 
 add_test(NAME utilities_test COMMAND test_utilities)

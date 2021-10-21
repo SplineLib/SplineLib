@@ -46,40 +46,41 @@ using Type = A2dParameterSpaceMock::Type_;
 using testing::AnyNumber, testing::DoAll, testing::Ge, testing::InvokeWithoutArgs, testing::Lt, testing::Return,
       testing::StrictMock, testing::Throw;
 
-constexpr BinomialRatios::value_type const kOneSixth{1.0 / 6.0}, kOneFourth{0.25}, kOneThird{1.0 / 3.0}, kOneHalf{0.5},
-                                           kTwoThirds{2.0 / 3.0}, kThreeFourths{0.75};
-constexpr Degrees::value_type const kDegree1{1}, kDegree2{2};
-constexpr Degrees const kDegrees1_1{kDegree1, kDegree1}, kDegrees2_2{kDegree2, kDegree2};
-constexpr Derivative::value_type const kDerivative0{}, kDerivative1{1};
-constexpr Derivative const kDerivative0_0{kDerivative0, kDerivative0}, kDerivative1_0{kDerivative1, kDerivative0},
-                           kDerivative0_1{kDerivative0, kDerivative1}, kDerivative1_1{kDerivative1, kDerivative1};
-constexpr Dimension const kDimension0{}, kDimension1{1};
-constexpr sources::parameter_spaces::KnotRatio const kKnotRatio{0.5};
-constexpr Length const kLength2{2}, kLength3{3}, kLength4{4};
-constexpr Multiplicity const kMultiplicity2{2};
-constexpr ScalarIndex const kIndex1{1}, kIndex2{2}, kIndex3{3};
-constexpr ScalarParametricCoordinate const kParametricCoordinate0_0{0.0}, kParametricCoordinate0_5{0.5},
-                                           kParametricCoordinate1_0{1.0};
-constexpr ParametricCoordinate const kParametricCoordinate0{kParametricCoordinate0_0, kParametricCoordinate0_0},
-                                     kParametricCoordinate1{kParametricCoordinate1_0, kParametricCoordinate0_0},
-                                     kParametricCoordinate2{kParametricCoordinate0_0, kParametricCoordinate1_0},
-                                     kParametricCoordinate3{kParametricCoordinate1_0, kParametricCoordinate1_0};
-constexpr A2dParameterSpaceMock::NumberOfParametricCoordinates_ const kNumberOfParametricCoordinates{kLength2,
-                                                                                                     kLength2};
-A2dParameterSpaceMock::BezierInformation_ const kBezierInformation{2, {kParametricCoordinate0_5}};
-BinomialRatios const kBinomialRatios{kOneHalf, kOneHalf};
-A2dParameterSpaceMock::KnotRatios_ const kKnotRatiosFirst{kKnotRatio, kKnotRatio}, kKnotRatiosSecond{kKnotRatio};
-ElevationInformation const kElevationInformationOnce{kIndex2, {{kOneThird, kTwoThirds}, {kTwoThirds, kOneThird}}},
-    kElevationInformationElevateReduce{kIndex3, {{kOneFourth, kThreeFourths}, kBinomialRatios, {kThreeFourths,
-        kOneFourth}}}, kElevationInformationTwice{kIndex2, {kBinomialRatios, {kOneSixth, kTwoThirds, kOneSixth},
-            kBinomialRatios}};
-InsertionInformation const kInsertionInformation{kIndex2, {kKnotRatiosFirst}},
+constexpr inline static BinomialRatios::value_type const kOneSixth{1.0 / 6.0}, kOneFourth{0.25}, kOneThird{1.0 / 3.0},
+                                                         kOneHalf{0.5}, kTwoThirds{2.0 / 3.0}, kThreeFourths{0.75};
+constexpr inline static Degrees::value_type const kDegree1{1}, kDegree2{2};
+constexpr inline static Degrees const kDegrees1_1{kDegree1, kDegree1}, kDegrees2_2{kDegree2, kDegree2};
+constexpr inline static Derivative::value_type const kDerivative0{}, kDerivative1{1};
+constexpr inline static Derivative const kDerivative0_0{kDerivative0, kDerivative0}, kDerivative1_0{kDerivative1,
+    kDerivative0}, kDerivative0_1{kDerivative0, kDerivative1}, kDerivative1_1{kDerivative1, kDerivative1};
+constexpr inline static Dimension const kDimension0{}, kDimension1{1};
+constexpr inline static sources::parameter_spaces::KnotRatio const kKnotRatio{0.5};
+constexpr inline static Length const kLength2{2}, kLength3{3}, kLength4{4};
+constexpr inline static Multiplicity const kMultiplicity2{2};
+constexpr inline static ScalarIndex const kIndex1{1}, kIndex2{2}, kIndex3{3};
+constexpr inline static ScalarParametricCoordinate const kParametricCoordinate0_0{0.0}, kParametricCoordinate0_5{0.5},
+                                                         kParametricCoordinate1_0{1.0};
+constexpr inline static ParametricCoordinate const kParametricCoordinate0{kParametricCoordinate0_0,
+    kParametricCoordinate0_0}, kParametricCoordinate1{kParametricCoordinate1_0, kParametricCoordinate0_0},
+                               kParametricCoordinate2{kParametricCoordinate0_0, kParametricCoordinate1_0},
+                               kParametricCoordinate3{kParametricCoordinate1_0, kParametricCoordinate1_0};
+constexpr inline static A2dParameterSpaceMock::NumberOfParametricCoordinates_ const
+    kNumberOfParametricCoordinates{kLength2, kLength2};
+inline static A2dParameterSpaceMock::BezierInformation_ const kBezierInformation{2, {kParametricCoordinate0_5}};
+inline static BinomialRatios const kBinomialRatios{kOneHalf, kOneHalf};
+inline static A2dParameterSpaceMock::KnotRatios_ const kKnotRatiosFirst{kKnotRatio, kKnotRatio},
+                                                       kKnotRatiosSecond{kKnotRatio};
+inline static ElevationInformation const kElevationInformationOnce{kIndex2, {{kOneThird, kTwoThirds}, {kTwoThirds,
+    kOneThird}}}, kElevationInformationElevateReduce{kIndex3, {{kOneFourth, kThreeFourths}, kBinomialRatios,
+        {kThreeFourths, kOneFourth}}}, kElevationInformationTwice{kIndex2, {kBinomialRatios, {kOneSixth, kTwoThirds,
+            kOneSixth}, kBinomialRatios}};
+inline static InsertionInformation const kInsertionInformation{kIndex2, {kKnotRatiosFirst}},
     kInsertionInformationInsertRemove{kIndex2, {kKnotRatiosSecond}}, kInsertionInformationSubdivide{kIndex2,
         {kKnotRatiosFirst, kKnotRatiosSecond}}, kInsertionInformationElevateReduce{kIndex3, {kKnotRatiosSecond}},
             kInsertionInformationElevatedTwice{ScalarIndex{4}, {kKnotRatiosSecond}};
-IsGeAndLtMatcherP2<Dimension, Dimension> const &IsValidDimension = IsGeAndLt(kDimension0, Dimension{3});
-IsGeAndLtMatcherP2<double, double> const &IsGe0_0AndLt0_5 = IsGeAndLt(0.0, 0.5);
-IsGeAndLtMatcherP2<ScalarParametricCoordinate, ScalarParametricCoordinate> const &IsInScope =
+inline static IsGeAndLtMatcherP2<Dimension, Dimension> const &IsValidDimension = IsGeAndLt(kDimension0, Dimension{3});
+inline static IsGeAndLtMatcherP2<double, double> const &IsGe0_0AndLt0_5 = IsGeAndLt(0.0, 0.5);
+inline static IsGeAndLtMatcherP2<ScalarParametricCoordinate, ScalarParametricCoordinate> const &IsInScope =
     IsGeAndLt(kParametricCoordinate0_0, kParametricCoordinate1_0);
 
 }  // namespace
@@ -139,14 +140,15 @@ void A2dParameterSpaceMock::ThrowIfParametricCoordinateIsOutsideScope(Dimension 
 void A2dParameterSpaceMock::NurbsBookExe3_8() {
   using sources::utilities::string_operations::Write;
 
-  constexpr ScalarIndex const kIndex0{};
-  constexpr IndexLength const kNumberOfBasisFunctions{kLength4, kLength3}, kNonZeroBasisFunctionIndexLength{kLength3,
-                                                                                                            kLength3};
-  constexpr ParametricCoordinate_ const kParametricCoordinate{ScalarParametricCoordinate{0.75},
-                                                              kParametricCoordinate0_5};
-  constexpr Type const kMinus8_0{-8.0}, kMinus1_0{-1.0}, k0_0{}, k0_03125{0.03125}, k0_0625{0.0625}, k0_125{0.125},
-      k0_15625{0.15625}, k0_25{0.25}, k0_3125{0.3125}, k0_5{0.5}, k0_625{0.625}, k1_0{1.0}, k2_0{2.0}, k8_0{8.0};
-  Index_ const kBasisFunction0_0{kNumberOfBasisFunctions, {kIndex0, kIndex0}}, kBasisFunction1_0{
+  constexpr static ScalarIndex const kIndex0{};
+  constexpr static IndexLength const kNumberOfBasisFunctions{kLength4, kLength3},
+                                     kNonZeroBasisFunctionIndexLength{kLength3, kLength3};
+  constexpr static ParametricCoordinate_ const kParametricCoordinate{ScalarParametricCoordinate{0.75},
+                                                                     kParametricCoordinate0_5};
+  constexpr static Type const kMinus8_0{-8.0}, kMinus1_0{-1.0}, k0_0{}, k0_03125{0.03125}, k0_0625{0.0625},
+                              k0_125{0.125}, k0_15625{0.15625}, k0_25{0.25}, k0_3125{0.3125}, k0_5{0.5}, k0_625{0.625},
+                              k1_0{1.0}, k2_0{2.0}, k8_0{8.0};
+  static Index_ const kBasisFunction0_0{kNumberOfBasisFunctions, {kIndex0, kIndex0}}, kBasisFunction1_0{
       kNumberOfBasisFunctions, {kIndex1, kIndex0}}, kBasisFunction2_0{kNumberOfBasisFunctions, {kIndex2, kIndex0}},
           kBasisFunction3_0{kNumberOfBasisFunctions, {kIndex3, kIndex0}}, kBasisFunction0_1{kNumberOfBasisFunctions,
               {kIndex0, kIndex1}}, kBasisFunction1_1{kNumberOfBasisFunctions, {kIndex1, kIndex1}}, kBasisFunction2_1{

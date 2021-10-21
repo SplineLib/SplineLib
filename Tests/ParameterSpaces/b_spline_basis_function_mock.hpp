@@ -111,7 +111,7 @@ class ABSplineBasisFunctionMock : public virtual sources::parameter_spaces::BSpl
  protected:
   using Tolerance_ = sources::parameter_spaces::Tolerance;
 
-  constexpr static Tolerance_ const kEpsilon_ = sources::parameter_spaces::kEpsilon;
+  constexpr inline static Tolerance_ const &kEpsilon_ = sources::parameter_spaces::kEpsilon;
 };
 
 namespace mock_b_spline_basis_functions {

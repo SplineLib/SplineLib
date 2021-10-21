@@ -19,7 +19,6 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 #include "Sources/Splines/b_spline.hpp"
 #include "Sources/Utilities/error_handling.hpp"
 #include "Sources/Utilities/named_type.hpp"
-#include "Tests/ParameterSpaces/knot_vector_mock.hpp"
 #include "Tests/ParameterSpaces/parameter_space_mock.hpp"
 #include "Tests/VectorSpaces/vector_space_mock.hpp"
 
@@ -41,15 +40,15 @@ class BSplineSuite : public testing::Test {
   using VectorSpace_ = StrictMock_<vector_spaces::A3dVectorSpaceMock>;
   using Coordinate_ = VectorSpace_::Coordinate_;
 
-  constexpr static Coordinate const kCoordinate0_0_{0.0}, kCoordinate2_0_{2.0}, kCoordinate4_0_{4.0};
-  constexpr static Coordinate_ const kCoordinate8_{kCoordinate0_0_, kCoordinate4_0_, kCoordinate0_0_};
-  constexpr static Dimension const kDimension0_{}, kDimension1_{1};
-  constexpr static BSpline_::Knot_ const kKnot0_5_{0.5};
-  constexpr static Multiplicity const kMultiplicity2_{2};
-  constexpr static ParametricCoordinate const kParametricCoordinate0_0_{0.0};
-  constexpr static ParametricCoordinate_ const kParametricCoordinate_{ParametricCoordinate{0.75},
-                                                                      ParametricCoordinate{0.5}};
-  constexpr static sources::splines::Tolerance const &kEpsilon_ = sources::splines::kEpsilon;
+  constexpr inline static Coordinate const kCoordinate0_0_{0.0}, kCoordinate2_0_{2.0}, kCoordinate4_0_{4.0};
+  constexpr inline static Coordinate_ const kCoordinate8_{kCoordinate0_0_, kCoordinate4_0_, kCoordinate0_0_};
+  constexpr inline static Dimension const kDimension0_{}, kDimension1_{1};
+  constexpr inline static sources::splines::Tolerance const &kEpsilon_ = sources::splines::kEpsilon;
+  constexpr inline static BSpline_::Knot_ const kKnot0_5_{0.5};
+  constexpr inline static Multiplicity const kMultiplicity2_{2};
+  constexpr inline static ParametricCoordinate const kParametricCoordinate0_0_{0.0};
+  constexpr inline static ParametricCoordinate_ const kParametricCoordinate_{ParametricCoordinate{0.75},
+                                                                             ParametricCoordinate{0.5}};
 
   BSplineSuite();
 
@@ -100,8 +99,8 @@ TEST_F(BSplineSuite, IsEqualAndOperatorEqual) {
 
 // See NURBS book P3.20.
 TEST_F(BSplineSuite, Evaluate) {
-  constexpr Coordinate const kCoordinate9_0{9.0};
-  constexpr ParametricCoordinate const kParametricCoordinate1_0{1.0};
+  constexpr static Coordinate const kCoordinate9_0{9.0};
+  constexpr static ParametricCoordinate const kParametricCoordinate1_0{1.0};
 
   EXPECT_EQ(b_spline_({kParametricCoordinate1_0, kParametricCoordinate0_0_}),
             (Coordinate_{kCoordinate9_0, kCoordinate0_0_, kCoordinate0_0_}));
@@ -113,11 +112,12 @@ TEST_F(BSplineSuite, Evaluate) {
 
 // See NURBS book Eq. (3.24).
 TEST_F(BSplineSuite, EvaluateDerivative) {
-  constexpr Coordinate const kCoordinate12_0{12.0};
-  constexpr Derivative const kDerivative0{}, kDerivative1{1};
-  constexpr BSpline_::Derivative_ const kDerivative1_0{kDerivative1, kDerivative0},
+  constexpr static Coordinate const kCoordinate12_0{12.0};
+  constexpr static Derivative const kDerivative0{}, kDerivative1{1};
+  constexpr static BSpline_::Derivative_ const kDerivative1_0{kDerivative1, kDerivative0},
       kDerivative0_1{kDerivative0, kDerivative1}, kDerivative1_1{kDerivative1, kDerivative1};
-  constexpr ParametricCoordinate_ const kParametricCoordinate0{kParametricCoordinate0_0_, kParametricCoordinate0_0_};
+  constexpr static ParametricCoordinate_ const kParametricCoordinate0{kParametricCoordinate0_0_,
+                                                                      kParametricCoordinate0_0_};
 
   EXPECT_EQ(b_spline_(kParametricCoordinate_, {kDerivative0, kDerivative0}), b_spline_(kParametricCoordinate_));
   EXPECT_EQ(b_spline_(kParametricCoordinate0, kDerivative1_0), (Coordinate_{kCoordinate12_0, kCoordinate0_0_,
@@ -157,7 +157,7 @@ TEST_F(BSplineSuite, InsertKnot) {
 }
 
 TEST_F(BSplineSuite, RemoveKnot) {
-  constexpr Multiplicity const &kMultiplicity = sources::splines::kMultiplicity;
+  constexpr static Multiplicity const &kMultiplicity = sources::splines::kMultiplicity;
 
   SharedPointer<ParameterSpace_> parameter_space_remove{make_shared<ParameterSpace_>()},
       parameter_space{make_shared<ParameterSpace_>()}, parameter_space_unsuccessful{make_shared<ParameterSpace_>()};
@@ -247,7 +247,7 @@ TEST_F(BSplineSuite, ThrowIfNotParameterSpaceAndVectorSpaceDoNotMatch) {
 }
 
 TEST_F(BSplineSuite, ThrowIfNotDimensionIsInvalid) {
-  constexpr Dimension const kDimension2{2};
+  constexpr static Dimension const kDimension2{2};
 
   EXPECT_THROW(b_spline_.InsertKnot(kDimension2, kKnot0_5_), OutOfRange);
   EXPECT_THROW(b_spline_.RemoveKnot(kDimension2, kKnot0_5_, kEpsilon_), OutOfRange);

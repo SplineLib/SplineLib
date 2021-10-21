@@ -41,22 +41,22 @@ class ParameterSpaceSuite : public testing::Test {
   using Knot_ = ParameterSpace_::Knot_;
   using NumberOfBasisFunctions_ = ParameterSpace_::NumberOfBasisFunctions_;
 
-  constexpr static BinomialRatios_::value_type const kOneSixth_{1.0 / 6.0}, kOneFourth_{0.25}, kOneThird_{1.0 / 3.0},
-                                                     kOneHalf_{0.5}, kTwoThirds_{2.0 / 3.0}, kThreeFourth_{0.75};
-  constexpr static Degree const kDegree2_{2};
-  constexpr static Degrees_ const kDegrees_{kDegree2_, kDegree2_}, kDegreesElevatedTwice_{Degree{4}, kDegree2_};
-  constexpr static Derivative const kDerivative0_{}, kDerivative1_{1};
-  constexpr static Derivative_ const kDerivative_{kDerivative1_, kDerivative0_};
-  constexpr static Dimension const kDimension0_{}, kDimension1_{1};
-  constexpr static Index const kIndex2_{2};
-  constexpr static Knot_ const k0_0_{}, k0_5_{0.5}, k1_0_{1.0}, k5_0_{5.0};
-  constexpr static Length const kLength3_{3}, kLength8_{8};
-  constexpr static Multiplicity const kMultiplicity2_{2};
-  constexpr static NumberOfBasisFunctions_ const kNumberOfBasisFunctions_{kLength8_, kLength3_},
-                                                 kNumberOfNonZeroBasisFunctions_{kLength3_, kLength3_};
-  constexpr static Tolerance_ const &kEpsilon_ = sources::parameter_spaces::kEpsilon;
-  constexpr static ParametricCoordinate const kPerturbation_{1.1 * kEpsilon_};
-  constexpr static ParameterSpace_::ParametricCoordinate_ kParametricCoordinate_{k1_0_, k0_5_};
+  constexpr inline static BinomialRatios_::value_type const kOneSixth_{1.0 / 6.0}, kOneFourth_{0.25},
+      kOneThird_{1.0 / 3.0}, kOneHalf_{0.5}, kTwoThirds_{2.0 / 3.0}, kThreeFourth_{0.75};
+  constexpr inline static Degree const kDegree2_{2};
+  constexpr inline static Degrees_ const kDegrees_{kDegree2_, kDegree2_}, kDegreesElevatedTwice_{Degree{4}, kDegree2_};
+  constexpr inline static Derivative const kDerivative0_{}, kDerivative1_{1};
+  constexpr inline static Derivative_ const kDerivative_{kDerivative1_, kDerivative0_};
+  constexpr inline static Dimension const kDimension0_{}, kDimension1_{1};
+  constexpr inline static Index const kIndex2_{2};
+  constexpr inline static Knot_ const k0_0_{}, k0_5_{0.5}, k1_0_{1.0}, k5_0_{5.0};
+  constexpr inline static Length const kLength3_{3}, kLength8_{8};
+  constexpr inline static Multiplicity const kMultiplicity2_{2};
+  constexpr inline static NumberOfBasisFunctions_ const kNumberOfBasisFunctions_{kLength8_, kLength3_},
+                                                        kNumberOfNonZeroBasisFunctions_{kLength3_, kLength3_};
+  constexpr inline static Tolerance_ const &kEpsilon_ = sources::parameter_spaces::kEpsilon;
+  constexpr inline static ParametricCoordinate const kPerturbation_{1.1 * kEpsilon_};
+  constexpr inline static ParameterSpace_::ParametricCoordinate_ kParametricCoordinate_{k1_0_, k0_5_};
   inline static BinomialRatios_ const kBinomialRatios_{kOneHalf_, kOneHalf_};
   inline static ElevationInformation_ const kElevationInformationFirst_{kIndex2_, {{kOneThird_, kTwoThirds_},
       {kTwoThirds_, kOneThird_}}}, kElevationInformationSecond_{Index{3}, {{kOneFourth_, kThreeFourth_},
@@ -67,8 +67,9 @@ class ParameterSpaceSuite : public testing::Test {
   inline static ParameterSpace_::InsertionInformation_ const kInsertionInformationFirst_{kIndex2_, {kKnotRatiosFirst_}},
       kInsertionInformationSecond_{kIndex2_, {kKnotRatiosSecond_}}, kInsertionInformationTwice_{kIndex2_,
           {kKnotRatiosFirst_, kKnotRatiosSecond_}};
-  inline static ParameterSpace_::KnotVectors_ const kKnotVectors_{mock_knot_vectors::NurbsBookExa2_2()};
-  inline static ParameterSpace2d const kParameterSpaceElevatedOnce_{mock_knot_vectors::NurbsBookExa2_2IncreasedOnce(),
+  // TODO(all): static initialization order fiasco?
+  ParameterSpace_::KnotVectors_ const kKnotVectors_{mock_knot_vectors::NurbsBookExa2_2()};
+  ParameterSpace2d const kParameterSpaceElevatedOnce_{mock_knot_vectors::NurbsBookExa2_2IncreasedOnce(),
       Degrees_{Degree{3}, kDegree2_}, mock_b_spline_basis_functions::NurbsBookExa2_2ElevatedOnce()},
           kParameterSpaceInserted_{mock_knot_vectors::NurbsBookExa2_2Inserted(), kDegrees_,
               mock_b_spline_basis_functions::NurbsBookExa2_2Inserted()};
@@ -201,7 +202,7 @@ TEST_F(ParameterSpaceSuite, ElevateDegreeDependingOnRecreateBasisFunctions) {
 }
 
 TEST_F(ParameterSpaceSuite, ReduceDegreeDependingOnRecreateBasisFunctions) {
-  constexpr Degree const kDegree1{1};
+  constexpr static Degree const kDegree1{1};
 
   ParameterSpace_ parameter_space_reduce_once, parameter_space_reduce_twice;
   ASSERT_NO_THROW(parameter_space_reduce_once = ParameterSpace_(mock_knot_vectors::NurbsBookExa2_2IncreasedTwice(),
@@ -223,7 +224,7 @@ TEST_F(ParameterSpaceSuite, ReduceDegreeDependingOnRecreateBasisFunctions) {
 }
 
 TEST_F(ParameterSpaceSuite, Sample) {
-  constexpr ParametricCoordinate const k2_5{2.5};
+  constexpr static ParametricCoordinate const k2_5{2.5};
 
   EXPECT_EQ(parameter_space_.Sample({kLength3_, Length{2}}), (ParameterSpace_::ParametricCoordinates_{{k0_0_, k0_0_},
                 {k2_5, k0_0_}, {k5_0_, k0_0_}, {k0_0_, k1_0_}, {k2_5, k1_0_}, {k5_0_, k1_0_}}));
@@ -253,7 +254,7 @@ TEST_F(ParameterSpaceSuite, ThrowIfKnotVectorsAreNotClamped) {
 }
 
 TEST_F(ParameterSpaceSuite, ThrowIfDimensionIsInvalid) {
-  constexpr Dimension const kDimension2{2};
+  constexpr static Dimension const kDimension2{2};
 
   EXPECT_THROW(parameter_space_.InsertKnot(kDimension2, k0_5_), OutOfRange);
   EXPECT_THROW(parameter_space_.RemoveKnot(kDimension2, k0_5_), OutOfRange);
@@ -262,7 +263,7 @@ TEST_F(ParameterSpaceSuite, ThrowIfDimensionIsInvalid) {
 }
 
 TEST_F(ParameterSpaceSuite, ThrowIfParametricCoordinateIsOutsideScope) {
-  constexpr ParametricCoordinate const kMinus0_5{-0.5};
+  constexpr static ParametricCoordinate const kMinus0_5{-0.5};
 
   EXPECT_THROW(parameter_space_.FindFirstNonZeroBasisFunction({kMinus0_5, k0_5_}), OutOfRange);
   EXPECT_THROW(parameter_space_.InsertKnot(kDimension0_, kMinus0_5), OutOfRange);

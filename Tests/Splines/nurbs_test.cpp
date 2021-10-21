@@ -43,13 +43,13 @@ class NurbsSuite : public testing::Test {
   using WeightedVectorSpace_ = StrictMock_<vector_spaces::A3dWeightedVectorSpaceMock>;
   using Coordinate_ = Nurbs_::Coordinate_;
 
-  constexpr static Coordinate const kCoordinate0_0_{0.0}, kCoordinate1_0_{1.0};
-  constexpr static Dimension const kDimension0_{};
-  constexpr static Nurbs_::Knot_ const kKnot0_5_{0.5};
-  constexpr static sources::splines::Tolerance const &kEpsilon_ = sources::splines::kEpsilon;
-  constexpr static ParametricCoordinate const kParametricCoordinate0_0_{0.0}, kParametricCoordinate0_5_{0.5};
-  constexpr static ParametricCoordinate_ const kParametricCoordinate_{kParametricCoordinate0_5_,
-                                                                      kParametricCoordinate0_5_};
+  constexpr inline static Coordinate const kCoordinate0_0_{0.0}, kCoordinate1_0_{1.0};
+  constexpr inline static Dimension const kDimension0_{};
+  constexpr inline static sources::splines::Tolerance const &kEpsilon_ = sources::splines::kEpsilon;
+  constexpr inline static Nurbs_::Knot_ const kKnot0_5_{0.5};
+  constexpr inline static ParametricCoordinate const kParametricCoordinate0_0_{0.0}, kParametricCoordinate0_5_{0.5};
+  constexpr inline static ParametricCoordinate_ const kParametricCoordinate_{kParametricCoordinate0_5_,
+                                                                             kParametricCoordinate0_5_};
 
   NurbsSuite();
 
@@ -99,8 +99,8 @@ TEST_F(NurbsSuite, IsEqualAndOperatorEqual) {
 }
 
 TEST_F(NurbsSuite, Evaluate) {
-  constexpr Coordinate const kCoordinate2_0{2.0}, kCoordinate3_0{3.0};
-  constexpr ParametricCoordinate const kParametricCoordinate1_0{1.0};
+  constexpr static Coordinate const kCoordinate2_0{2.0}, kCoordinate3_0{3.0};
+  constexpr static ParametricCoordinate const kParametricCoordinate1_0{1.0};
 
   // See NURBS book P4.23.
   EXPECT_EQ(nurbs_({kParametricCoordinate1_0, kParametricCoordinate0_0_}), (Coordinate_{kCoordinate0_0_,
@@ -117,14 +117,15 @@ TEST_F(NurbsSuite, Evaluate) {
 TEST_F(NurbsSuite, EvaluateDerivative) {
   using Derivative = Nurbs_::Derivative_;
 
-  constexpr Coordinate const kCoordinateMinus2_78528{-2.78528}, kCoordinateMinus2_2528{-2.2528},
+  constexpr static Coordinate const kCoordinateMinus2_78528{-2.78528}, kCoordinateMinus2_2528{-2.2528},
       kCoordinateMinus1_6384{-1.6384}, kCoordinateMinus0_2048{-0.2048}, kCoordinate0_16{0.16}, kCoordinate0_128{0.128},
           kCoordinate0_256{0.256}, kCoordinate0_32{0.32}, kCoordinate0_5{0.5}, kCoordinate1_536{1.536},
               kCoordinate1_92{1.92};
-  constexpr splinelib::Derivative const kDerivative0{}, kDerivative1{1}, kDerivative2{2};
-  constexpr Derivative const kDerivative1_0{kDerivative1, kDerivative0}, kDerivative0_1{kDerivative0, kDerivative1},
-                             kDerivative1_1{kDerivative1, kDerivative1}, kDerivative2_2{kDerivative2, kDerivative2};
-  constexpr ParametricCoordinate_ const kParametricCoordinate0{kParametricCoordinate0_0_, kParametricCoordinate0_0_};
+  constexpr static splinelib::Derivative const kDerivative0{}, kDerivative1{1}, kDerivative2{2};
+  constexpr static Derivative const kDerivative1_0{kDerivative1, kDerivative0}, kDerivative0_1{kDerivative0,
+      kDerivative1}, kDerivative1_1{kDerivative1, kDerivative1}, kDerivative2_2{kDerivative2, kDerivative2};
+  constexpr static ParametricCoordinate_ const kParametricCoordinate0{kParametricCoordinate0_0_,
+                                                                      kParametricCoordinate0_0_};
 
   // See NURBS book Eqs. (4.24–4.26), (4.22–4.23), & (4.20).
   EXPECT_EQ(nurbs_(kParametricCoordinate_, Derivative{kDerivative0, kDerivative0}), nurbs_(kParametricCoordinate_));
@@ -190,7 +191,7 @@ TEST_F(NurbsSuite, ThrowIfNotParameterSpaceAndVectorSpaceDoNotMatch) {
 }
 
 TEST_F(NurbsSuite, ThrowIfNotDimensionIsInvalid) {
-  constexpr Dimension const kDimension2{2};
+  constexpr static Dimension const kDimension2{2};
 
   EXPECT_THROW(nurbs_.InsertKnot(kDimension2, kKnot0_5_), OutOfRange);
   EXPECT_THROW(nurbs_.RemoveKnot(kDimension2, kKnot0_5_, kEpsilon_), OutOfRange);

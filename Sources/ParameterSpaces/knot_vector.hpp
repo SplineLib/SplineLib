@@ -26,7 +26,7 @@ namespace splinelib::sources::parameter_spaces {
 //
 // Example:
 //   using Knot = KnotVector::Knot_;
-//   constexpr Knot const kStart{}, kEnd{1.0};
+//   constexpr static Knot const kStart{}, kEnd{1.0};
 //   KnotVector knot_vector{kStart, kStart, Knot{0.5}, kEnd, kEnd};  // Knot vector U is {0.0, 0.0, 0.5, 1.0, 1.0}.
 //   int const &number_of_knots = knot_vector.GetSize();  // Stores m+1 = 5 in number_of_knots.
 //   Knot const &zero_point_five = knot_vector[2];  // Third knot u is 0.5.
@@ -105,6 +105,7 @@ template<int parametric_dimensionality>
 using KnotVectors = Array<SharedPointer<KnotVector>, parametric_dimensionality>;
 template<int parametric_dimensionality>
 using KnotVectorsOutputInformation = Array<KnotVector::OutputInformation_, parametric_dimensionality>;
+
 }  // namespace splinelib::sources::parameter_spaces
 
 #endif  // SOURCES_PARAMETERSPACES_KNOT_VECTOR_HPP_

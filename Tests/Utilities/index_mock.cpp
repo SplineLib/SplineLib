@@ -20,15 +20,15 @@ namespace splinelib::tests::utilities {
 using ScalarIndex = A2dIndexMock::Index_;
 using testing::ReturnRef, testing::ReturnRefOfCopy;
 
-constexpr Dimension const kDimension0{}, kDimension1{1};
-constexpr ScalarIndex const kIndex1{1};
+constexpr inline static Dimension const kDimension0{}, kDimension1{1};
+constexpr inline static ScalarIndex const kIndex1{1};
 
 ScalarIndex const & A2dIndexMock::operator[](Dimension const &dimension) const {
   return OperatorSubscript(dimension);
 }
 
 void A2dIndexMock::NurbsBookExa2_2_1_0() {
-  constexpr ScalarIndex const kIndex0{};
+  constexpr static ScalarIndex const kIndex0{};
 
   length_ = Length_{Length{8}, Length{3}};
   value_ = Value_{kIndex1, kIndex0};

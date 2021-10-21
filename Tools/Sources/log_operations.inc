@@ -19,7 +19,7 @@ LogInformation Read(String const name_log) {
   namespace system_operations = splinelib::sources::utilities::system_operations;
   using std::get, std::tuple_element_t, string_operations::ConvertToNumbers, string_operations::StartsWith;
 
-  constexpr bool const kIsSampler{log_type == LogType::kSampler};
+  constexpr static bool const &kIsSampler = (log_type == LogType::kSampler);
 
   LogInformation log_information{};
 #ifndef NDEBUG

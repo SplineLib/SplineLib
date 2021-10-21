@@ -36,8 +36,8 @@ using LocalTime = std::tm;
 using Mode = std::ios_base::openmode;
 using OutputStream = std::ofstream;
 
-constexpr sources::utilities::system_operations::Mode const kModeAppend{std::ios_base::app}, kModeIn{std::ios_base::in},
-                                                            kModeOut{std::ios_base::out};
+constexpr inline static Mode const &kModeAppend = std::ios_base::app, &kModeIn = std::ios_base::in,
+                                   &kModeOut = std::ios_base::out;
 
 LocalTime GetLocalTime();
 

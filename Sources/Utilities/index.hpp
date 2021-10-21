@@ -48,7 +48,7 @@ bool operator!=(Index<size> const &lhs, Index<size> const &rhs);
 //   int const &twenty_four = index.GetTotalNumberOfIndices();
 //   ++index;  // Moves index from value {0, 0, 0} to value {1, 0, 0}.
 //   using Index1d = splinelib::Index;
-//   constexpr Index1d const k1{1};
+//   constexpr static Index1d const k1{1};
 //   index += TripleIndex::Value_{k1, k1, Index1d{3}};  // Moves index to its maximum {2, 1, 3}.
 //   Index1d const &twenty_three = index.GetIndex1d();  // The maximum one-dimensional index is 23.
 //   ++index;  // Index becomes invalid when moving from {2, 1, 3} to {0, 0, 0}.

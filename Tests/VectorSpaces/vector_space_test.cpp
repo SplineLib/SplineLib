@@ -32,9 +32,10 @@ class VectorSpaceSuite : public testing::Test {
   using Coordinate_ = VectorSpace_::Coordinate_;
   using Coordinates_ = VectorSpace_::Coordinates_;
 
-  constexpr static Index const kIndex4_{4};
-  constexpr static Coordinate const k0_0_{0.0}, k2_0_{2.0}, k3_0_{3.0}, k4_0_{4.0}, k5_0_{5.0}, k6_0_{6.0}, k9_0_{9.0};
-  constexpr static Coordinate_ const kCoordinate0_{k0_0_, k0_0_, k0_0_}, kCoordinate4_{k0_0_, k2_0_, k2_0_};
+  constexpr inline static Index const kIndex4_{4};
+  constexpr inline static Coordinate const k0_0_{0.0}, k2_0_{2.0}, k3_0_{3.0}, k4_0_{4.0}, k5_0_{5.0}, k6_0_{6.0},
+                                           k9_0_{9.0};
+  constexpr inline static Coordinate_ const kCoordinate0_{k0_0_, k0_0_, k0_0_}, kCoordinate4_{k0_0_, k2_0_, k2_0_};
 
   Coordinates_ coordinates_{kCoordinate0_, Coordinate_{k3_0_, k0_0_, k3_0_}, Coordinate_{k6_0_, k0_0_, k3_0_},
       Coordinate_{k9_0_, k0_0_, k0_0_}, kCoordinate4_, Coordinate_{k3_0_, k2_0_, k5_0_}, Coordinate_{k6_0_, k2_0_,
@@ -45,7 +46,7 @@ class VectorSpaceSuite : public testing::Test {
 };
 
 TEST_F(VectorSpaceSuite, IsEqualAndOperatorEqual) {
-  constexpr sources::vector_spaces::Tolerance const &kEpsilon = sources::vector_spaces::kEpsilon;
+  constexpr static sources::vector_spaces::Tolerance const &kEpsilon = sources::vector_spaces::kEpsilon;
 
   VectorSpace_ vector_space;
   ASSERT_NO_THROW(vector_space = VectorSpace_{coordinates_});
@@ -101,7 +102,7 @@ TEST_F(VectorSpaceSuite, Write) {
 
 #ifndef NDEBUG
 TEST_F(VectorSpaceSuite, ThrowIfIndexValueInvalid) {
-  constexpr Index const kIndex12{12};
+  constexpr static Index const kIndex12{12};
 
   EXPECT_THROW(vector_space_[kIndex12], OutOfRange);
   EXPECT_THROW(vector_space_.Replace(kIndex12, kCoordinate0_), OutOfRange);

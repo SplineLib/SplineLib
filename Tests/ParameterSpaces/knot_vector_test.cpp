@@ -27,14 +27,14 @@ class KnotVectorSuite : public testing::Test {
  protected:
   using Knots_ = KnotVector::Knots_;
 
-  constexpr static Index kIndex8_{8};
-  constexpr static sources::parameter_spaces::Tolerance const &kEpsilon_ = sources::parameter_spaces::kEpsilon,
-                                                              &kTolerance_ = (1.2 * kEpsilon_);
-  constexpr static Multiplicity const &kMultiplicity1_ = sources::parameter_spaces::kMultiplicity;
-  constexpr static Multiplicity const kMultiplicity2_{2};
-  constexpr static ParametricCoordinate const k0_0_{}, k0_5_{0.5}, k0_75_{0.75}, k1_0_{1.0}, kPerturbation_{1.1 *
-                                                                                                            kEpsilon_};
-  constexpr static ParametricCoordinate const &k0_5Perturbed_ = (k0_5_ - kPerturbation_),
+  constexpr inline static Index kIndex8_{8};
+  constexpr inline static sources::parameter_spaces::Tolerance const &kEpsilon_ = sources::parameter_spaces::kEpsilon,
+                                                                     &kTolerance_ = (1.2 * kEpsilon_);
+  constexpr inline static Multiplicity const &kMultiplicity1_ = sources::parameter_spaces::kMultiplicity;
+  constexpr inline static Multiplicity const kMultiplicity2_{2};
+  constexpr inline static ParametricCoordinate const k0_0_{}, k0_5_{0.5}, k0_75_{0.75}, k1_0_{1.0},
+                                                     kPerturbation_{1.1 * kEpsilon_};
+  constexpr inline static ParametricCoordinate const &k0_5Perturbed_ = (k0_5_ - kPerturbation_),
       &k0_75Perturbed_ = (k0_75_ - kPerturbation_), &k1_0Minus_ = (k1_0_ - kPerturbation_);
   inline static Knots_ const kKnotsPerturbed{k0_0_, k0_0_, k0_0_, k0_5_, k0_5Perturbed_, k0_75_, k1_0_, k1_0_, k1_0_};
 
@@ -77,7 +77,7 @@ TEST_F(KnotVectorSuite, DoesParametricCoordinateEqualBackDependingOnGetBack) {
 
 TEST_F(KnotVectorSuite, DoesParametricCoordinateEqualFrontOrBackDependingOnGetFrontAndDoesParametricCoordinateEqualBack)
 {  // NOLINT(whitespace/braces)
-  constexpr ParametricCoordinate const k0_0Plus{k0_0_ + kPerturbation_};
+  constexpr static ParametricCoordinate const k0_0Plus{k0_0_ + kPerturbation_};
 
   EXPECT_TRUE(knot_vector_.DoesParametricCoordinateEqualFrontOrBack(k0_0_));
   EXPECT_TRUE(knot_vector_.DoesParametricCoordinateEqualFrontOrBack(k1_0_));
@@ -88,7 +88,7 @@ TEST_F(KnotVectorSuite, DoesParametricCoordinateEqualFrontOrBackDependingOnGetFr
 }
 
 TEST_F(KnotVectorSuite, FindSpan) {
-  constexpr KnotSpan const kKnotSpan5{5};
+  constexpr static KnotSpan const kKnotSpan5{5};
 
   EXPECT_EQ(knot_vector_.FindSpan(k0_0_), KnotSpan{2});
   EXPECT_EQ(knot_vector_.FindSpan(k0_75_), kKnotSpan5);
@@ -114,7 +114,7 @@ TEST_F(KnotVectorSuite, GetUniqueKnots) {
 }
 
 TEST_F(KnotVectorSuite, Insert) {
-  constexpr ParametricCoordinate const kKnot{0.25};
+  constexpr static ParametricCoordinate const kKnot{0.25};
 
   EXPECT_NO_THROW(knot_vector_.Insert(kKnot));
   ASSERT_NO_THROW(knots_.insert(knots_.begin() + 3, kKnot));
@@ -181,7 +181,7 @@ TEST_F(KnotVectorSuite, DecreaseMultiplicitiesDependingOnGetUniqueKnots) {
 TEST_F(KnotVectorSuite, Write) {
   using sources::utilities::string_operations::Write;
 
-  String const kZero{Write(k0_0_)}, kZeroFive{Write(k0_5_)}, kOne{Write(k1_0_)};
+  static String const kZero{Write(k0_0_)}, kZeroFive{Write(k0_5_)}, kOne{Write(k1_0_)};
 
   EXPECT_EQ(knot_vector_.Write(), (KnotVector::OutputInformation_{kZero, kZero, kZero, kZeroFive, kZeroFive,
                                                                   Write(k0_75_), kOne, kOne, kOne}));
@@ -208,7 +208,7 @@ TEST_F(KnotVectorSuite, ThrowIfIndexIsInvalid) {
 }
 
 TEST_F(KnotVectorSuite, ThrowIfParametricCoordinateIsOutsideScopeDependingOnGetFrontAndGetBack) {
-  constexpr ParametricCoordinate const k1_0Plus{k1_0_ + kPerturbation_};
+  constexpr static ParametricCoordinate const k1_0Plus{k1_0_ + kPerturbation_};
 
   EXPECT_THROW(knot_vector_.FindSpan(k1_0Plus), OutOfRange);
   EXPECT_THROW(knot_vector_.Insert(k1_0Plus), OutOfRange);

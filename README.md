@@ -1,5 +1,5 @@
 # SplineLib
-Library for spline manipulation.
+C++ Library for spline manipulation.  Its python bindings are called splinelyp.
 
 ## Features
 Functionalities:
@@ -33,14 +33,15 @@ COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER I
 OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 ## Getting Started
-SplineLib can be compiled using, e.g., *apple-clang (>= 12)*, *clang (>= 10)* or *GCC (>= 9.3)*.  Start off by cloning
-the SplineLib repository and changing to SplineLib's root directory
+SplineLib can be compiled using, e.g., <em>apple-clang (>= 12)</em>, <em>clang (>= 10)</em> or <em>GCC (>= 9.3)</em>.
+Start off by cloning the SplineLib repository and changing to SplineLib's root directory
 
     $ git clone https://github.com/SplineLib/SplineLib.git && cd SplineLib
 
-SplineLib depends on *pugixml* and *GoogleTest* (if you do not disable testing).  The following deployment instructions
-for SplineLib differ depending on whether you want to use 1.) <em>spack</em> or 2.) <em>CMake</em>.  Please skip the
-additional instructions provided for using SplineLib on CLAIX if you use a system different from CLAIX.
+SplineLib depends on <em>pugixml</em>, <em>GoogleTest</em> (if you do not disable testing), and <em>pybind11</em> (if 
+you do not disable python bindings).  The following deployment instructions for SplineLib differ depending on whether
+you want to use 1.) <em>spack</em> or  2.) <em>CMake</em>.  Please skip the additional instructions provided for using
+SplineLib on CLAIX if you use a system different from CLAIX.
 
 <details><summary><strong>Preparations on CLAIX</strong></summary><p>
 The following commands prepare your environment on CLAIX for deploying SplineLib

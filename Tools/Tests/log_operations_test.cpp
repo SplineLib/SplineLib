@@ -31,15 +31,15 @@ class LogOperationsSuite : public testing::Test {
  protected:
   using Index_ = SplinesConsidered::value_type;
 
-  constexpr static Index_ const kIndex0_{};
-  constexpr static NumberOfParametricCoordinates::value_type const kLength10{10};
+  constexpr inline static Index_ const kIndex0_{};
+  constexpr inline static NumberOfParametricCoordinates::value_type const kLength10{10};
   inline static SplinesConsidered const kSplinesConsidered_{kIndex0_};
   NumbersOfParametricCoordinates numbers_of_parametric_coordinates_{{kLength10, kLength10}};
 };
 
 TEST_F(LogOperationsSuite, Append) {
-  constexpr Index_ const kIndex1_{1};
-  String const kInput{"# Replace by path to input file!"}, kOutput{"# Replace by path to output file!"};
+  constexpr static Index_ const kIndex1_{1};
+  static String const kInput{"# Replace by path to input file!"}, kOutput{"# Replace by path to output file!"};
 
   EXPECT_NO_THROW(Append(log_invalid_splines, (LogInformation{kInput, kOutput, {}, {}})));
   EXPECT_NO_THROW(Append(log_invalid_splines, (LogInformation{kInput, kOutput, {kIndex0_}, {}})));
@@ -74,7 +74,7 @@ TEST_F(LogOperationsSuite, SkipBlankLineAndReadSectionIdentifier) {
 }
 
 TEST_F(LogOperationsSuite, RemoveSplinesOfTooHighDimensionalities) {
-  using SplineItem = testing::StrictMock<splinelib::tests::splines::ASplineItem>;
+  using SplineItem = testing::StrictMock<splinelib::tests::splines::ASplineItemMock>;
 
   SharedPointer<SplineItem> const b_spline_surface{std::make_shared<SplineItem>()};
   b_spline_surface->NurbsBookExe3_8();

@@ -26,7 +26,7 @@ namespace splinelib::tests::input_output::operations {
 using namespace sources::input_output::operations;  // NOLINT(build/namespaces)
 
 TEST(OperationsSuite, DetermineFileFormat) {
-  constexpr FileFormat const kIges{FileFormat::kIges};
+  constexpr static FileFormat const kIges{FileFormat::kIges};
 
   EXPECT_EQ(DetermineFileFormat(iges_file_one), kIges);
   EXPECT_EQ(DetermineFileFormat(iges_file_two), kIges);
@@ -43,7 +43,7 @@ TEST(OperationsSuite, Read) {
 }
 
 TEST(OperationsSuite, CastToSpline) {
-  SplineEntry const b_spline_entry{std::make_shared<splines::A2d3dBSplineMock>()};
+  static SplineEntry const b_spline_entry{std::make_shared<splines::A2d3dBSplineMock>()};
 
   EXPECT_TRUE((CastToSpline<2, 3, false>(b_spline_entry)));
   EXPECT_FALSE((CastToSpline<1, 3, false>(b_spline_entry)));

@@ -27,14 +27,14 @@ using NamedType = sources::utilities::NamedType<Name, Type>;
 using Double = NamedType<struct DoubleName, double>;
 using Int = NamedType<struct IntName, int>;
 
-constexpr Double const k0_5{0.5}, k8_765432101234567{8.765432101234567};
-constexpr Int const kInt{1};
-constexpr Precision const kPrecision{4};
-String const kHelloWorld{"hello world"}, kHelloWorldCapitalized{"Hello World"}, kZero{"0"},
-             kZeroPointZeroEightZeroNineSeven{"80.97e-3"}, kZeroPointFive{"0.5"}, kOne{"1"};
+constexpr inline static Double const k0_5{0.5}, k8_765432101234567{8.765432101234567};
+constexpr inline static Int const kInt{1};
+constexpr inline static Precision const kPrecision{4};
+inline static String const kHelloWorld{"hello world"}, kHelloWorldCapitalized{"Hello World"}, kZero{"0"},
+                           kZeroPointZeroEightZeroNineSeven{"80.97e-3"}, kZeroPointFive{"0.5"}, kOne{"1"};
 
 TEST(StringOperationsSuite, EndsWith) {
-  const String kWorld{"world"};
+  static String const kWorld{"world"};
 
   EXPECT_TRUE(EndsWith(kHelloWorld, kWorld));
   EXPECT_FALSE(EndsWith(kHelloWorldCapitalized, kWorld));
@@ -43,7 +43,7 @@ TEST(StringOperationsSuite, EndsWith) {
 }
 
 TEST(StringOperationsSuite, StartsWith) {
-  const String kHello{"hello"};
+  static String const kHello{"hello"};
 
   EXPECT_TRUE(StartsWith(kHelloWorld, kHello));
   EXPECT_FALSE(StartsWith(kHelloWorldCapitalized, kHello));
@@ -52,7 +52,7 @@ TEST(StringOperationsSuite, StartsWith) {
 }
 
 TEST(StringOperationsSuite, Append) {
-  String const kAppend{"append"}, kDelimiter{","}, kMore{"more"};
+  static String const kAppend{"append"}, kDelimiter{","}, kMore{"more"};
 
   String string{"test"};
   EXPECT_NO_THROW(Append(string, kDelimiter, " append"));
@@ -66,7 +66,7 @@ TEST(StringOperationsSuite, Append) {
 }
 
 TEST(StringOperationsSuite, TrimCharacter) {
-  String const kSevenEightEight{"7.88"};
+  static String const kSevenEightEight{"7.88"};
 
   EXPECT_EQ(TrimCharacter(" 7.88 ", ' '), kSevenEightEight);
   EXPECT_EQ(TrimCharacter(kSevenEightEight, ' '), kSevenEightEight);
@@ -81,11 +81,11 @@ TEST(StringOperationsSuite, SplitAtDelimiter) {
 TEST(StringOperationsSuite, ConvertToNumber) {
   using sources::utilities::numeric_operations::IsEqual;
 
-  String const kMinusEightPointZeroNineSeven{"-80.97e-01"}, kMinusEight{"-8"},
-               kMinusZeroPointZeroZeroZeroZeroNine{"-0.9e-4"}, kMinusZero{"-0.0e-4"}, kEight{"8"}, kPlusEight{"+8"},
-               kEightPointZeroNineSeven{"80.97e-01"}, kEightyPointNineSeven{"80.97"},
-               kEightHundredAndNinePointSevenLower{"80.97e1"}, kEightHundredAndNinePointSevenUpper{"80.97E1"},
-               kEightHundredAndNinePointSevenPlus{"80.97e+1"};
+  static String const kMinusEightPointZeroNineSeven{"-80.97e-01"}, kMinusEight{"-8"},
+                      kMinusZeroPointZeroZeroZeroZeroNine{"-0.9e-4"}, kMinusZero{"-0.0e-4"}, kEight{"8"},
+                      kPlusEight{"+8"}, kEightPointZeroNineSeven{"80.97e-01"}, kEightyPointNineSeven{"80.97"},
+                      kEightHundredAndNinePointSevenLower{"80.97e1"}, kEightHundredAndNinePointSevenUpper{"80.97E1"},
+                      kEightHundredAndNinePointSevenPlus{"80.97e+1"};
 
   EXPECT_TRUE(IsEqual(ConvertToNumber<double>(kEight), 8.0));
   EXPECT_TRUE(IsEqual(ConvertToNumber<double>(kMinusEight), -8.0));
@@ -120,7 +120,7 @@ TEST(StringOperationsSuite, ConvertToNumber) {
 }
 
 TEST(StringOperationsSuite, ConvertToNumbers) {
-  String const kComma{"-6.7,80.97e-3,-2.27E2,1.1e+3,-0.0E+03,0.2e-0,1"};
+  static String const kComma{"-6.7,80.97e-3,-2.27E2,1.1e+3,-0.0E+03,0.2e-0,1"};
 
   EXPECT_EQ(ConvertToNumbers<Double>(kComma, ','),
             (Vector<Double>{Double{-6.7}, Double{80.97e-3}, Double{-2.27E2}, Double{1.1e+3}, Double{-0.0E+03},
@@ -130,8 +130,8 @@ TEST(StringOperationsSuite, ConvertToNumbers) {
 TEST(StringOperationsSuite, Write) {
   using StringArray = StringArray<2>;
 
-  String const kDouble{"8.76543210123457"}, kDoubleTruncated{"8.765"};
-  Array<Double, 2> const kDoubles{k0_5, k8_765432101234567};
+  constexpr static Array<Double, 2> const kDoubles{k0_5, k8_765432101234567};
+  static String const kDouble{"8.76543210123457"}, kDoubleTruncated{"8.765"};
 
   EXPECT_EQ(Write(k0_5), kZeroPointFive);
   EXPECT_EQ(Write(k8_765432101234567), kDouble);

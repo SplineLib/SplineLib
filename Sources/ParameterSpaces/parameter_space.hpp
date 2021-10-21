@@ -54,7 +54,7 @@ bool operator==(ParameterSpace<parametric_dimensionality> const &lhs,
 //   ParameterSpace2d::KnotVectors_::value_type const &kKnotVector = std::make_shared<KnotVector>({k0_0, k0_0, k0_0,
 //                                                                                                 k1_0, k1_0, k1_0});
 //   ParameterSpace2d parameter_space{{kKnotVector, kKnotVector}, {Degree{2}, Degree{2}}}};
-//   constexpr ParametricCoordinate const k0_5{0.5};
+//   constexpr static ParametricCoordinate const k0_5{0.5};
 //   ParameterSpace2d::ParametricCoordinate_ const kParametricCoordinate{k0_5, k0_5};  // Set u = {0.5, 0.5}.
 //   // Find the first basis function whose support contains u = {0.5, 0.5}.
 //   ParameterSpace2d::Index_ const &non_zero = parameter_space.FindFirstNonZeroBasisFunction(kParametricCoordinate);

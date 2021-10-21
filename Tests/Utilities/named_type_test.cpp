@@ -28,8 +28,8 @@ class NamedTypeSuite : public testing::Test {
   using TestTypeDouble_ = NamedType<struct TestTypeDoubleName, double>;
   using TestTypeInt_ = NamedType<struct TestTypeIntName, int>;
 
-  constexpr static TestTypeDouble_ const kMinus0_5_{-0.5}, k1_0_{1.0}, k2_0_{2.0};
-  constexpr static TestTypeInt_ const k0_{}, k1_{1}, k2_{2}, k3_{3}, k10_{10};
+  constexpr inline static TestTypeDouble_ const kMinus0_5_{-0.5}, k1_0_{1.0}, k2_0_{2.0};
+  constexpr inline static TestTypeInt_ const k0_{}, k1_{1}, k2_{2}, k3_{3}, k10_{10};
 
   TestTypeDouble_ test_type_double_{0.5};
   TestTypeInt_ test_type_int_{1};
@@ -95,8 +95,9 @@ TEST_F(NamedTypeSuite,
        IsEqualIsLessOrEqualIsGreaterOrEqualIsLessAndIsGreaterAndOperatorsEqualLessOrEqualGreaterOrEqualLessAndGreater) {
   using Type = TestTypeDouble_::Type_;
 
-  constexpr Type const kEpsilon{sources::utilities::numeric_operations::GetEpsilon<Type>()}, kTolerance{1.2 * kEpsilon};
-  constexpr TestTypeDouble_ const kTestTypeDouble{0.5}, kPerturbationInsignificant{0.9 * kEpsilon},
+  constexpr static Type const &kEpsilon = sources::utilities::numeric_operations::GetEpsilon<Type>(),
+                              &kTolerance = (1.2 * kEpsilon);
+  constexpr static TestTypeDouble_ const kTestTypeDouble{0.5}, kPerturbationInsignificant{0.9 * kEpsilon},
       kPerturbationSignificant{1.1 * kEpsilon}, kTestTypeDoublePerturbedMinus = (kTestTypeDouble -
           kPerturbationSignificant), kTestTypeDoubleMinus{kTestTypeDouble - kPerturbationInsignificant},
               kTestTypeDoublePlus{kTestTypeDouble + kPerturbationInsignificant},

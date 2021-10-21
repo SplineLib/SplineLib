@@ -22,6 +22,7 @@ set(namespace "${PROJECT_NAME}::")
 set(targets_export_name "${PROJECT_NAME}Targets")
 option(SHARED "Build shared library" ON)
 option(GOOGLETEST "Build with GoogleTest" ON)
+option(PYTHON "Build python bindings" ON)
 
 # Setup
 set(include_install_directory "include")
@@ -56,9 +57,10 @@ elseif(CMAKE_CXX_COMPILER_ID MATCHES "Intel")
 else()
     message(ERROR "Unsupported compiler: ${CMAKE_CXX_COMPILER_ID}")
 endif()
-set(COMPILE_DEFINITIONS $<$<BOOL:${SHARED}>:SPLINELIB_SHARED> $<$<BOOL:${GOOGLETEST}>:SPLINELIB_GOOGLETEST>)
-set(COMPILE_OPTIONS ${OPTIMIZATION_FLAGS} 
-                    $<IF:$<CONFIG:Release>,${PARALLELIZATION_FLAGS},${RUNTIME_CHECKS_DEBUG}> ${WARNING_FLAGS})
+set(COMPILE_DEFINITIONS $<$<BOOL:${SHARED}>:SPLINELIB_SHARED> $<$<BOOL:${GOOGLETEST}>:SPLINELIB_GOOGLETEST>
+                        $<$<BOOL:${PYTHON}>:SPLINELIB_PYTHON>)
+set(COMPILE_OPTIONS ${OPTIMIZATION_FLAGS} $<IF:$<CONFIG:Release>,${PARALLELIZATION_FLAGS},${RUNTIME_CHECKS_DEBUG}>
+                    ${WARNING_FLAGS})
 message(STATUS "Compile using ${CMAKE_CXX_COMPILER_ID} compiler!")
 set(CMAKE_DEBUG_POSTFIX "d")
 
@@ -80,12 +82,22 @@ find_package(PkgConfig REQUIRED QUIET)
 add_subdirectory(Sources)
 if(GOOGLETEST)
     message(STATUS "Build tests!")
+    find_package(GTest REQUIRED QUIET CONFIG)
+    # Determine other compile flags not set properly by GTest for its targets.
+    pkg_search_module(GMock REQUIRED QUIET NO_CMAKE_PATH NO_CMAKE_ENVIRONMENT_PATH gmock_main)
+    set_target_properties(GTest::gmock GTest::gmock_main PROPERTIES INTERFACE_COMPILE_OPTIONS ${GMock_CFLAGS_OTHER})
     enable_testing()
     add_subdirectory(Tests)
 else()
     message(STATUS "No tests!")
 endif()
 add_subdirectory(Tools)
+if(PYTHON)
+    message(STATUS "Build python bindings!")
+    add_subdirectory(Python)
+else()
+    message(STATUS "No python bindings!")
+endif()
 
 # Packaging
 set(generated_directory ${CMAKE_CURRENT_BINARY_DIR}/Generated)

@@ -26,8 +26,8 @@ TEST(ErrorHandlingSuite, DependentFalse) {
 
 #ifndef NDEBUG
 TEST(ErrorHandlingSuite, Throw) {
-  constexpr char const * const kWhat{"Name: Throws the following —> what"};
-  Message const kExcept{"what"}, kName{"Name"};
+  constexpr static char const * const kWhat{"Name: Throws the following —> what"};
+  static Message const kExcept{"what"}, kName{"Name"};
 
   try { Throw(DomainError(kExcept), kName); } catch (DomainError const &exception) {
     EXPECT_STREQ(exception.what(), kWhat);

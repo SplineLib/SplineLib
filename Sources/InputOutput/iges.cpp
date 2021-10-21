@@ -238,7 +238,7 @@ SplineEntry CreateSpline(SplineDataInt const &spline_data_int, SplineDataDouble 
 }
 
 int WriteSection(OutputStream &file, String const &section_content, String const &section_identifier) {
-  constexpr int const kBlockWidth{72};
+  constexpr static int const kBlockWidth{72};
 
   int line{};
   for (; line <= (static_cast<int>(section_content.size() - 1) / kBlockWidth); ) {

@@ -33,17 +33,18 @@ class IndexSuite : public testing::Test {
   using TripleIndexLength_ = TripleIndex_::Length_;
   using TripleIndexValue_ = TripleIndex_::Value_;
 
-  constexpr static Dimension const kDimension0_{}, kDimension1_{1};
-  constexpr static Length const kLength0_{}, kLength2_{2}, kLength3_{3}, kLength4_{4}, kLength5_{5}, kLength10_{10};
-  constexpr static Index_ const kIndex0_{}, kIndex1_{1}, kIndex2_{2}, kIndex3_{3}, kIndex4_{4}, kIndex5_{5},
-                                kIndex9_{9};
-  constexpr static SingleIndexLength_ const kLength1d_{kLength10_};
-  constexpr static DoubleIndex_::Length_ const kLength2d_{kLength3_, kLength4_};
-  constexpr static TripleIndexLength_ const kLength3d_{kLength5_, kLength5_, kLength0_};
-  constexpr static QuadrupleIndex_::Length_ const kLength4d_{kLength2_, kLength2_, kLength4_, kLength4_};
-  constexpr static SingleIndexValue_ const kValue1d_{kIndex5_};
-  constexpr static DoubleIndex_::Value_ const kValue2d_{kIndex1_, kIndex1_};
-  constexpr static QuadrupleIndex_::Value_ const kValue4d_{kIndex0_, kIndex1_, kIndex2_, kIndex3_};
+  constexpr inline static Dimension const kDimension0_{}, kDimension1_{1};
+  constexpr inline static Length const kLength0_{}, kLength2_{2}, kLength3_{3}, kLength4_{4}, kLength5_{5},
+                                       kLength10_{10};
+  constexpr inline static Index_ const kIndex0_{}, kIndex1_{1}, kIndex2_{2}, kIndex3_{3}, kIndex4_{4}, kIndex5_{5},
+                                       kIndex9_{9};
+  constexpr inline static SingleIndexLength_ const kLength1d_{kLength10_};
+  constexpr inline static DoubleIndex_::Length_ const kLength2d_{kLength3_, kLength4_};
+  constexpr inline static TripleIndexLength_ const kLength3d_{kLength5_, kLength5_, kLength0_};
+  constexpr inline static QuadrupleIndex_::Length_ const kLength4d_{kLength2_, kLength2_, kLength4_, kLength4_};
+  constexpr inline static SingleIndexValue_ const kValue1d_{kIndex5_};
+  constexpr inline static DoubleIndex_::Value_ const kValue2d_{kIndex1_, kIndex1_};
+  constexpr inline static QuadrupleIndex_::Value_ const kValue4d_{kIndex0_, kIndex1_, kIndex2_, kIndex3_};
   inline static SingleIndex_ const kIndex1d_{kLength1d_, {kIndex5_}};
   inline static DoubleIndex_ const kIndex2d_{kLength2d_, kValue2d_};
   inline static QuadrupleIndex_ const kIndex4d_{kLength4d_, kValue4d_};
@@ -157,7 +158,7 @@ TEST_F(IndexSuite, GetIndex1dDependingOnDetermineStride) {
 
 #ifndef NDEBUG
 TEST_F(IndexSuite, ThrowIfValueIsInvalid) {
-  constexpr TripleIndexValue_ const kValue3d{kIndex0_, kIndex0_, kIndex1_};
+  constexpr static TripleIndexValue_ const kValue3d{kIndex0_, kIndex0_, kIndex1_};
 
   EXPECT_THROW(DoubleIndex_(kLength2d_, {kIndex3_, kIndex3_}), OutOfRange);
   EXPECT_THROW(TripleIndex_(index_3d_) += kValue3d, OutOfRange);
@@ -167,7 +168,7 @@ TEST_F(IndexSuite, ThrowIfValueIsInvalid) {
 }
 
 TEST_F(IndexSuite, ThrowIfDimensionIsInvalid) {
-  constexpr Dimension const kDimension2{2};
+  constexpr static Dimension const kDimension2{2};
 
   EXPECT_THROW(kIndex2d_[kDimension2], OutOfRange);
   EXPECT_THROW(index_1d_.Increment(kDimension2), OutOfRange);

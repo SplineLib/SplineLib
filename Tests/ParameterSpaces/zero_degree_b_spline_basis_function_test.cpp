@@ -30,14 +30,14 @@ class ZeroDegreeBSplineBasisFunctionSuite : public testing::Test {
   using KnotVector_ = testing::StrictMock<AKnotVectorMock>;
   using Type_ = ZeroDegreeBSplineBasisFunction::Type_;
 
-  constexpr static KnotSpan const kKnotSpan2_{2};
-  constexpr static sources::parameter_spaces::Tolerance const &kEpsilon_ = sources::parameter_spaces::kEpsilon,
-                                                              &kTolerance_ = (1.2 * kEpsilon_);
-  constexpr static ParametricCoordinate const kParametricCoordinate0_0_{}, kParametricCoordinate0_25_{0.25},
-                                              kPerturbation_{1.1 * kEpsilon_};
-  constexpr static ParametricCoordinate const &kParametricCoordinate0_0Perturbed_ = (kParametricCoordinate0_0_ -
+  constexpr inline static KnotSpan const kKnotSpan2_{2};
+  constexpr inline static sources::parameter_spaces::Tolerance const &kEpsilon_ = sources::parameter_spaces::kEpsilon,
+                                                                     &kTolerance_ = (1.2 * kEpsilon_);
+  constexpr inline static ParametricCoordinate const kParametricCoordinate0_0_{}, kParametricCoordinate0_25_{0.25},
+                                                     kPerturbation_{1.1 * kEpsilon_};
+  constexpr inline static ParametricCoordinate const &kParametricCoordinate0_0Perturbed_ = (kParametricCoordinate0_0_ -
       kPerturbation_), &kParametricCoordinate0_25Perturbed_ = (kParametricCoordinate0_25_ + kPerturbation_);
-  constexpr static Type_ const k0_0_{};
+  constexpr inline static Type_ const k0_0_{};
 
   ZeroDegreeBSplineBasisFunctionSuite();
 
@@ -85,7 +85,7 @@ TEST_F(ZeroDegreeBSplineBasisFunctionSuite, Evaluate) {
 }
 
 TEST_F(ZeroDegreeBSplineBasisFunctionSuite, EvaluateDerivative) {
-  constexpr Derivative kDerivative{1};
+  constexpr static Derivative const kDerivative{1};
 
   Type_ derivative;
   EXPECT_TRUE(IsEqual(derivative = basis_function_(kParametricCoordinate0_25_, kDerivative), Type_{}));
