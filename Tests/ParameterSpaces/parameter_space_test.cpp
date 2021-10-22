@@ -38,6 +38,7 @@ class ParameterSpaceSuite : public testing::Test {
   using Degrees_ = ParameterSpace_::Degrees_;
   using Derivative_ = ParameterSpace_::Derivative_;
   using ElevationInformation_ = ParameterSpace_::ElevationInformation_;
+  using InsertionInformation_ = ParameterSpace_::InsertionInformation_;
   using Knot_ = ParameterSpace_::Knot_;
   using NumberOfBasisFunctions_ = ParameterSpace_::NumberOfBasisFunctions_;
 
@@ -64,7 +65,7 @@ class ParameterSpaceSuite : public testing::Test {
               {kOneSixth_, kTwoThirds_, kOneSixth_}, kBinomialRatios_}};
   inline static ParameterSpace_::KnotRatios_ const kKnotRatiosFirst_{kOneHalf_, kOneHalf_},
                                                    kKnotRatiosSecond_{kOneHalf_};
-  inline static ParameterSpace_::InsertionInformation_ const kInsertionInformationFirst_{kIndex2_, {kKnotRatiosFirst_}},
+  inline static InsertionInformation_ const kInsertionInformationFirst_{kIndex2_, {kKnotRatiosFirst_}},
       kInsertionInformationSecond_{kIndex2_, {kKnotRatiosSecond_}}, kInsertionInformationTwice_{kIndex2_,
           {kKnotRatiosFirst_, kKnotRatiosSecond_}};
   inline static ParameterSpace_::KnotVectors_ const kKnotVectors_{mock_knot_vectors::NurbsBookExa2_2()};
@@ -180,7 +181,9 @@ TEST_F(ParameterSpaceSuite, RemoveKnotDependingOnDetermineInsertionInformationAn
   EXPECT_EQ(parameter_space_erase.RemoveKnot(kDimension1_, k0_5_, kMultiplicity2_), kInsertionInformationTwice_);
   EXPECT_EQ(parameter_space_erase, parameter_space_);
   EXPECT_EQ(parameter_space_remove.RemoveKnot(kDimension1_, k0_5_), kInsertionInformationFirst_);
-  EXPECT_EQ(parameter_space_remove, parameter_space_erase);
+  EXPECT_EQ(parameter_space_remove, parameter_space_);
+  EXPECT_EQ(parameter_space_remove.RemoveKnot(kDimension1_, k0_5_), InsertionInformation_{});
+  EXPECT_EQ(parameter_space_remove, parameter_space_);
 }
 
 TEST_F(ParameterSpaceSuite, ElevateDegreeDependingOnRecreateBasisFunctions) {

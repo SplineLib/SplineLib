@@ -94,10 +94,11 @@ class A2dParameterSpaceMock : public sources::parameter_spaces::ParameterSpace<2
   void SquareUnitSecondOrderMaximallySmooth();
 
  private:
-  void NurbsBookExe3_8KnotVectorsDegrees();
   void NurbsBookExe3_8Bezier();
   void NurbsBookExe3_8BezierElevateReduce();
   void NurbsBookExe3_8BezierElevatedTwice();
+  void NurbsBookExe3_8InsertRemoveKnotVectorsDegreesBasisFunctions();
+  void NurbsBookExe3_8KnotVectorsDegrees();
   void NurbsBookExe4_4KnotVectorsDegrees();
 };
 

@@ -157,6 +157,7 @@ TEST_F(BSplineSuite, InsertKnot) {
 }
 
 TEST_F(BSplineSuite, RemoveKnot) {
+  constexpr Multiplicity const kMultiplicity0{0};
   constexpr Multiplicity const &kMultiplicity = sources::splines::kMultiplicity;
 
   SharedPointer<ParameterSpace_> parameter_space_remove{make_shared<ParameterSpace_>()},
@@ -173,15 +174,17 @@ TEST_F(BSplineSuite, RemoveKnot) {
   BSpline_ b_spline_remove, b_spline, b_spline_unsuccessful;
   ASSERT_NO_THROW(b_spline_remove = BSpline_(parameter_space_remove, vector_space_remove));
   ASSERT_NO_THROW(b_spline = BSpline_(parameter_space, vector_space));
-  ASSERT_NO_THROW(b_spline_unsuccessful = BSpline_(parameter_space_, vector_space_unsuccessful));
+  ASSERT_NO_THROW(b_spline_unsuccessful = BSpline_(parameter_space_unsuccessful, vector_space_unsuccessful));
   EXPECT_EQ(b_spline_remove.RemoveKnot(kDimension1_, kKnot0_5_, kEpsilon_), kMultiplicity);
   EXPECT_EQ(b_spline_remove, b_spline_insert_remove_);
   EXPECT_EQ(b_spline.RemoveKnot(kDimension1_, kKnot0_5_, kEpsilon_, kMultiplicity2_), kMultiplicity2_);
   EXPECT_EQ(b_spline, b_spline_);
   EXPECT_EQ(b_spline_remove.RemoveKnot(kDimension1_, kKnot0_5_, kEpsilon_), kMultiplicity);
   EXPECT_EQ(b_spline_remove, b_spline_);
-  EXPECT_EQ(b_spline_unsuccessful.RemoveKnot(kDimension0_, kKnot0_5_, kEpsilon_), Multiplicity{});
-  EXPECT_EQ(b_spline_unsuccessful, BSpline_(parameter_space_unsuccessful, vector_space_));
+  EXPECT_EQ(b_spline_unsuccessful.RemoveKnot(kDimension1_, kKnot0_5_, kEpsilon_), kMultiplicity0);
+  EXPECT_EQ(b_spline_unsuccessful, b_spline_insert_remove_);
+  EXPECT_EQ(b_spline_remove.RemoveKnot(kDimension1_, kKnot0_5_, kEpsilon_), kMultiplicity0);
+  EXPECT_EQ(b_spline_remove, b_spline_);
 }
 
 TEST_F(BSplineSuite, ElevateDegreeDependingOnMakeBezierAndMakeBSpline) {

@@ -249,11 +249,13 @@ ParameterSpace<parametric_dimensionality>::RemoveKnot(Dimension const &dimension
     catch (OutOfRange const &exception) { Throw(exception, kName, dimension_value); }
     catch (InvalidArgument const &exception) { Throw(exception, kName, dimension_value); }
 #endif
-  KnotVector &knot_vector = *knot_vectors_[dimension_value];
-  MultiplicityType_ const &removals = knot_vector.GetSize();
-  knot_vector.Remove(knot, multiplicity, tolerance);
-  RecreateBasisFunctions(tolerance);
-  return DetermineInsertionInformation(dimension, knot, Multiplicity{removals - knot_vector.GetSize()}, tolerance);
+  if (Multiplicity const &removals = knot_vectors_[dimension_value]->Remove(knot, multiplicity, tolerance);
+      removals != Multiplicity{}) {
+    RecreateBasisFunctions(tolerance);
+    return DetermineInsertionInformation(dimension, knot, removals, tolerance);
+  } else {
+    return InsertionInformation_{};
+  }
 }
 
 // Cf. NURBS book Eq. (5.36).

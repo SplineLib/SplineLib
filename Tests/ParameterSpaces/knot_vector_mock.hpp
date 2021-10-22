@@ -55,9 +55,9 @@ class AKnotVectorMock : public sources::parameter_spaces::KnotVector {
   MOCK_METHOD(void, InsertMock, (ParametricCoordinate, Multiplicity const &, Tolerance_ const &), (const));
   void Insert(ParametricCoordinate knot, Multiplicity const &multiplicity, Tolerance_ const &tolerance = kEpsilon_)
       final;
-  MOCK_METHOD(void, RemoveMock, (ParametricCoordinate const &, Multiplicity const &, Tolerance_ const &), ());
-  void Remove(ParametricCoordinate const &knot, Multiplicity const &multiplicity = kMultiplicity_,
-              Tolerance_ const &tolerance = kEpsilon_) final;
+  MOCK_METHOD(Multiplicity, RemoveMock, (ParametricCoordinate const &, Multiplicity const &, Tolerance_ const &), ());
+  Multiplicity Remove(ParametricCoordinate const &knot, Multiplicity const &multiplicity = kMultiplicity_,
+                      Tolerance_ const &tolerance = kEpsilon_) final;
   MOCK_METHOD(void, IncreaseMultiplicitiesMock, (Multiplicity const &, Tolerance_ const &), ());
   void IncreaseMultiplicities(Multiplicity const &multiplicity = kMultiplicity_,
                               Tolerance_ const &tolerance = kEpsilon_) final;

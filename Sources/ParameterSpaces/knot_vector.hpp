@@ -73,8 +73,8 @@ class KnotVector {
 
   virtual void Insert(Knot_ knot, Multiplicity const &multiplicity = kMultiplicity,
                       Tolerance const &tolerance = kEpsilon);
-  virtual void Remove(Knot_ const &knot, Multiplicity const &multiplicity = kMultiplicity,
-                      Tolerance const &tolerance = kEpsilon);
+  virtual Multiplicity Remove(Knot_ const &knot, Multiplicity const &multiplicity = kMultiplicity,
+                              Tolerance const &tolerance = kEpsilon);
   virtual void IncreaseMultiplicities(Multiplicity const &multiplicity = kMultiplicity,
                                       Tolerance const &tolerance = kEpsilon);
   virtual void DecreaseMultiplicities(Multiplicity const &multiplicity = kMultiplicity,

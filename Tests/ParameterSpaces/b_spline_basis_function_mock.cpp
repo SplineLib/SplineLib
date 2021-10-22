@@ -545,21 +545,45 @@ BSplineBasisFunctions NurbsBookExe3_8() {
   return basis_functions;
 }
 
+BSplineBasisFunctions NurbsBookExe3_8InsertRemove() {
+  BSplineBasisFunctions basis_functions;
+  BSplineBasisFunctionsDimension &basis_functions_0 = basis_functions[0], &basis_functions_1 = basis_functions[1];
+  SharedPointer<NonZeroDegreeBSplineBasisFunction> basis_function0_2{
+                                                       make_shared<NonZeroDegreeBSplineBasisFunction>()};
+  basis_function0_2->NurbsBookExe3_8_0_0_2();
+  basis_functions_0.push_back(basis_function0_2);
+  basis_functions_1.push_back(basis_function0_2);
+  SharedPointer<NonZeroDegreeBSplineBasisFunction> basis_function1_2{
+                                                       make_shared<NonZeroDegreeBSplineBasisFunction>()};
+  basis_function1_2->NurbsBookExe3_8_0_1_2();
+  basis_functions_0.push_back(basis_function1_2);
+  basis_functions_1.push_back(basis_function1_2);
+  SharedPointer<NonZeroDegreeBSplineBasisFunction> basis_function2_2{
+                                                       make_shared<NonZeroDegreeBSplineBasisFunction>()};
+  basis_function2_2->NurbsBookExe3_8_0_2_2();
+  basis_functions_0.push_back(basis_function2_2);
+  basis_functions_1.push_back(basis_function2_2);
+  SharedPointer<NonZeroDegreeBSplineBasisFunction> basis_function3_2{
+                                                       make_shared<NonZeroDegreeBSplineBasisFunction>()};
+  basis_function3_2->NurbsBookExe3_8_0_3_2();
+  basis_functions_0.push_back(basis_function3_2);
+  basis_functions_1.push_back(basis_function3_2);
+  return basis_functions;
+}
+
 BSplineBasisFunctions NurbsBookExe4_4() {
   BSplineBasisFunctions basis_functions;
   BSplineBasisFunctionsDimension &basis_functions_0 = basis_functions[0], &basis_functions_1 = basis_functions[1];
-  SharedPointer<NonZeroDegreeBSplineBasisFunction> basis_function0_0_1{
+  SharedPointer<NonZeroDegreeBSplineBasisFunction> basis_function0_1{
                                                        make_shared<NonZeroDegreeBSplineBasisFunction>()};
-  basis_function0_0_1->NurbsBookExa2_1_1_1(); basis_functions_0.push_back(basis_function0_0_1);
-  SharedPointer<NonZeroDegreeBSplineBasisFunction> basis_function0_1_1{
+  basis_function0_1->NurbsBookExa2_1_1_1();
+  basis_functions_0.push_back(basis_function0_1);
+  basis_functions_1.push_back(basis_function0_1);
+  SharedPointer<NonZeroDegreeBSplineBasisFunction> basis_function1_1{
                                                        make_shared<NonZeroDegreeBSplineBasisFunction>()};
-  basis_function0_1_1->NurbsBookExa2_1_2_1(); basis_functions_0.push_back(basis_function0_1_1);
-  SharedPointer<NonZeroDegreeBSplineBasisFunction> basis_function1_0_1{
-                                                       make_shared<NonZeroDegreeBSplineBasisFunction>()};
-  basis_function1_0_1->NurbsBookExa2_1_1_1(); basis_functions_1.push_back(basis_function1_0_1);
-  SharedPointer<NonZeroDegreeBSplineBasisFunction> basis_function1_1_1{
-                                                       make_shared<NonZeroDegreeBSplineBasisFunction>()};
-  basis_function1_1_1->NurbsBookExa2_1_2_1(); basis_functions_1.push_back(basis_function1_1_1);
+  basis_function1_1->NurbsBookExa2_1_2_1();
+  basis_functions_0.push_back(basis_function1_1);
+  basis_functions_1.push_back(basis_function1_1);
   return basis_functions;
 }
 
