@@ -26,8 +26,8 @@ MATCHER_P2(IsGeAndLt, minimum, supremum, "") {
 }
 
 using Knots = AKnotVectorMock::Knots_;
-using sources::utilities::string_operations::Write, testing::AtMost, testing::Ge, testing::InvokeWithoutArgs,
-      testing::Return, testing::ReturnRef;
+using sources::utilities::string_operations::Write, testing::AtMost, testing::DoAll, testing::Ge,
+      testing::InvokeWithoutArgs, testing::Return, testing::ReturnRef;
 
 constexpr Index const kIndex0{}, kIndex1{1}, kIndex2{2}, kIndex3{3}, kIndex4{4}, kIndex5{5}, kIndex6{6}, kIndex7{7},
                       kIndex8{8}, kIndex9{9}, kIndex10{10}, kIndex11{11}, kIndex12{12}, kIndex13{13}, kIndex14{14},
@@ -82,9 +82,9 @@ void AKnotVectorMock::Insert(ParametricCoordinate knot, Multiplicity const &mult
   InsertMock(knot, multiplicity, tolerance);
 }
 
-void AKnotVectorMock::Remove(ParametricCoordinate const &parametric_coordinate, Multiplicity const &multiplicity,
-    Tolerance_ const &tolerance) {
-  RemoveMock(parametric_coordinate, multiplicity, tolerance);
+Multiplicity AKnotVectorMock::Remove(ParametricCoordinate const &parametric_coordinate,
+                                     Multiplicity const &multiplicity, Tolerance_ const &tolerance) {
+  return RemoveMock(parametric_coordinate, multiplicity, tolerance);
 }
 
 void AKnotVectorMock::IncreaseMultiplicities(Multiplicity const &multiplicity, Tolerance_ const &tolerance) {
@@ -134,6 +134,7 @@ void AKnotVectorMock::NurbsBookExa2_1() {
       .WillOnce(InvokeWithoutArgs(this, &AKnotVectorMock::NurbsBookExe3_8_0));
   EXPECT_CALL(*this, InsertMock(k0_5, kMultiplicity2, IsGe0_0AndLt0_5)).Times(AtMost(1))
       .WillOnce(InvokeWithoutArgs(this, &AKnotVectorMock::NurbsBookExe3_8_0Subdivided));
+  EXPECT_CALL(*this, RemoveMock(k0_5, kMultiplicity_, IsGe0_0AndLt1_0)).WillRepeatedly(Return(kMultiplicity0));
 
   EXPECT_CALL(*this, WriteMock(kPrecision_)).WillRepeatedly(Return(OutputInformation_{kZero, kZero, kZero, kOne, kOne,
                                                                                       kOne}));
@@ -433,7 +434,7 @@ void AKnotVectorMock::NurbsBookExe3_8_0() {
   EXPECT_CALL(*this, InsertMock(k0_5, kMultiplicity_, IsGe0_0AndLt0_5)).Times(AtMost(1))
       .WillOnce(InvokeWithoutArgs(this, &AKnotVectorMock::NurbsBookExe3_8_0Subdivided));
   EXPECT_CALL(*this, RemoveMock(k0_5, kMultiplicity_, IsGe0_0AndLt0_5)).Times(AtMost(1))
-      .WillOnce(InvokeWithoutArgs(this, &AKnotVectorMock::NurbsBookExa2_1));
+      .WillOnce(DoAll(InvokeWithoutArgs(this, &AKnotVectorMock::NurbsBookExa2_1), Return(kMultiplicity_)));
 
   EXPECT_CALL(*this, WriteMock(kPrecision_)).WillRepeatedly(Return(OutputInformation_{kZero, kZero,
                                                  sources::utilities::string_operations::Write(k0_5), kOne, kOne}));
@@ -473,9 +474,9 @@ void AKnotVectorMock::NurbsBookExe3_8_0Subdivided() {
   EXPECT_CALL(*this, GetUniqueKnotsMock(IsGe0_0AndLt0_5)).WillRepeatedly(Return(kUniqueKnots3_8));
 
   EXPECT_CALL(*this, RemoveMock(k0_5, kMultiplicity_, IsGe0_0AndLt0_5)).Times(AtMost(1))
-      .WillOnce(InvokeWithoutArgs(this, &AKnotVectorMock::NurbsBookExe3_8_0));
+      .WillOnce(DoAll(InvokeWithoutArgs(this, &AKnotVectorMock::NurbsBookExe3_8_0), Return(kMultiplicity_)));
   EXPECT_CALL(*this, RemoveMock(k0_5, kMultiplicity2, IsGe0_0AndLt0_5)).Times(AtMost(1))
-      .WillOnce(InvokeWithoutArgs(this, &AKnotVectorMock::NurbsBookExa2_1));
+      .WillOnce(DoAll(InvokeWithoutArgs(this, &AKnotVectorMock::NurbsBookExa2_1), Return(kMultiplicity2)));
 }
 
 void AKnotVectorMock::NurbsBookExe4_4() {

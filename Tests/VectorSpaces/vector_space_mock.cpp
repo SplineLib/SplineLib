@@ -664,13 +664,16 @@ void A3dVectorSpaceMock::NurbsBookExe3_8Subdivided() {
 }
 
 void A3dVectorSpaceMock::NurbsBookExe3_8Unsuccessful() {
-  constexpr Coordinate3d const kCoordinateUnremovable1_2{k6_0, k4_0, k6_0};
+  NurbsBookExe3_8InsertRemove();
 
-  NurbsBookExe3_8();
+  EXPECT_CALL(*this, OperatorSubscript(k3)).WillRepeatedly(ReturnRef(kCoordinate3_0));
+  EXPECT_CALL(*this, OperatorSubscript(k7)).WillRepeatedly(ReturnRef(kCoordinateInserted3_1));
+  EXPECT_CALL(*this, OperatorSubscript(k11)).WillRepeatedly(ReturnRef(kCoordinateInserted3_2));
+  EXPECT_CALL(*this, OperatorSubscript(k15)).WillRepeatedly(ReturnRef(kCoordinate3_2));
 
-  Expectation_ const &unremovable = EXPECT_CALL(*this, Replace(k9, kCoordinateUnremovable1_2));
-  EXPECT_CALL(*this, OperatorSubscript(k9)).After(unremovable)
-      .WillRepeatedly(ReturnRefOfCopy(kCoordinateUnremovable1_2));
+  Expectation_ const &unremovable = EXPECT_CALL(*this, Replace(k7, kCoordinate3_1));
+  EXPECT_CALL(*this, OperatorSubscript(k7)).After(unremovable)
+      .WillRepeatedly(ReturnRef(kCoordinate0_0));
 }
 
 void A3dVectorSpaceMock::NurbsBookExe4_4() {

@@ -176,7 +176,7 @@ void KnotVector::Insert(Knot_ knot, Multiplicity const &multiplicity, Tolerance 
   knots_.insert(knots_.begin() + FindSpan(knot, tolerance).Get() + 1, multiplicity.Get(), move(knot));
 }
 
-void KnotVector::Remove(Knot_ const &knot, Multiplicity const &multiplicity, Tolerance const &tolerance) {
+Multiplicity KnotVector::Remove(Knot_ const &knot, Multiplicity const &multiplicity, Tolerance const &tolerance) {
 #ifndef NDEBUG
   Message const kName{"splinelib::sources::parameter_spaces::KnotVector::Remove"};
 
@@ -186,9 +186,8 @@ void KnotVector::Remove(Knot_ const &knot, Multiplicity const &multiplicity, Tol
   } catch (DomainError const &exception) { Throw(exception, kName); }
     catch (InvalidArgument const &exception) { Throw(exception, kName); }
 #endif
-  Multiplicity::Type_ const number_of_removals{std::min(multiplicity.Get(), DetermineMultiplicity(knot,
-                                                                                                  tolerance).Get())};
-  if (number_of_removals != 0) {
+  if (Multiplicity::Type_ const number_of_removals{std::min(multiplicity,
+          DetermineMultiplicity(knot, tolerance)).Get()}; number_of_removals != 0) {
     KnotSpan const &knot_span = FindSpan(knot, tolerance);
     if (DoesParametricCoordinateEqualBack(knot, tolerance)) {
       ConstIterator_ const &end = knots_.end();
@@ -197,6 +196,9 @@ void KnotVector::Remove(Knot_ const &knot, Multiplicity const &multiplicity, Tol
       ConstIterator_ const &first_knot = (knots_.begin() + knot_span.Get());
       knots_.erase(first_knot - (number_of_removals - 1), first_knot + 1);
     }
+    return Multiplicity{number_of_removals};
+  } else {
+    return Multiplicity{};
   }
 }
 

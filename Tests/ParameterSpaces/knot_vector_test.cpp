@@ -131,18 +131,18 @@ TEST_F(KnotVectorSuite, Insert) {
 }
 
 TEST_F(KnotVectorSuite, Remove) {
-  EXPECT_NO_THROW(knot_vector_.Remove(k1_0Minus_));
+  EXPECT_EQ(knot_vector_.Remove(k1_0Minus_), Multiplicity{});
   EXPECT_EQ(knot_vector_, KnotVector(knots_));
-  EXPECT_NO_THROW(knot_vector_.Remove(k1_0_));
+  EXPECT_EQ(knot_vector_.Remove(k1_0_), kMultiplicity1_);
   ASSERT_NO_THROW(knots_.erase(knots_.begin() + 8));
   EXPECT_EQ(knot_vector_, KnotVector(knots_));
-  EXPECT_NO_THROW(knot_vector_.Remove(k1_0_, kMultiplicity2_));
+  EXPECT_EQ(knot_vector_.Remove(k1_0_, kMultiplicity2_), kMultiplicity2_);
   ASSERT_NO_THROW(knots_.erase(knots_.begin() + 6, knots_.begin() + 8));
   EXPECT_EQ(knot_vector_, KnotVector(knots_));
-  EXPECT_NO_THROW(knot_vector_.Remove(k0_0_));
+  EXPECT_EQ(knot_vector_.Remove(k0_0_), kMultiplicity1_);
   ASSERT_NO_THROW(knots_.erase(knots_.begin() + 2));
   EXPECT_EQ(knot_vector_, KnotVector(knots_));
-  EXPECT_NO_THROW(knot_vector_.Remove(k0_0_, kMultiplicity2_));
+  EXPECT_EQ(knot_vector_.Remove(k0_0_, kMultiplicity2_), kMultiplicity2_);
   ASSERT_NO_THROW(knots_.erase(knots_.begin(), knots_.begin() + 2));
   EXPECT_EQ(knot_vector_, KnotVector(knots_));
 }

@@ -124,6 +124,7 @@ BSplineBasisFunctions NurbsBookExa2_2ElevatedOnce();
 BSplineBasisFunctions NurbsBookExa2_2Inserted();
 BSplineBasisFunctions NurbsBookExa2_2Subdivided();
 BSplineBasisFunctions NurbsBookExe3_8();
+BSplineBasisFunctions NurbsBookExe3_8InsertRemove();
 BSplineBasisFunctions NurbsBookExe4_4();
 
 }  // namespace mock_b_spline_basis_functions

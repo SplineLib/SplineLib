@@ -180,10 +180,10 @@ Multiplicity BSpline<parametric_dimensionality, dimensionality>::RemoveKnot(Dime
   IndexLength_ number_of_coordinates{parameter_space.GetNumberOfBasisFunctions()};
   auto const &[start_value, coefficients] = parameter_space.RemoveKnot(dimension, knot, multiplicity, tolerance);
   Multiplicity::Type_ const &removals = coefficients.size();
-  for (Multiplicity removal{removals - 1}; removal >= Multiplicity{}; --removal) {
+  for (Multiplicity removal{removals}; removal > Multiplicity{}; --removal) {
     VectorSpace_ &vector_space = *vector_space_;
     VectorSpace_ const vector_space_backup{vector_space};
-    KnotRatios_ const &current_coefficients = coefficients[removal.Get()];
+    KnotRatios_ const &current_coefficients = coefficients[removal.Get() - 1];
     IndexLength_ number_of_coordinates_in_slice{number_of_coordinates};
     number_of_coordinates_in_slice[dimension_value] = Length{};
     IndexLength_ const previous_number_of_coordinates{number_of_coordinates};
@@ -214,7 +214,7 @@ Multiplicity BSpline<parametric_dimensionality, dimensionality>::RemoveKnot(Dime
                           Coordinate{tolerance_removal})) {
         vector_space.Erase(coordinate_index);
       } else {
-        Multiplicity const &successful_removals = (multiplicity - ++removal);
+        Multiplicity const &successful_removals = (multiplicity - removal);
         parameter_space_backup.RemoveKnot(dimension, knot, successful_removals, tolerance);
         parameter_space = parameter_space_backup;
         vector_space = vector_space_backup;

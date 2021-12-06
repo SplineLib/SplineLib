@@ -74,7 +74,7 @@ ElevationInformation const kElevationInformationOnce{kIndex2, {{kOneThird, kTwoT
         kOneFourth}}}, kElevationInformationTwice{kIndex2, {kBinomialRatios, {kOneSixth, kTwoThirds, kOneSixth},
             kBinomialRatios}};
 InsertionInformation const kInsertionInformation{kIndex2, {kKnotRatiosFirst}},
-    kInsertionInformationInsertRemove{kIndex2, {kKnotRatiosSecond}}, kInsertionInformationSubdivide{kIndex2,
+    kInsertionInformationInsertRemove{kIndex2, {kKnotRatiosSecond}}, kInsertionInformationSubdivided{kIndex2,
         {kKnotRatiosFirst, kKnotRatiosSecond}}, kInsertionInformationElevateReduce{kIndex3, {kKnotRatiosSecond}},
             kInsertionInformationElevatedTwice{ScalarIndex{4}, {kKnotRatiosSecond}};
 IsGeAndLtMatcherP2<Dimension, Dimension> const &IsValidDimension = IsGeAndLt(kDimension0, Dimension{3});
@@ -418,9 +418,9 @@ void A2dParameterSpaceMock::NurbsBookExe3_8() {
                             Return(kInsertionInformation)));
   EXPECT_CALL(*this, InsertKnotMock(kDimension1, kParametricCoordinate0_5, kMultiplicity2, IsGe0_0AndLt0_5))
       .WillRepeatedly(DoAll(InvokeWithoutArgs(this, &A2dParameterSpaceMock::NurbsBookExe3_8Subdivided),
-                            Return(kInsertionInformationSubdivide)));
-  EXPECT_CALL(*this, RemoveKnotMock(kDimension0, kParametricCoordinate0_5, kMultiplicity_, IsGe0_0AndLt0_5))
-      .WillRepeatedly(Return(kInsertionInformation));
+                            Return(kInsertionInformationSubdivided)));
+  EXPECT_CALL(*this, RemoveKnotMock(kDimension1, kParametricCoordinate0_5, kMultiplicity_, IsGeAndLt(0.0, 1.0)))
+      .WillRepeatedly(Return(InsertionInformation{}));
   EXPECT_CALL(*this, ReduceDegreeMock(kDimension1, kMultiplicity_, IsGe0_0AndLt0_5))
       .WillRepeatedly(Return(InsertionInformation_{kIndex1, {kBinomialRatios}}));
 
@@ -473,12 +473,7 @@ void A2dParameterSpaceMock::NurbsBookExe3_8ElevatedTwice() {
 }
 
 void A2dParameterSpaceMock::NurbsBookExe3_8InsertRemove() {
-  knot_vectors_ = mock_knot_vectors::NurbsBookExe3_8InsertRemove();
-  degrees_ = kDegrees2_2;
-  basis_functions_ = mock_b_spline_basis_functions::Empty();
-
-  EXPECT_CALL(*this, GetNumberOfBasisFunctions()).WillRepeatedly(Return(NumberOfBasisFunctions_{kLength4, kLength4}));
-  EXPECT_CALL(*this, GetTotalNumberOfBasisFunctions()).WillRepeatedly(Return(16));
+  NurbsBookExe3_8InsertRemoveKnotVectorsDegreesBasisFunctions();
 
   EXPECT_CALL(*this, InsertKnotMock(kDimension1, kParametricCoordinate0_5, kMultiplicity_, IsGe0_0AndLt0_5))
       .WillRepeatedly(DoAll(InvokeWithoutArgs(this, &A2dParameterSpaceMock::NurbsBookExe3_8Subdivided),
@@ -509,15 +504,15 @@ void A2dParameterSpaceMock::NurbsBookExe3_8Subdivided() {
                             Return(kInsertionInformationInsertRemove)));
   EXPECT_CALL(*this, RemoveKnotMock(kDimension1, kParametricCoordinate0_5, kMultiplicity2, IsGe0_0AndLt0_5))
       .WillRepeatedly(DoAll(InvokeWithoutArgs(this, &A2dParameterSpaceMock::NurbsBookExe3_8),
-                            Return(kInsertionInformationSubdivide)));
+                            Return(kInsertionInformationSubdivided)));
 }
 
 void A2dParameterSpaceMock::NurbsBookExe3_8Unsuccessful() {
-  knot_vectors_ = mock_knot_vectors::NurbsBookExe3_8();
-  degrees_ = kDegrees2_2;
-  basis_functions_ = mock_b_spline_basis_functions::NurbsBookExe3_8();
+  NurbsBookExe3_8InsertRemoveKnotVectorsDegreesBasisFunctions();
 
-  EXPECT_CALL(*this, GetTotalNumberOfBasisFunctions()).WillRepeatedly(Return(12));
+  EXPECT_CALL(*this, RemoveKnotMock(kDimension1, kParametricCoordinate0_5, kMultiplicity_, IsGe0_0AndLt0_5))
+      .WillRepeatedly(DoAll(InvokeWithoutArgs(this, &A2dParameterSpaceMock::NurbsBookExe3_8InsertRemove),
+                            Return(kInsertionInformation)));
 }
 
 void A2dParameterSpaceMock::NurbsBookExe4_4() {
@@ -564,11 +559,6 @@ void A2dParameterSpaceMock::SquareUnitSecondOrderMaximallySmooth() {
   basis_functions_ = mock_b_spline_basis_functions::NurbsBookExe3_8();
 }
 
-void A2dParameterSpaceMock::NurbsBookExe3_8KnotVectorsDegrees() {
-  knot_vectors_ = mock_knot_vectors::NurbsBookExe3_8();
-  degrees_ = kDegrees2_2;
-}
-
 void A2dParameterSpaceMock::NurbsBookExe3_8Bezier() {
   EXPECT_CALL(*this, GetNumberOfBasisFunctions()).WillRepeatedly(Return(IndexLength{Length{5}, kLength3}));
 
@@ -609,6 +599,20 @@ void A2dParameterSpaceMock::NurbsBookExe3_8BezierElevatedTwice() {
   EXPECT_CALL(*this, ReduceDegreeMock(kDimension0, kMultiplicity2, IsGe0_0AndLt0_5))
       .WillRepeatedly(DoAll(InvokeWithoutArgs(this, &A2dParameterSpaceMock::NurbsBookExe3_8Bezier),
                             Return(kElevationInformationTwice)));
+}
+
+void A2dParameterSpaceMock::NurbsBookExe3_8InsertRemoveKnotVectorsDegreesBasisFunctions() {
+  knot_vectors_ = mock_knot_vectors::NurbsBookExe3_8InsertRemove();
+  degrees_ = kDegrees2_2;
+  basis_functions_ = mock_b_spline_basis_functions::NurbsBookExe3_8InsertRemove();
+
+  EXPECT_CALL(*this, GetNumberOfBasisFunctions()).WillRepeatedly(Return(NumberOfBasisFunctions_{kLength4, kLength4}));
+  EXPECT_CALL(*this, GetTotalNumberOfBasisFunctions()).WillRepeatedly(Return(16));
+}
+
+void A2dParameterSpaceMock::NurbsBookExe3_8KnotVectorsDegrees() {
+  knot_vectors_ = mock_knot_vectors::NurbsBookExe3_8();
+  degrees_ = kDegrees2_2;
 }
 
 void A2dParameterSpaceMock::NurbsBookExe4_4KnotVectorsDegrees() {
