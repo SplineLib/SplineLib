@@ -143,6 +143,11 @@ class ParameterSpace {
       ParametricCoordinate const &parametric_coordinate, Tolerance const &tolerance = kEpsilon) const;
 #endif
 
+  virtual const KnotVectors_& GetKnotVectors() const {return knot_vectors_;}
+  virtual const Degrees_& GetDegrees() const {return degrees_;}
+  virtual const BSplineBasisFunctions_&
+      GetBSplineBasisFunctions() const {return basis_functions_;}
+
  protected:
   KnotVectors_ knot_vectors_;
   Degrees_ degrees_;
