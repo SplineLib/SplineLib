@@ -20,9 +20,18 @@ project(SplineLib VERSION 1.0.0 LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 20)
 set(namespace "${PROJECT_NAME}::")
 set(targets_export_name "${PROJECT_NAME}Targets")
-option(SHARED "Build shared library" OFF)
-option(GOOGLETEST "Build with GoogleTest" OFF)
-option(BUILD_SPLINELIB_TOOLS "Build tools" OFF)
+option(SPLINELIB_SHARED "Build shared library" OFF)
+option(SPLINELIB_GOOGLETEST "Build with GoogleTest" OFF)
+option(SPLINELIB_BUILD_TOOLS "Build tools" OFF)
+option(SPLINELIB_BUILD_PUGIXML "Build pugixml" ON)
+
+# Overwrite some options if this is for splinepy
+if(SPLINEPY_BUILD_SPLINELIB)
+  set(SPLINELIB_SHARED OFF)
+  set(SPLINELIB_GOOGLETEST OFF)
+  set(SPLINELIB_BUILD_TOOLS OFF)
+  set(SPLINELIB_BUILD_PUGIXML ON)
+endif()
 
 # Setup
 set(include_install_directory "include")
@@ -55,7 +64,7 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
             -Weffc++
             $<$<NOT:$<CONFIG:Debug>>:-Wno-unused-parameter
                                      -Wno-unused-variable>
-            $<$<BOOL:${GOOGLETEST}>:-Wno-gnu-zero-variadic-macro-arguments>)
+            $<$<BOOL:${SPLINELIB_GOOGLETEST}>:-Wno-gnu-zero-variadic-macro-arguments>)
 elseif(CMAKE_CXX_COMPILER_ID MATCHES "GNU")
     set(OPTIMIZATION_FLAGS $<$<NOT:$<CONFIG:Debug>>:-O3 -march=native>)
     set(PARALLELIZATION_FLAGS)
@@ -75,8 +84,8 @@ else()
     message(ERROR "Unsupported compiler: ${CMAKE_CXX_COMPILER_ID}")
 endif()
 set(COMPILE_DEFINITIONS
-        $<$<BOOL:${SHARED}>:SPLINELIB_SHARED>
-        $<$<BOOL:${GOOGLETEST}>:SPLINELIB_GOOGLETEST>)
+        $<$<BOOL:${SPLINELIB_SHARED}>:SPLINELIB_SHARED>
+        $<$<BOOL:${SPLINELIB_GOOGLETEST}>:SPLINELIB_GOOGLETEST>)
 set(COMPILE_OPTIONS
         ${OPTIMIZATION_FLAGS} 
         $<IF:$<CONFIG:Release>,${PARALLELIZATION_FLAGS},
@@ -91,27 +100,33 @@ if(CMAKE_BUILD_TYPE MATCHES Debug)
 else()
     message(STATUS "Build release!")
 endif()
-if(SHARED)
+if(SPLINELIB_SHARED)
     message(STATUS "Build shared!")
-    set (BUILD_SHARED_LIBS ON)
+    set (BUILD_SPLINELIB_SHARED_LIBS ON)
 else()
     message(STATUS "Build static!")
-    set (BUILD_SHARED_LIBS OFF)
+    set (BUILD_SPLINELIB_SHARED_LIBS OFF)
 endif()
 
 # Content
-#find_package(PkgConfig REQUIRED QUIET)
 add_subdirectory(Sources)
-if(GOOGLETEST)
+if(SPLINELIB_GOOGLETEST)
     message(STATUS "Build tests!")
     enable_testing()
     add_subdirectory(Tests)
 else()
     message(STATUS "No tests!")
 endif()
-if(BUILD_SPLINELIB_TOOLS)
+if(SPLINELIB_BUILD_TOOLS)
     add_subdirectory(Tools)
 endif()
+if(SPLINELIB_BUILD_PUGIXML)
+    # currently only one dependency, so add directly here
+    add_subdirectory(third_party/pugixml)
+else()
+    find_package(pugixml REQUIRED)
+endif()
+
 
 # Packaging
 set(generated_directory ${CMAKE_CURRENT_BINARY_DIR}/Generated)
