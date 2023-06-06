@@ -22,6 +22,8 @@ set(
     ${CMAKE_CURRENT_SOURCE_DIR}/xml_test.cpp
 )
 
+FetchContent_MakeAvailable(googletest)
+
 set(iges_file_one ${CMAKE_CURRENT_SOURCE_DIR}/test_one.iges)
 set(iges_file_two ${CMAKE_CURRENT_SOURCE_DIR}/test_two.iges)
 set(irit_file ${CMAKE_CURRENT_SOURCE_DIR}/test.itd)
@@ -33,8 +35,9 @@ configure_file(config_xml.in.hpp config_xml.hpp)
 add_executable(test_input_output ${TEST_SOURCES})
 target_include_directories(test_input_output PRIVATE $<BUILD_INTERFACE:${PROJECT_BINARY_DIR}>)
 target_include_directories(test_input_output SYSTEM PRIVATE ${GMOCK_INCLUDE_DIRS})
-target_link_libraries(test_input_output PRIVATE utilities splines input_output ${GMOCK_LDFLAGS} mock_splines)
+target_link_libraries(test_input_output PRIVATE utilities splines input_output GTest::gmock_main GTest::gtest_main ${GMOCK_LDFLAGS} mock_splines)
 target_compile_definitions(test_input_output PRIVATE ${GMOCK_CFLAGS_OTHER})
 target_compile_options(test_input_output PRIVATE ${COMPILE_OPTIONS})
 
-add_test(NAME input_output_test COMMAND test_input_output)
+include(GoogleTest)
+gtest_discover_tests(test_input_output)

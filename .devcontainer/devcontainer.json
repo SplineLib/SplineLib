@@ -1,0 +1,6 @@
+{
+    "name": "SplineLib Dev Container",
+    "dockerFile": "Dockerfile",
+    "workspaceFolder": "/workspace",
+    "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=delegated",
+}

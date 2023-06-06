@@ -30,10 +30,12 @@ set(
 )
 set_source_files_properties(${HEADERS} PROPERTIES LANGUAGE CXX HEADER_FILE_ONLY TRUE)
 
+FetchContent_MakeAvailable(googletest)
+
 add_library(mock_vector_spaces ${SOURCES})
 target_include_directories(mock_vector_spaces PUBLIC ${INCLUDE_DIRECTORIES})
 target_include_directories(mock_vector_spaces SYSTEM PUBLIC ${GMOCK_INCLUDE_DIRS})
-target_link_libraries(mock_vector_spaces PUBLIC vector_spaces ${GMOCK_LDFLAGS})
+target_link_libraries(mock_vector_spaces PUBLIC vector_spaces GTest::gmock_main GTest::gtest_main ${GMOCK_LDFLAGS})
 target_compile_definitions(mock_vector_spaces PUBLIC ${GMOCK_CFLAGS_OTHER} INTERFACE ${COMPILE_DEFINITIONS})
 target_compile_options(mock_vector_spaces PRIVATE ${COMPILE_OPTIONS})
 
@@ -56,8 +58,9 @@ set(
 
 add_executable(test_vector_spaces ${TEST_SOURCES})
 target_include_directories(test_vector_spaces SYSTEM PRIVATE ${GMOCK_INCLUDE_DIRS})
-target_link_libraries(test_vector_spaces PRIVATE utilities vector_spaces ${GMOCK_LDFLAGS} mock_vector_spaces)
+target_link_libraries(test_vector_spaces PRIVATE utilities vector_spaces GTest::gmock_main GTest::gtest_main ${GMOCK_LDFLAGS} mock_vector_spaces)
 target_compile_definitions(test_vector_spaces PRIVATE ${GMOCK_CFLAGS_OTHER})
 target_compile_options(test_vector_spaces PRIVATE ${COMPILE_OPTIONS})
 
-add_test(NAME vector_spaces_test COMMAND test_vector_spaces)
+include(GoogleTest)
+gtest_discover_tests(test_vector_spaces)
