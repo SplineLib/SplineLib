@@ -34,9 +34,7 @@ configure_file(config_xml.in.hpp config_xml.hpp)
 
 add_executable(test_input_output ${TEST_SOURCES})
 target_include_directories(test_input_output PRIVATE $<BUILD_INTERFACE:${PROJECT_BINARY_DIR}>)
-target_include_directories(test_input_output SYSTEM PRIVATE ${GMOCK_INCLUDE_DIRS})
-target_link_libraries(test_input_output PRIVATE utilities splines input_output GTest::gmock_main GTest::gtest_main ${GMOCK_LDFLAGS} mock_splines)
-target_compile_definitions(test_input_output PRIVATE ${GMOCK_CFLAGS_OTHER})
+target_link_libraries(test_input_output PRIVATE utilities splines input_output GTest::gmock_main GTest::gtest_main mock_splines)
 target_compile_options(test_input_output PRIVATE ${COMPILE_OPTIONS})
 
 include(GoogleTest)
