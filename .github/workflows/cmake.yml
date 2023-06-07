@@ -45,7 +45,7 @@ jobs:
       with:
         name: JEST Tests            # Name of the check run which will be created
         path: ${{github.workspace}}/build/*.xml    # Path to test results
-        reporter: jest-junit        # Format of test results
+        reporter: java-junit        # Format of test results
 
     - name: Read output variables
       run: |
