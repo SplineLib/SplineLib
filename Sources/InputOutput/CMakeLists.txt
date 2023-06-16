@@ -12,8 +12,13 @@
 # WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE AUTHORS
 # OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 # OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+include(FetchContent)
+FetchContent_Declare(
+  pugixml
+  URL http://github.com/zeux/pugixml/releases/download/v1.13/pugixml-1.13.tar.gz
+)
 
-pkg_search_module(PUGIXML REQUIRED QUIET pugixml)
+FetchContent_MakeAvailable(pugixml)
 
 set(
     HEADERS
@@ -39,10 +44,9 @@ set_source_files_properties(${HEADERS} PROPERTIES LANGUAGE CXX HEADER_FILE_ONLY 
 
 add_library(input_output ${SOURCES})
 target_include_directories(input_output PUBLIC ${INCLUDE_DIRECTORIES})
-target_include_directories(input_output SYSTEM PRIVATE ${PUGIXML_INCLUDEDIR})
 target_link_libraries(input_output PUBLIC utilities splines 
-                                   PRIVATE ${PUGIXML_LDFLAGS} "-Wl,-rpath,${PUGIXML_LIBRARY_DIRS}")
-target_compile_definitions(input_output INTERFACE ${COMPILE_DEFINITIONS} PRIVATE ${PUGIXML_CFLAGS_OTHER})
+                                   PRIVATE pugixml::pugixml)
+target_compile_definitions(input_output INTERFACE ${COMPILE_DEFINITIONS} )
 target_compile_options(input_output PRIVATE ${COMPILE_OPTIONS})
 
 install(
