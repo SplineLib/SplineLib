@@ -1,3 +1,5 @@
+![example workflow](https://github.com/worc4021/SplineLib/actions/workflows/cmake.yml/badge.svg)
+
 # SplineLib
 Library for spline manipulation.
 

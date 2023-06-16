@@ -59,9 +59,7 @@ set(
 )
 
 add_executable(test_utilities ${TEST_SOURCES})
-target_include_directories(test_utilities SYSTEM PRIVATE ${GMOCK_INCLUDE_DIRS})
-target_link_libraries(test_utilities PRIVATE utilities GTest::gmock_main GTest::gtest_main ${GMOCK_LDFLAGS})
-target_compile_definitions(test_utilities PRIVATE ${GMOCK_CFLAGS_OTHER})
+target_link_libraries(test_utilities PRIVATE utilities GTest::gmock_main GTest::gtest_main)
 target_compile_options(test_utilities PRIVATE ${COMPILE_OPTIONS})
 
 include(GoogleTest)

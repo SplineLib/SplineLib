@@ -44,10 +44,9 @@ set_source_files_properties(${HEADERS} PROPERTIES LANGUAGE CXX HEADER_FILE_ONLY 
 
 add_library(input_output ${SOURCES})
 target_include_directories(input_output PUBLIC ${INCLUDE_DIRECTORIES})
-target_include_directories(input_output SYSTEM PRIVATE ${PUGIXML_INCLUDEDIR})
 target_link_libraries(input_output PUBLIC utilities splines 
-                                   PRIVATE pugixml::pugixml ${PUGIXML_LDFLAGS} "-Wl,-rpath,${PUGIXML_LIBRARY_DIRS}")
-target_compile_definitions(input_output INTERFACE ${COMPILE_DEFINITIONS} PRIVATE ${PUGIXML_CFLAGS_OTHER})
+                                   PRIVATE pugixml::pugixml)
+target_compile_definitions(input_output INTERFACE ${COMPILE_DEFINITIONS} )
 target_compile_options(input_output PRIVATE ${COMPILE_OPTIONS})
 
 install(

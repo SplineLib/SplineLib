@@ -36,9 +36,8 @@ FetchContent_MakeAvailable(googletest)
 
 add_library(mock_splines ${SOURCES})
 target_include_directories(mock_splines PUBLIC ${INCLUDE_DIRECTORIES})
-target_include_directories(mock_splines SYSTEM PUBLIC ${GMOCK_INCLUDE_DIRS})
-target_link_libraries(mock_splines PUBLIC utilities splines GTest::gmock_main GTest::gtest_main ${GMOCK_LDFLAGS} mock_parameter_spaces mock_vector_spaces)
-target_compile_definitions(mock_splines PUBLIC ${GMOCK_CFLAGS_OTHER} INTERFACE ${COMPILE_DEFINITIONS})
+target_link_libraries(mock_splines PUBLIC utilities splines GTest::gmock_main GTest::gtest_main mock_parameter_spaces mock_vector_spaces)
+target_compile_definitions(mock_splines INTERFACE ${COMPILE_DEFINITIONS})
 target_compile_options(mock_splines PRIVATE ${COMPILE_OPTIONS})
 
 install(
@@ -61,10 +60,8 @@ set(
 )
 
 add_executable(test_splines ${TEST_SOURCES})
-target_include_directories(test_splines SYSTEM PRIVATE ${GMOCK_INCLUDE_DIRS})
-target_link_libraries(test_splines PRIVATE utilities splines GTest::gmock_main GTest::gtest_main ${GMOCK_LDFLAGS} mock_parameter_spaces mock_vector_spaces
+target_link_libraries(test_splines PRIVATE utilities splines GTest::gmock_main GTest::gtest_main mock_parameter_spaces mock_vector_spaces
                                                                               mock_splines)
-target_compile_definitions(test_splines PRIVATE ${GMOCK_CFLAGS_OTHER})
 target_compile_options(test_splines PRIVATE ${COMPILE_OPTIONS})
 
 include(GoogleTest)
